@@ -1,0 +1,21 @@
+{
+  "step": 16,
+  "label": "pre_next_step16",
+  "ts": "20260929_233950",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n侏儒\n2\n岩石侏儒\n3\n游荡者\n4\n职业套装\n5\n士兵\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n回归测试_33801\nLv.1\n侏儒（岩石侏儒） · 士兵 · 游荡者 · 守序善良\n玩家：测试玩家\n战斗\nHP\nNaN\nNaN (d8) + +2 (体质)\nAC\n12\n先攻\n+2\n熟练\n+2\n速度\n30\n被动感知\n11\n属性 · 技能\n力量\n16\n+3\n●\n豁免\n+5\n●\n运动\n+5\n敏捷\n15\n+2\n●\n豁免\n+4\n★\n体操\n+6\n●\n巧手\n+4\n○\n隐匿\n+2\n体质\n14\n+2\n○\n豁免\n+2\n智力\n13\n+1\n○\n豁免\n+1\n○\n奥秘\n+1\n○\n历史\n+1\n○\n调查\n+1\n○\n自然\n+1\n○\n宗教\n+1\n感知\n13\n+1\n○\n豁免\n+1\n○\n驯兽\n+1\n○\n洞悉\n+1\n○\n医药\n+1\n○\n察觉\n+1\n○\n求生\n+1\n魅力\n7\n-2\n○\n豁免\n-2\n○\n欺瞒\n-2\n○\n威吓\n-2\n○\n表演\n-2",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

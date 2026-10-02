@@ -1,0 +1,3 @@
+﻿id,名字,label,template
+1,full_level,施法属性调整值 + 职业等级,{ability}调整值 + {class}等级
+2,half_level,施法属性调整值 + 职业等级的一半,{ability}调整值 + {class}等级的一半

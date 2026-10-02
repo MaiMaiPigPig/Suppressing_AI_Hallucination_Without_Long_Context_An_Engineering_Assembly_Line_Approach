@@ -1,0 +1,23 @@
+{
+  "step": 2,
+  "label": "pre_next_step2",
+  "ts": "20261002_091336",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n提夫林\n2\n炼狱\n3\n职业\n4\n职业套装\n5\n背景\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n深渊\n法术:毒气喷涌、毒素抗性\n幽冥\n暗蚀抗性、法术:颤栗之触\n炼狱\n火焰抗性、法术:火焰箭\n炼狱\n提夫林 亚种\n特性\n火焰抗性\n你对火焰伤害有抗性，受到的火焰伤害减半（向下取整）\n法术:火焰箭\n习得法术:火焰箭\n← 上一步\n第 2 步，共 17 步\n下一步 →",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "炼狱"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

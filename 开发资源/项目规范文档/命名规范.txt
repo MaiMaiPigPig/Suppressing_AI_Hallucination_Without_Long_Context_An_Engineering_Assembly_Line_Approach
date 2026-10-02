@@ -1,0 +1,258 @@
+# 项目命名规范
+
+本规范适用于 TableChronicle 项目所有代码文件。后续 AI 开发新功能、新规则版本时，直接按此规范命名，无需重新讨论。
+
+---
+
+## 一、总则
+
+1. **自解释优先**：命名必须让人一眼看懂用途，禁止拼音、禁止无意义缩写。
+2. **同一概念全文同名**：`dataCache` 不能有的地方叫 `cache`、有的地方叫 `data_cache`。
+3. **英文命名**：目录、文件、变量、函数一律英文，仅用户可见文本用中文。
+4. **小写 + 连字符**：文件名、目录名用 `kebab-case`（短横线连接）。
+5. **删除即清理**：删除 JS 模块时，必须同步删除对应的 CSS 文件，禁止留空文件。
+
+---
+
+## 二、目录结构规范
+
+### 2.1 分层原则
+
+项目代码分两层：
+
+- **逻辑层**（`core/`）：横向共用能力，不按功能分。包括数据加载、状态管理、规则解析、施法计算等。
+- **功能层**（`creation/`、`upgrade/` 等）：纵向按用户功能分。包括流程控制、步骤页面、专用 UI 等。
+
+### 2.2 目录命名
+
+| 层级 | 目录名 | 说明 |
+|------|--------|------|
+| 逻辑层根目录 | `core/` | 共用逻辑能力 |
+| 逻辑层-数据 | `core/data/` | 数据加载、缓存、索引 |
+| 逻辑层-状态 | `core/state/` | 角色状态定义与操作 |
+| 逻辑层-常量 | `core/constants/` | 全局常量（属性 ID、步骤字段映射等） |
+| 逻辑层-规则 | `core/rules/` | 规则字符串解析引擎 |
+| 逻辑层-法术 | `core/spells/` | 施法配置与法术位计算 |
+| 公共工具 | `utils/` | 跨层纯函数工具（货币、HTML 转义等） |
+| 功能层-车卡 | `creation/` | 角色创建功能 |
+| 功能层-升级 | `upgrade/` | 角色升级功能 |
+| 功能层-流程 | `creation/flow/` | 车卡流程控制 |
+| 功能层-过渡桥接 | `creation/flow/bridge.js` | ES Module 向 window 桥接（v0.5 可移除） |
+| 功能层-步骤 | `creation/steps/` | 车卡步骤页面 |
+| 功能层-UI | `creation/ui/` | 车卡专用 UI 组件 |
+| 功能层-样式 | `creation/styles/` | 车卡专用 CSS 文件 |
+
+**禁止**：`js/`、`css/`、`img/` 这种按文件类型分的目录。
+
+### 2.3 规则版本目录
+
+不同 TRPG 规则版本用下划线分隔：
+
+```
+dnd_5r/     # D&D 5R（修订版）
+dnd_5e/     # D&D 5E（经典版）
+coc_7th/    # 克苏鲁的呼唤 7版
+```
+
+每个规则版本内部结构相同：都有自己的 `core/` 和 `creation/`、`upgrade/` 等功能层。
+
+### 2.4 功能入口页
+
+欢迎页、登录页、功能选择页等**非步骤页面**，不归 `steps/` 管理：
+
+- 放 `flow/lifecycle.js` 处理（如果是流程的一部分）
+- 或单独放 `welcome.js` / `login.js`（如果是独立入口）
+
+---
+
+## 三、文件命名规范
+
+| 类型 | 格式 | 示例 |
+|------|------|------|
+| JS 模块 | `kebab-case.js` | `character-state.js`、`data-loader.js` |
+| 步骤文件 | `两位数字-名词.js` | `01-race.js`、`07-ability.js` |
+| 工具模块 | `名词.js` | `utils.js`、`dnd-math.js` |
+| HTML 入口 | `index.html` | 每个功能域一个 `index.html` |
+| CSS 文件 | `kebab-case.css` | `progress-bar.css`、`selection-modal.css` |
+
+**禁止**：`script.js`、`style.css`、`main.js` 这种无意义命名。
+
+### 3.1 CSS 文件位置
+
+CSS 文件集中放在 `styles/` 目录下，与对应 JS 模块同名：
+
+```
+creation/
+├── steps/
+│   ├── 01-race.js
+│   └── 02-subrace.js
+└── styles/
+    ├── 01-race.css          # 对应 01-race.js
+    ├── 02-subrace.css       # 对应 02-subrace.js
+    ├── progress-bar.css     # 对应 ui/progress-bar.js
+    └── selection-modal.css  # 对应 ui/selection-modal.js
+```
+
+**删除 JS 模块时，必须同步删除对应的 CSS 文件。**
+
+### 3.2 文档文件命名
+
+AI 协作过程中产生的所有文档（需求单、任务卡、缺陷单、测试计划、评估报告等），统一使用以下格式：
+
+**格式**：`{文档类型}-V{主版本}.{次版本}-{序号}_{名称}.md`
+
+**规则**：
+- **文档类型**在前，让人一眼看出文件用途
+- **V 大写**，统一标识版本号
+- **版本号 + 序号**：`V{major}.{minor}-{NNN}`，如 `V0.5-001`
+- **名称**用中文，描述文档主题
+- 分隔符：类型后 `-`，版本后 `-`，名称前 `_`
+
+| 文档类型 | 前缀 | 示例 |
+|----------|------|------|
+| 需求单 | `需求-V-` | `需求-V0.5-001_命名规范落地与全局重命名.md` |
+| 任务卡 | `任务-V-` | `任务-V0.5-003_开发执行前风险评估.md` |
+| 缺陷单 | `缺陷单-V-` | `缺陷单-V0.5-001_产品需求审查.md` |
+| 测试计划 | `测试-V-` | `测试-V0.5-002_代码迁移测试计划.md` |
+| 评估结果 | `评估结果-V-` | `评估结果-V0.5-003_开发执行前风险评估.md` |
+| 待补需求 | `待补需求单-V-` | `待补需求单-V0.4-004.md` |
+| 设计文档 | `设计-V-` | `设计-V0.4-002-A_模块拆分.md` |
+
+**反例**：
+- `v0.5-001_xxx.md` ❌ —— 看不出是需求还是任务，必须加类型前缀
+- `需求-v0.5-001_xxx.md` ❌ —— V 必须大写
+- `需求-V0.5-001-xxx.md` ❌ —— 名称前用 `_` 不用 `-`
+
+---
+
+## 四、函数命名规范
+
+| 场景 | 格式 | 示例 |
+|------|------|------|
+| 获取数据 | `get + 名词` | `getSpellData()`、`getRaceFeatures()` |
+| 计算/转换 | `calc + 名词` 或 `format + 名词` | `calcMod()`、`formatCurrency()` |
+| 渲染页面 | `render + 名词` | `renderRaceStep()`、`renderCharacterSheet()` |
+| 更新状态 | `update + 名词` | `updateProgress()`、`updateCurrency()` |
+| 切换状态 | `switch + 名词` 或 `toggle + 名词` | `switchAbilityMode()`、`toggleUnbind()` |
+| 检查/判断 | `is + 形容词` 或 `has + 名词` | `isSpellStepSkippable()`、`hasPendingSelections()` |
+| 处理事件 | `handle + 事件名` 或 `on + 事件名` | `handleConfirmClick()`、`onStepChange()` |
+| 加载/初始化 | `load + 名词` 或 `init + 名词` | `loadData()`、`initLifecycle()` |
+| 保存/导出 | `save + 名词` 或 `export + 格式` | `saveDetailField()`、`exportJson()` |
+
+**禁止缩写**：`getCfgs()` ❌ → `getConfigurations()` ✅（但优先 `getConfigs`）。
+**禁止**：`doIt()`、`process()`、`handle()` 这种无意义动词。
+
+---
+
+## 五、变量命名规范
+
+| 类型 | 格式 | 示例 |
+|------|------|------|
+| 普通变量 | `camelCase` | `currentStep`、`selectedFeat` |
+| 布尔值 | `is + 形容词` 或 `has + 名词` | `isLoading`、`hasSubraces` |
+| 常量 | `UPPER_SNAKE_CASE` | `TOTAL_STEPS`、`POINT_COST` |
+| DOM 元素 | `名词 + Element` 或 `名词 + El` | `stepContentElement`、`modalEl` |
+| 集合/数组 | 复数名词 | `races`、`pendingSelections` |
+| 映射/字典 | `名词 + Map` 或 `名词 + By + 键` | `schoolMap`、`featuresById` |
+
+**禁止**：`a`、`b`、`tmp`、`res`、`ret` 这种无意义命名。
+**禁止**：`i`、`j` 仅在简单循环索引中使用，复杂逻辑用 `raceIndex`、`stepIndex`。
+
+---
+
+## 六、特殊约定
+
+| 场景 | 约定 |
+|------|------|
+| 事件回调 | `on + 事件名`（如 `onRaceSelect`）或 `handle + 动作`（如 `handleRaceSelect`）|
+| 私有函数 | 下划线前缀 `_`（如 `_buildClassStats`），表示模块内部使用 |
+| 异步函数 | 不加特殊前缀，用 `async` 关键字标识 |
+| 副作用函数 | 命名体现副作用，如 `clearDataAfterStep()`、`resetAbilityState()` |
+| 纯函数 | 命名体现无副作用，如 `calcMod()`、`formatAbilityDisplay()` |
+
+---
+
+## 七、现有命名兼容
+
+| 现有命名 | 处理方式 | 说明 |
+|----------|----------|------|
+| `handlers` | 保留 | 全局规则引擎入口，继续用 `handlers.parseRule()` |
+| `dataCache` | 保留 | 全局数据缓存，继续用 `dataCache` |
+| `character` | 保留 | 全局角色状态，继续用 `character` |
+| `abilityState` | 新代码改用 `abilityStepState` | 逐步替换，避免缩写 |
+| `upgrade/core.js` | 改为 `upgrade/state.js` 或 `upgrade/flow/lifecycle.js` | 文件名与 `core/` 目录混淆，且含重复常量 |
+
+---
+
+## 八、完整示例
+
+```
+dnd_5r/                             # 规则版本根目录
+├── core/                           # 逻辑层：横向共用
+│   ├── data/
+│   │   ├── loader.js               # 加载 JSON
+│   │   ├── cache.js                # dataCache 管理
+│   │   └── indexes.js              # 数据索引构建
+│   ├── state/
+│   │   ├── character-model.js      # 角色状态结构
+│   │   └── character-state.js      # 状态操作 API
+│   ├── constants/
+│   │   └── character-constants.js  # 全局常量（属性 ID、步骤字段映射）
+│   ├── rules/
+│   │   ├── index.js                # parseRule 入口
+│   │   ├── parser.js               # 规则解析器
+│   │   └── processors/
+│   │       ├── basic.js
+│   │       ├── operation.js
+│   │       └── ...
+│   ├── spells/
+│   │   ├── config.js               # 施法配置查询
+│   │   └── slots.js                # 法术位计算
+│   │
+├── utils/                          # 公共工具：跨层纯函数
+│   ├── currency.js                 # 货币解析/转换
+│   └── html.js                     # HTML 转义（XSS 防护）
+│
+├── creation/                       # 功能层：车卡
+│   ├── index.html
+│   ├── app.js                      # 入口
+│   ├── flow/
+│   │   ├── lifecycle.js            # 欢迎页/导入/新角色
+│   │   ├── step-router.js          # 17步路由
+│   │   └── navigation.js           # 前后导航+校验
+│   ├── steps/
+│   │   ├── 01-race.js
+│   │   ├── 02-subrace.js
+│   │   └── ...
+│   ├── ui/
+│   │   ├── progress-bar.js
+│   │   └── selection-modal.js
+│   └── styles/
+│       ├── 01-race.css
+│       ├── progress-bar.css
+│       └── selection-modal.css
+│
+└── upgrade/                        # 功能层：升级
+    ├── index.html
+    ├── app.js
+    ├── flow/
+    │   ├── lifecycle.js
+    │   ├── step-router.js
+    │   ├── navigation.js
+    │   └── bridge.js          # ES Module 过渡桥接（v0.5 可移除）
+    ├── steps/
+    │   ├── 01-import.js
+    │   └── ...
+    ├── ui/
+    └── styles/
+```
+
+---
+
+## 九、验收标准
+
+1. 任意新文件命名符合本规范 → 人工 Code Review 检查。
+2. 函数名能在 3 秒内猜出用途 → 抽查。
+3. 同一概念在项目中只出现一种命名 → `grep` 搜索验证。
+4. 无拼音、无缩写、无 `tmp/res/ret` → ESLint 或人工检查。
+5. 删除 JS 模块后，对应 CSS 文件同步删除 → 人工检查。

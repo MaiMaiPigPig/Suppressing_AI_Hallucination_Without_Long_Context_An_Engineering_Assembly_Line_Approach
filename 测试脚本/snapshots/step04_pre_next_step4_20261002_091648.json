@@ -1,0 +1,21 @@
+{
+  "step": 4,
+  "label": "pre_next_step4",
+  "ts": "20261002_091648",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n精灵\n2\n高等精灵\n3\n法师\n4\n职业套装\n5\n背景\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n法师套装\n2把匕首，奥术法器（长棍），长袍，法术书...\n法师套装\n55GP\n点击左侧套装查看详情\n← 上一步\n第 4 步，共 17 步\n下一步 →",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

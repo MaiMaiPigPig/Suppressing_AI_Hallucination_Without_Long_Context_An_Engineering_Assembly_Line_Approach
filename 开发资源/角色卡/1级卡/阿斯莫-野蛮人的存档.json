@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:15:20.580Z",
+  "raceId": 1,
+  "subraceId": null,
+  "classId": 1,
+  "subclassId": null,
+  "backgroundId": 2,
+  "abilities": {
+    "1": 15,
+    "4": 13,
+    "9": 14,
+    "11": 10,
+    "18": 12,
+    "25": 8
+  },
+  "classSkills": [
+    20,
+    3
+  ],
+  "backgroundSkills": [
+    30,
+    15
+  ],
+  "allSkills": [
+    "驯兽",
+    "运动",
+    "游说",
+    "调查"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 66,
+        "toolId": 14,
+        "name": "铁匠工具",
+        "source": "raceFeatures",
+        "sourceLabel": "工匠",
+        "link": 2
+      }
+    ],
+    "weapons": [
+      {
+        "weaponId": 18,
+        "featureId": 3,
+        "name": "巨斧",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      },
+      {
+        "weaponId": 15,
+        "featureId": 3,
+        "name": "战斧",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      }
+    ],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "1": 1,
+      "4": 1,
+      "11": 1
+    }
+  },
+  "selectedFeat": 12,
+  "selectedSpells": [
+    11
+  ],
+  "lockedSpells": [
+    11
+  ],
+  "classPackage": {
+    "id": 17
+  },
+  "bgPackage": {
+    "id": 2
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 0,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "野蛮人",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    1,
+    3,
+    4
+  ]
+}

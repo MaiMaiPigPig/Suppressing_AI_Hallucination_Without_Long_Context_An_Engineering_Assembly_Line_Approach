@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-21T12:46:21.186Z",
+  "raceId": 4,
+  "subraceId": 23,
+  "classId": 11,
+  "subclassId": null,
+  "backgroundId": 4,
+  "abilities": {
+    "1": 8,
+    "4": 14,
+    "9": 13,
+    "11": 12,
+    "18": 10,
+    "25": 15
+  },
+  "classSkills": [
+    21,
+    23
+  ],
+  "backgroundSkills": [
+    8,
+    7
+  ],
+  "allSkills": [
+    "洞悉",
+    "察觉",
+    "隐匿",
+    "巧手",
+    "求生"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 37,
+        "name": "盗贼工具",
+        "source": "raceFeatures",
+        "sourceLabel": "罪犯",
+        "link": 4
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [
+      {
+        "id": 24,
+        "name": "求生",
+        "source": "raceFeatures",
+        "sourceLabel": "敏锐感官",
+        "link": 43
+      }
+    ],
+    "expertise": [],
+    "classExtra": [
+      {
+        "classId": 11,
+        "groupName": "魔能祈唤选项",
+        "extraId": "33",
+        "name": "刃之魔契",
+        "source": "unknown",
+        "sourceLabel": "",
+        "link": null
+      }
+    ]
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "4": 1,
+      "9": 2
+    }
+  },
+  "selectedFeat": 1,
+  "selectedSpells": [
+    5,
+    6,
+    18,
+    42,
+    39
+  ],
+  "lockedSpells": [
+    5
+  ],
+  "classPackage": {
+    "id": 38
+  },
+  "bgPackage": {
+    "id": 4
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 31,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "木精灵-魔契师",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": []
+}

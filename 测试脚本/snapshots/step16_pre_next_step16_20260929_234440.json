@@ -1,0 +1,21 @@
+{
+  "step": 16,
+  "label": "pre_next_step16",
+  "ts": "20260929_234440",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n半身人\n2\n亚种\n3\n奇械师\n4\n职业套装\n5\n商人\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n回归测试_95972\nLv.1\n半身人 · 商人 · 奇械师 · 守序善良\n玩家：测试玩家\n战斗\nHP\nNaN\nNaN (d8) + +2 (体质)\nAC\n12\n先攻\n+2\n熟练\n+2\n速度\n30\n被动感知\n10\n属性 · 技能\n力量\n17\n+3\n●\n豁免\n+5\n○\n运动\n+3\n敏捷\n15\n+2\n●\n豁免\n+4\n○\n体操\n+2\n○\n巧手\n+2\n○\n隐匿\n+2\n体质\n15\n+2\n○\n豁免\n+2\n智力\n14\n+2\n○\n豁免\n+2\n○\n奥秘\n+2\n○\n历史\n+2\n○\n调查\n+2\n○\n自然\n+2\n○\n宗教\n+2\n感知\n10\n+0\n○\n豁免\n+0\n○\n驯兽\n+0\n○\n洞悉\n+0\n○\n医药\n+0\n○\n察觉\n+0\n○\n求生\n+0\n魅力\n11\n+0\n○\n豁免\n+0\n○\n欺瞒\n+0\n○\n威吓\n+0\n○\n表演\n+0\n○\n游说",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

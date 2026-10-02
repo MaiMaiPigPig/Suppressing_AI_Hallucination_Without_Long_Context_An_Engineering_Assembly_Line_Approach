@@ -1,0 +1,91 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:23:38.068Z",
+  "raceId": 7,
+  "subraceId": null,
+  "classId": 7,
+  "subclassId": null,
+  "backgroundId": 13,
+  "abilities": {
+    "1": 15,
+    "4": 10,
+    "9": 13,
+    "11": 8,
+    "18": 12,
+    "25": 14
+  },
+  "classSkills": [
+    28,
+    17
+  ],
+  "backgroundSkills": [
+    23,
+    6
+  ],
+  "allSkills": [
+    "威吓",
+    "宗教",
+    "察觉",
+    "体操"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 35,
+        "name": "领航工具",
+        "source": "raceFeatures",
+        "sourceLabel": "水手",
+        "link": 13
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "1": 2,
+      "18": 1
+    }
+  },
+  "selectedFeat": 11,
+  "selectedSpells": [
+    98,
+    56
+  ],
+  "lockedSpells": [],
+  "classPackage": {
+    "id": 30
+  },
+  "bgPackage": {
+    "id": 13
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 29,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "半身人-圣武士",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    8,
+    9,
+    10
+  ]
+}

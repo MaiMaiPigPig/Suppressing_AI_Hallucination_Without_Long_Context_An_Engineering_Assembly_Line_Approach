@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:22:33.674Z",
+  "raceId": 6,
+  "subraceId": 29,
+  "classId": 6,
+  "subclassId": null,
+  "backgroundId": 9,
+  "abilities": {
+    "1": 12,
+    "4": 15,
+    "9": 13,
+    "11": 10,
+    "18": 14,
+    "25": 8
+  },
+  "classSkills": [
+    6,
+    21
+  ],
+  "backgroundSkills": [
+    17,
+    22
+  ],
+  "allSkills": [
+    "体操",
+    "洞悉",
+    "宗教",
+    "医药"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "source": "raceFeatures",
+        "sourceLabel": "武僧",
+        "link": 6,
+        "typeId": 66,
+        "toolId": 30,
+        "name": "鲁特琴"
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "9": 2,
+      "18": 1
+    }
+  },
+  "selectedFeat": 3,
+  "selectedSpells": [],
+  "lockedSpells": [],
+  "classPackage": {
+    "id": 28
+  },
+  "bgPackage": {
+    "id": 9
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 27,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "风暴-歌莉娅-武僧",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    6,
+    7,
+    8
+  ]
+}

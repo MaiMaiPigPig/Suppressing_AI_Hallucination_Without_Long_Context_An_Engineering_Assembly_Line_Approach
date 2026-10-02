@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-21T04:21:16.132Z",
+  "raceId": 9,
+  "subraceId": null,
+  "classId": 9,
+  "subclassId": null,
+  "backgroundId": 16,
+  "abilities": {
+    "1": 12,
+    "4": 15,
+    "9": 13,
+    "11": 14,
+    "18": 10,
+    "25": 8
+  },
+  "classSkills": [
+    7,
+    3,
+    23,
+    27
+  ],
+  "backgroundSkills": [
+    8,
+    21
+  ],
+  "allSkills": [
+    "巧手",
+    "运动",
+    "察觉",
+    "欺瞒",
+    "隐匿",
+    "洞悉"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 37,
+        "name": "盗贼工具",
+        "source": "raceFeatures",
+        "sourceLabel": "流浪者",
+        "link": 16
+      }
+    ],
+    "weapons": [
+      {
+        "weaponId": 14,
+        "featureId": 113,
+        "name": "投石索",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      },
+      {
+        "weaponId": 15,
+        "featureId": 113,
+        "name": "战斧",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      }
+    ],
+    "spells": [],
+    "languages": [
+      {
+        "id": 18,
+        "name": "盗贼黑话",
+        "source": "classFeatures",
+        "sourceLabel": "盗贼黑话",
+        "link": 112
+      }
+    ],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [
+      {
+        "id": 7,
+        "name": "巧手",
+        "source": "classFeatures",
+        "sourceLabel": "专精",
+        "link": 110
+      }
+    ],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "4": 2,
+      "18": 1
+    }
+  },
+  "selectedFeat": 4,
+  "selectedSpells": [],
+  "lockedSpells": [],
+  "classPackage": {
+    "id": 34
+  },
+  "bgPackage": {
+    "id": 16
+  },
+  "shoppingItems": [
+    {
+      "name": "撬棍",
+      "cat": "items",
+      "qty": 1,
+      "priceCP": 200
+    }
+  ],
+  "currency": {
+    "pp": 2,
+    "gp": 2,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "兽人-游荡者",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    1,
+    2,
+    3
+  ]
+}

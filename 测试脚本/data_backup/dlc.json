@@ -1,0 +1,74 @@
+[
+  {
+    "dlc": "phb",
+    "type": "主",
+    "desc": "玩家手册2024",
+    "enabled": "True"
+  },
+  {
+    "dlc": "tce",
+    "type": "",
+    "desc": "塔莎的万事坩埚",
+    "enabled": "False"
+  },
+  {
+    "dlc": "xge",
+    "type": "",
+    "desc": "珊娜萨的万事指南",
+    "enabled": "False"
+  },
+  {
+    "dlc": "ftd",
+    "type": "",
+    "desc": "龙与地下城：费资本的巨龙宝库",
+    "enabled": "False"
+  },
+  {
+    "dlc": "bmt",
+    "type": "",
+    "desc": "博德之门： descend into Avernus 扩展",
+    "enabled": "False"
+  },
+  {
+    "dlc": "gcr",
+    "type": "",
+    "desc": "Grim Hollow 扩展",
+    "enabled": "False"
+  },
+  {
+    "dlc": "ai",
+    "type": "",
+    "desc": "Acquisitions Incorporated",
+    "enabled": "False"
+  },
+  {
+    "dlc": "egw",
+    "type": "",
+    "desc": "Eberron: Rising from the Last War",
+    "enabled": "False"
+  },
+  {
+    "dlc": "aag",
+    "type": "",
+    "desc": "Astral Adventurer's Guide",
+    "enabled": "False"
+  },
+  {
+    "dlc": "so",
+    "type": "",
+    "desc": "Dungeons & Dragons 试用版",
+    "enabled": "False"
+  },
+  {
+    "dlc": "efa",
+    "type": "",
+    "desc": "探索费伦扩展",
+    "enabled": "False"
+  },
+  {
+    "dlc": "克苏鲁",
+    "type": "",
+    "desc": "火炬光下的克苏鲁",
+    "enabled": "False"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "魔法卷轴（戏法）",
+    "rarity": "common",
+    "link": "spell(lv=0)",
+    "link_extra": 1,
+    "desc": ""
+  },
+  {
+    "id": 2,
+    "name": "魔法卷轴（一环）",
+    "rarity": "common",
+    "link": "spell(lv=1)",
+    "link_extra": 1,
+    "desc": ""
+  }
+]

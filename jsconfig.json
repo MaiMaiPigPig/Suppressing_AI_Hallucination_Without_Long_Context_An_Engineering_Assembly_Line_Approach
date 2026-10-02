@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "module": "ES2022"
+  },
+  "include": ["TableChronicle/**/*.js"],
+  "exclude": ["node_modules"]
+}

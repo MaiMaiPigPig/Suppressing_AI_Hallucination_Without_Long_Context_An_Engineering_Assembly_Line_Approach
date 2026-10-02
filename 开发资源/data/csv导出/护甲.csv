@@ -1,0 +1,14 @@
+﻿id,名字,英文名,护甲等级（AC）,力量,隐匿,重量,weight_unit,价格,甲类型,dlc
+1,布甲,Padded Armor,11+AbilityModifiers(4),,disadvantage,8,,5GP,2,phb
+2,皮甲,Leather Armor,11+AbilityModifiers(4),,,10,,10GP,2,phb
+3,镶钉皮甲,Studded Leather Armor,12+AbilityModifiers(4),,,13,,45GP,2,phb
+4,兽皮甲,Hide Armor,12+AbilityModifiers(4)(max=2),,,12,,10GP,3,phb
+5,链甲衫,Chain Shirt,13+AbilityModifiers(4)(max=2),,,20,,50GP,3,phb
+6,鳞甲,Scale Mail,14+AbilityModifiers(4)(max=2),,disadvantage,45,,50GP,3,phb
+7,胸甲,Breastplate,14+AbilityModifiers(4)(max=2),,,20,,400GP,3,phb
+8,半身板甲,Half Plate Armor,15+AbilityModifiers(4)(max=2),,disadvantage,40,,750GP,3,phb
+9,环甲,Ring Mail,14,,disadvantage,40,,30GP,4,phb
+10,链甲,Chain Mail,16,str13,disadvantage,55,,75GP,4,phb
+11,板条甲,Splint Armor,17,str15,disadvantage,60,,200GP,4,phb
+12,板甲,Plate Armor,18,str15,disadvantage,65,,1500GP,4,phb
+13,盾牌,Shield,2,,,6,,10GP,5,phb

@@ -1,0 +1,36 @@
+{
+  "step": 13,
+  "label": "pre_next_step13",
+  "ts": "20261002_091444",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n侏儒\n2\n岩石侏儒\n3\n游荡者\n4\n职业套装\n5\n士兵\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n商城购物\n职业金币\n8GP\n+\n背景金币\n1PP 4GP\n−\n购物车\n1CP\n=\n2PP 1GP 1EP 4SP 9CP\n已有物品（来自套装，不可修改）\n皮甲\n×1\n匕首\n×2\n短剑\n×1\n短弓\n×1\n箭矢*20\n×20\n箭袋\n×1\n盗贼工具\n×1\n窃贼套组\n×1\n矛\n×1\n短弓\n×1\n箭*20\n×20\n医疗包\n×1\n箭袋\n×1\n旅行服装\n×1\n士兵套组\n×1\n选购商品\n                                冒险用品\n                                武器\n                                护甲\n                                工具\n                           ",
+  "elements": {
+    "商城商品": {
+      "count": 98,
+      "samples": [
+        "强酸\n25GP",
+        "炽火胶\n50GP",
+        "弹药",
+        "抗毒剂\n50GP",
+        "奥术法器",
+        "背包\n2GP",
+        "滚珠\n1GP",
+        "木桶\n2GP",
+        "篮子\n4SP",
+        "铺盖\n1GP"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

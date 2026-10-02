@@ -1,0 +1,45 @@
+{
+  "step": 10,
+  "label": "pre_next_step10",
+  "ts": "20261002_112438",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n龙裔\n2\n赤铜龙\n3\n德鲁伊\n4\n职业套装\n5\n士兵\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n技能选择\n职业技能 — 选择 2 项\n已选 2 / 2\n🔓\n解绑职业\n请先与你的DM商议后再决定是否解绑\n体质\nconstitution\n体质豁免\nconstitution\n智力\nintelligence\n调查\nintelligence\n宗教\nintelligence\n感知\nwisdom\n背景技能\n已选 0\n🔓\n解绑背景\n请先与你的DM商议后再决定是否解绑\n运动\nstrength\n威吓\ncharisma\n← 上一步\n第 10 步，共 17 步\n下一步 →",
+  "elements": {
+    "技能区": {
+      "count": 2,
+      "samples": [
+        "职业技能 — 选择 2 项\n已选 2 / 2\n🔓\n解绑职业\n请先与你的DM商议后",
+        "背景技能\n已选 0\n🔓\n解绑背景\n请先与你的DM商议后再决定是否解绑\n运动\nst"
+      ]
+    },
+    "已选技能": {
+      "count": 2,
+      "samples": [
+        "体质\nconstitution",
+        "体质豁免\nconstitution"
+      ]
+    },
+    "可选技能": {
+      "count": 2,
+      "samples": [
+        "运动\nstrength",
+        "威吓\ncharisma"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "体质",
+    "体质豁免"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

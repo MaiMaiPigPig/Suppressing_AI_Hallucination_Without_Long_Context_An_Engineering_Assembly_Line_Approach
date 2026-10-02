@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# 编辑器
+.vscode/
+.idea/
+
+# 系统
+Thumbs.db
+Desktop.ini
+
+# 临时
+*.log
+*.tmp
+node_modules
+
+# 仓库1（应用工程独立仓库，不进仓库2）
+TableChronicle/
+
+# 旧仓库（卡C 将删除，不进仓库2）
+.git_old/

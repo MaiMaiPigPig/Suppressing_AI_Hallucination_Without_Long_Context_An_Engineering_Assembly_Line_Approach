@@ -1,0 +1,101 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-21T12:48:08.649Z",
+  "raceId": 1,
+  "subraceId": null,
+  "classId": 12,
+  "subclassId": null,
+  "backgroundId": 15,
+  "abilities": {
+    "1": 8,
+    "4": 12,
+    "9": 13,
+    "11": 15,
+    "18": 14,
+    "25": 10
+  },
+  "classSkills": [
+    13,
+    14
+  ],
+  "backgroundSkills": [
+    28,
+    3
+  ],
+  "allSkills": [
+    "奥秘",
+    "历史",
+    "威吓",
+    "运动"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 68,
+        "toolId": 23,
+        "name": "三龙牌",
+        "source": "raceFeatures",
+        "sourceLabel": "士兵",
+        "link": 15
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "4": 2,
+      "9": 1
+    }
+  },
+  "selectedFeat": 9,
+  "selectedSpells": [
+    11,
+    18,
+    20,
+    24,
+    75,
+    76,
+    78,
+    63,
+    62,
+    61
+  ],
+  "lockedSpells": [
+    11
+  ],
+  "classPackage": {
+    "id": 40
+  },
+  "bgPackage": {
+    "id": 15
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 19,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "阿斯莫-法师",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    1,
+    14,
+    15
+  ]
+}

@@ -1,0 +1,162 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:25:15.202Z",
+  "raceId": 8,
+  "subraceId": null,
+  "classId": 8,
+  "subclassId": null,
+  "backgroundId": 8,
+  "abilities": {
+    "1": 12,
+    "4": 15,
+    "9": 13,
+    "11": 8,
+    "18": 14,
+    "25": 10
+  },
+  "classSkills": [
+    15,
+    23
+  ],
+  "backgroundSkills": [
+    24,
+    8
+  ],
+  "allSkills": [
+    "调查",
+    "察觉",
+    "求生",
+    "隐匿",
+    "运动"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 5,
+        "name": "制图工具",
+        "source": "raceFeatures",
+        "sourceLabel": "向导",
+        "link": 8
+      }
+    ],
+    "weapons": [
+      {
+        "weaponId": 10,
+        "featureId": 97,
+        "name": "矛",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      },
+      {
+        "weaponId": 14,
+        "featureId": 97,
+        "name": "投石索",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      }
+    ],
+    "spells": [
+      {
+        "classId": 4,
+        "lv": 0,
+        "spellId": 26,
+        "name": "维生术",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      },
+      {
+        "classId": 4,
+        "lv": 0,
+        "spellId": 27,
+        "name": "点点星芒",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      },
+      {
+        "classId": 4,
+        "lv": 1,
+        "spellId": 82,
+        "name": "防护善恶",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      }
+    ],
+    "languages": [],
+    "armors": [],
+    "feats": [
+      {
+        "typeId": 42,
+        "featId": 12,
+        "name": "健壮",
+        "source": "raceFeatures",
+        "sourceLabel": "多才多艺",
+        "link": 62
+      }
+    ],
+    "skills": [
+      {
+        "id": 3,
+        "name": "运动",
+        "source": "raceFeatures",
+        "sourceLabel": "技能",
+        "link": 61
+      }
+    ],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "4": 2,
+      "18": 1
+    }
+  },
+  "selectedFeat": 6,
+  "selectedSpells": [
+    65,
+    73,
+    26,
+    27,
+    82
+  ],
+  "lockedSpells": [
+    73,
+    26,
+    27,
+    82
+  ],
+  "classPackage": {
+    "id": 32
+  },
+  "bgPackage": {
+    "id": 8
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 10,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "人类-游侠",
+  "player": "",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "",
+  "ideals": "",
+  "bonds": "",
+  "flaws": "",
+  "backstory": "",
+  "selectedLanguages": [
+    19,
+    14,
+    1
+  ]
+}

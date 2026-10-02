@@ -1,0 +1,160 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:19:32.035Z",
+  "raceId": 4,
+  "subraceId": 22,
+  "classId": 4,
+  "subclassId": null,
+  "backgroundId": 8,
+  "abilities": {
+    "1": 8,
+    "4": 12,
+    "9": 14,
+    "11": 13,
+    "18": 15,
+    "25": 10
+  },
+  "classSkills": [
+    20,
+    16
+  ],
+  "backgroundSkills": [
+    24,
+    8
+  ],
+  "allSkills": [
+    "驯兽",
+    "自然",
+    "求生",
+    "隐匿",
+    "察觉"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 5,
+        "name": "制图工具",
+        "source": "raceFeatures",
+        "sourceLabel": "向导",
+        "link": 8
+      }
+    ],
+    "weapons": [],
+    "spells": [
+      {
+        "classId": 12,
+        "lv": 0,
+        "spellId": 7,
+        "name": "四象法门",
+        "source": "raceFeatures",
+        "sourceLabel": "法师戏法",
+        "link": 37
+      },
+      {
+        "classId": 4,
+        "lv": 0,
+        "spellId": 10,
+        "name": "神导术",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      },
+      {
+        "classId": 4,
+        "lv": 0,
+        "spellId": 26,
+        "name": "维生术",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      },
+      {
+        "classId": 4,
+        "lv": 1,
+        "spellId": 51,
+        "name": "侦测魔法",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(德鲁伊)",
+        "link": 6
+      }
+    ],
+    "languages": [
+      {
+        "id": 14,
+        "name": "德鲁伊语",
+        "source": "raceFeatures",
+        "sourceLabel": "德鲁伊语",
+        "link": 37
+      }
+    ],
+    "armors": [],
+    "feats": [],
+    "skills": [
+      {
+        "id": 23,
+        "name": "察觉",
+        "source": "raceFeatures",
+        "sourceLabel": "敏锐感官",
+        "link": 43
+      }
+    ],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "9": 1,
+      "18": 2
+    }
+  },
+  "selectedFeat": 6,
+  "selectedSpells": [
+    29,
+    27,
+    30,
+    49,
+    65,
+    83,
+    91,
+    7,
+    10,
+    26,
+    51
+  ],
+  "lockedSpells": [
+    91,
+    7,
+    10,
+    26,
+    51
+  ],
+  "classPackage": {
+    "id": 24
+  },
+  "bgPackage": {
+    "id": 8
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 53,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "德鲁伊",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    19,
+    7,
+    6
+  ]
+}

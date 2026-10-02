@@ -1,0 +1,521 @@
+# D&D 5R 角色卡生成器 — 需求说明（已实现）
+
+> ⚠️ **重要**：本文件记录了所有已实现的功能和架构约定。后续 AI 修改代码前必须先阅读此文档。
+
+---
+
+## 一、项目概述
+
+### 技术栈
+- 纯前端：HTML + CSS + JavaScript（无框架、无后端）
+- 数据：JSON 文件，通过 fetch 在浏览器端加载
+- 入口：`character/dnd_5r/character.html`
+
+### 项目结构
+```
+TableChronicle/
+├── character/dnd_5r/
+│   ├── character.html          # 入口页面
+│   ├── character.js            # 核心引擎（步骤管理/数据模型/数据加载）
+│   ├── css/                    # 样式文件
+│   ├── handlers/               # 规则引擎（解析 link() 等规则）
+│   ├── steps/                  # 各步骤渲染与交互
+│   ├── code-handlers/          # code 字段处理器
+│   └── utils/                  # 工具函数
+├── data/json/                  # 所有 JSON 数据（27个文件）
+└── 开发资源/                   # 开发文档（不上线）
+```
+
+---
+
+## 二、核心架构：规则引擎
+
+### 2.1 link() 引用体系（最重要）
+```
+link(id) → lookup_table.json → 路由到对应 handler
+```
+
+**执行流程示例**：
+```
+吟游诗人.tool_prof: "link(65)"
+  → handlers/index.js 扫描 tool_prof 字段
+    → parseRule("link(65)")
+      → handlers/link.js 查 lookup_table id=65
+        → source_table=tools, type=type, target_id=67, count=3
+        → 重构为 tool(type=67)+3
+        → handlers/filter.js 解析
+          → 从 tools.json 筛选 type=67（乐器），选3个
+          → 加入 pendingSelections 待选队列
+```
+
+### 2.2 lookup_table.json 字段说明
+| 字段 | 说明 |
+|------|------|
+| `source_table` | 数据表名（复数，如 tools/spells/skills/class_extra） |
+| `mode` | normal / filter / choose |
+| `type` | id / filter / type / special / choose / spell_slot / rule |
+| `target_id` | 目标 ID 或类型 ID |
+| `count` | 选择数量 |
+| `complex_logic` | 复杂逻辑（filter 条件、choose 参数等） |
+| `desc` | 描述（便于人工阅读，如"知晓一道能造成伤害的魔契师戏法"） |
+
+### 2.3 规则类型对照表
+| 语法 | 示例 | 用途 | 处理器文件 |
+|------|------|------|-----------|
+| `link(id)` | `link(65)` | 引用表入口 | link.js |
+| `spell=id` | `spell=16` | 自动添加法术 | table-ref.js |
+| `tool(type=N)+M` | `tool(type=67)+3` | 条件筛选选择 | filter.js |
+| `skill+N` | `skill+2` | 数量运算 | operation.js |
+| `choose(A,B)+N` | `choose(skill,tool)+3` | 多类组合选择 | choose.js |
+| `[1]A,[2]B` | `[1]奥法,[2]自然` | 二选一 | selection.js |
+| `chain:N` | `chain:54` | 同表链引用 | chain.js |
+| `code(xxx)` | `code(choose)` | 代码处理器 | code-handlers/ |
+| `hp_per_lv+N` | `hp_per_lv+2` | 基础数值（如健壮专长）| basic.js |
+| `Proficiency>pure+N` | `Proficiency>pure+2` | 专精升级 | proficiency.js |
+| `lv:class(X)=Y` | `lv:class(11)=2` | 等级条件（先决条件用） | feature-selection.js |
+| `link(Z)`（先决条件中） | `link(500)` | 中间表引用（先决条件用） | feature-selection.js |
+
+---
+
+## 三、步骤流程
+
+共 17 步。**第9步（特性总览）是核心步骤**，所有待选项目都在这里收集和选择。
+
+| 步骤 | 页面 | 功能 | 关键文件 |
+|------|------|------|---------|
+| 0 | 欢迎页/DLC选择 | DLC启用选择 | steps/dlc.js |
+| 1 | 种族选择 | 含亚种 chain 解析 | steps/race.js |
+| 2 | 亚种选择 | 如选择的是亚种族 | steps/race.js |
+| 3 | 职业选择 | 含子职 | steps/class.js |
+| 4 | 装备套装(职) | 职业起始装备 | steps/package.js |
+| 5 | 背景选择 | 含关联专长 | steps/background.js |
+| 6 | 装备套装(背) | 背景起始装备 | steps/package.js |
+| 7 | 属性分配 | 标准/购点/骰点 | steps/ability.js |
+| 8 | 背景加值 | 属性加值分配 | steps/bonus.js |
+| **9** | **特性总览** | **收集所有待选，逐项选择** | **steps/review.js + feature-selection.js** |
+| 10 | 技能选择 | 职业+背景技能 | steps/skill.js |
+| 11 | 专长选择 | 含起源专长 | steps/feat.js |
+| 12 | 法术选择 | 含种族法术锁定 | steps/spells.js |
+| 13 | 购物 | 用金币购买物品 | steps/shopping.js |
+| 14 | （特性总览同步骤9） | — | — |
+| 15 | 角色详情 | 姓名/设定等 | steps/details.js |
+| 16 | 角色卡 | 最终展示 | steps/sheet.js |
+| 17 | 导出 | 导出 JSON | steps/export.js |
+
+### 3.1 第9步（特性总览）详细流程
+
+```javascript
+collectSelectionsFromSource(source)  // 对所有来源循环调用
+  → addPendingSelectionsFromItem(source)
+    → handlers.processItemRules(item, character)
+      // 扫描字段: rules, tool, tool_prof, effects, code_effects, bonus, code
+      // 对每个 link(X) 解析后生成待选条目
+    → processChainReferences(item)
+      // 处理 choice/rules 中的链引用
+  → 递归处理 source.chain（同表链）
+  → 如果是职业/子职，递归处理其特性（class_features.json / 从 chain 收集）
+  → collectClassExtraSelections(cls)  // 收集职业额外选项（class_extra）
+  → 所有结果加入 character.pendingSelections[]
+```
+
+**收集来源顺序**：
+1. `character.race` — 种族
+2. `character.subrace` — 亚种
+3. `character.class` — 职业（含职业特性 + class_extra）
+4. `character.subclass` — 子职（含子职特性 + class_extra）
+5. `character.background` — 背景
+6. `character.feat` — 专长
+
+### 3.2 数据清理机制
+```javascript
+STEP_DATA_FIELDS = {
+    1:  ['race', 'subrace', 'lockedSpells'],
+    3:  ['class', 'subclass'],
+    5:  ['background'],
+    7:  ['abilities'],
+    8:  ['backgroundBonus'],
+    9:  ['pendingSelections', 'featureSelections', 'lockedSpells'],
+    10: ['classSkills', 'backgroundSkills', 'allSkills'],
+    11: ['selectedFeat'],
+    12: ['selectedSpells', 'lockedSpells'],
+    13: ['currency', 'shoppingItems'],
+    15: ['name', 'player', 'alignment', 'personalTraits', 'ideals', 'bonds', 'flaws', 'backstory', 'selectedLanguages'],
+}
+```
+用户返回修改时，调用 `clearDataAfterStep(step)` 清空后续步骤关联的所有字段。
+
+---
+
+## 四、关键数据结构
+
+### 角色数据模型
+```javascript
+character = {
+    race: null,              // 种族对象（含 chain 字段）
+    subrace: null,           // 亚种对象
+    class: null,             // 职业对象（含 tool_prof 字段）
+    subclass: null,          // 子职对象
+    background: null,        // 背景对象（含 tool 字段）
+    feat: null,              // 专长对象
+    abilities: null,         // 属性分配结果
+    classPackage: null,      // 职业套装
+    bgPackage: null,         // 背景套装
+    
+    pendingSelections: [],   // ⭐ 待选队列（特性总览核心）
+    featureSelections: {},   // 已确认的特性选择
+    lockedSpells: [],        // 种族/特性自动获得的法术ID（锁定不可取消）
+    selectedSpells: [],      // 用户选择的法术ID
+    
+    classSkills: [],         // 已选职业技能ID
+    backgroundSkills: [],    // 已选背景技能ID
+    allSkills: [],           // 合并后的技能
+    backgroundBonus: null,   // 背景加值 { mode: '2+1'|'1+1+1', bonus: {...} }
+    currency: { pp:0, gp:0, ep:0, sp:0, cp:0 },
+    level: 1,
+    name: '', player: '', alignment: '',
+    selectedLanguages: []
+};
+```
+
+### pendingSelections 条目类型
+| type | 用途 | 关键字段 |
+|------|------|---------|
+| `filter` | 条件筛选（如乐器、法术） | `category`, `typeId`, `count`, `expression`, `sourceName`, `dice` |
+| `operation` | 数量运算（如技能+2） | `subtype`, `count` |
+| `choose` | 多类组合（如工具或乐器） | `categories[]`, `total`, `title`, `expression` |
+| `selection` | 二选一列表 | `options[]`, `subtype` |
+| `code_choose` | code处理器选择 | `codeName`, `candidates[]` |
+| `proficiency` | 专精升级 | `count` |
+| `table-ref` | 直接引用（自动添加） | `tableName`, `ids[]` |
+| `class_extra` | 职业额外选项（如魔能祈唤） | `category: 'class_extra'`, `items[]`, `featureName` |
+| `class_extra_all` | 全部获得（如魔能浪涌） | `category: 'class_extra_all'`, `items[]`, `featureName` |
+
+---
+
+## 五、已实现功能清单
+
+### ✅ 基础架构
+- [x] 17步完整向导流程
+- [x] 27个 JSON 数据文件加载
+- [x] 步骤导航（前进/后退/跳转到指定步骤）
+- [x] 返回修改时自动清理后续数据
+- [x] DLC 内容过滤
+- [x] 角色卡最终展示
+- [x] 角色数据导出 JSON
+
+### ✅ 规则引擎
+- [x] `link(id)` → lookup_table 完整路由
+- [x] `tool(type=N)+M` 工具条件筛选
+- [x] `skill+N` 技能数量选择
+- [x] `spell=N` 法术直接引用
+- [x] `spell(class=N,lv=M)+K` 法术条件筛选
+- [x] `spell(class=N,lv=M,dice=K)` 法术按伤害骰筛选（dice=1有伤害, dice=0无伤害）
+- [x] `choose(A,B)+N` 多类组合选择
+- [x] `[1]A,[2]B` 二选一
+- [x] `Proficiency>pure+N` 专精升级
+- [x] `code(choose)` 代码处理器
+- [x] `hp_per_lv+N` 生命值规则（如健壮专长）
+- [x] `chain:N` 同表链引用
+- [x] 规则嵌套解析（link → filter/choose/...）
+- [x] 带括号深度感知的逗号分割
+
+### ✅ 种族
+- [x] 种族+亚种选择
+- [x] chain 字段递归解析收集特性
+- [x] 种族特性自动展示
+- [x] 种族法术自动锁定（lockedSpells）
+- [x] 切换种族自动清理锁定法术
+- [x] 种族法术不计入职业法术上限
+
+### ✅ 职业
+- [x] 职业 + 子职选择
+- [x] 职业技能选择
+- [x] 职业套装选择（起始装备）
+- [x] 职业特性递归收集
+- [x] 职业工具熟练（tool_prof 字段）
+
+### ✅ 背景
+- [x] 背景选择 + 关联专长自动带入
+- [x] 背景技能选择
+- [x] 背景工具选择（tool 字段）
+- [x] 背景加值分配
+- [x] 背景套装选择
+
+### ✅ 属性
+- [x] 标准阵列（15,14,13,12,10,8）
+- [x] 购点法
+- [x] 骰点法（4d6取3高）
+- [x] 属性分配交互
+- [x] 种族属性加值
+
+### ✅ 法术
+- [x] 职业法术列表
+- [x] 法术按环阶分类展示
+- [x] 种族自动获得法术锁定（金色边框，不可取消）
+- [x] 锁定法术不计入职业法术上限
+- [x] 切换种族/返回时清理锁定
+
+### ✅ 特性总览（核心交互）
+- [x] 所有来源自动收集到待选队列
+- [x] 逐项呈现，用户确认选择
+- [x] 同源同规则去重
+- [x] 不同来源同规则分别选择（如职业3乐器 + 专长3乐器）
+- [x] 选择确认后应用效果
+- [x] 左侧选择区 + 右侧详情预览布局
+- [x] 左侧滚动跟随
+
+### ✅ 职业额外选项（class_extra / class_extra_all）
+- [x] `class_extra` 类型：需用户在多个选项中选择（如魔能祈唤列表）
+- [x] `class_extra_all` 类型：所有选项自动获得，无需用户选择（如魔能浪涌）
+- [x] 按职业 ID 匹配过滤（`String(f.class) === String(classId)`），不再依赖职业名称
+- [x] 通过 `class_features.json` 的 `extra` 字段标记特性类型
+- [x] 通过 `proficiency.json`（环位熟练表）配置每级获得的数量
+
+### ✅ 先决条件规则系统（class_extra 专用）
+- [x] `class_extra.json` 的 `prerequisite` 字段使用规则表达式格式
+- [x] `lv:class(X)=Y` — 等级条件：需职业 X 达到 Y 级（如 `lv:class(11)=2` 表示魔契师2级）
+- [x] `link(Z)` — 中间表引用：引用 `lookup_table.json` 中 id=Z 的规则（如 `link(500)` 引用"知晓一道能造成伤害的魔契师戏法"）
+- [x] 多个条件用逗号分隔，AND 逻辑全部满足才通过
+- [x] 不满足先决条件的选项灰显（`.prereq-blocked` 样式），透明度 0.3，标记"（条件不符）"
+- [x] 已选的选项标记"（已选）"，不可重复选择
+
+### ✅ 法术筛选增强（dice 字段）
+- [x] `spell(class=N,lv=M,dice=K)` — 按伤害骰筛选（1=有伤害, 0=无伤害）
+- [x] 支持复合条件如 `dice=1,attack_roll=1`（有伤害且需攻击检定）
+- [x] 用于魔能祈唤的先决条件（如苦痛魔爆要求"知晓一道能造成伤害的魔契师戏法"）
+
+### ✅ 其他
+- [x] 购物（金币购买物品）
+- [x] 角色详情录入（姓名/设定等）
+- [x] 专长选择（含前置条件检查）
+- [x] 角色卡展示
+- [x] 数据导出
+
+---
+
+## 六、⚠️ AI 特别注意（禁止破坏的约定）
+
+### 6.1 关键函数不可误改
+| 函数 | 位置 | 风险 |
+|------|------|------|
+| `isSameSelection` | feature-selection.js | 不同来源的同规则选择可能被误去重 |
+| `addPendingSelectionsFromItem` | feature-selection.js | 待选收集入口 |
+| `processItemRules` | handlers/index.js | `defaultFields` 数组漏字段会导致选择不出现 |
+| `collectSelectionsFromSource` | review.js | 来源收集顺序不对会导致特性漏掉 |
+| `clearDataAfterStep` | character.js | 漏掉字段会导致数据残留 |
+| `checkPrerequisite` | feature-selection.js | 先决条件解析，支持 `lv:class(X)=Y` 和 `link(Z)` 语法 |
+| `checkLinkPrerequisite` | feature-selection.js | 中间表引用检查，从 lookup_table 读取规则并评估 |
+| `collectClassExtraSelections` | review.js | 收集 class_extra/class_extra_all 待选项目 |
+| `getProficiencyValue` | review.js | 从环位熟练表查当前等级能选几个 |
+
+### 6.2 字段名陷阱
+- **`tool_prof`** — 职业用（classes.json），如吟游诗人乐器
+- **`tool`** — 背景用（backgrounds.json），如艺人乐器
+- **`rules`** — 通用规则字段（所有特性/专长统一使用）
+- **三字段都必须包含在 `defaultFields` 扫描范围内**
+- **`prerequisite`** — class_extra.json 的先决条件字段，格式为 `lv:class(X)=Y` 或 `lv:class(X)=Y,link(Z)`
+
+`defaultFields = ['rules', 'tool', 'tool_prof', 'effects', 'code_effects', 'bonus', 'code']`
+
+### 6.3 CSS 布局要点
+| 选择器 | 关键属性 |
+|--------|---------|
+| `.step-content` | `overflow-y: auto; display: flex; flex-direction: column;` |
+| `.feature-selection-layout` | `display: flex; overflow: hidden;` |
+| `.feature-selection-left` | `overflow-y: auto; min-height: 0; height: 100%;` |
+| `.race-step` | `display: flex; gap: 20px;` |
+| `.race-grid` | `flex: 1; overflow-y: auto;`（左侧卡片列表） |
+| `.race-detail` | `flex: 1; position: sticky; top: 0;`（右侧详情） |
+| `.prereq-blocked` | `opacity: 0.3;`（先决条件不满足的灰显样式） |
+| `.disabled-hint` | `color: #ff6666;`（禁用提示文字颜色） |
+| `.disabled-hint.previous-step` | 前置步骤已选提示 |
+| `.disabled-hint.current-page` | 本页其他分组已选提示 |
+
+### 6.4 数据清理时机
+```javascript
+// 返回步骤1时，必须清理：
+character.race = null;
+character.subrace = null;
+character.lockedSpells = [];
+
+// 返回步骤3时，必须清理：
+character.class = null;
+character.subclass = null;
+```
+
+### 6.5 法术锁定规则
+- 种族特性自动获得的法术 → 加入 `lockedSpells[]`
+- 锁定法术在法术选择页面显示为**金色边框**，不可取消
+- `lockedSpells` 不计入职业的 `spell_preparation` 上限
+- 切换种族或返回步骤1时，必须**清空老的 lockedSpells**
+
+---
+
+## 七、常见排查
+
+| 现象 | 排查方向 |
+|------|---------|
+| 某个选择项没出现 | `processItemRules` 的 `defaultFields` 是否包含该字段？`isSameSelection` 是否误去重？ |
+| 法术被错误锁定 | 上次选择的 `lockedSpells` 未清理 |
+| 重复出现同一选择 | `pendingSelections` 未清空 |
+| 滚动内容消失 | 父容器缺 `overflow: hidden`，滚动区缺 `min-height: 0` |
+| 专长没出现 | `feat-require.js` 前置条件检查不通过 |
+| 魔能祈唤不显示 | review.js 中 `collectClassExtraSelections` 的职业 ID 比对是否正确？ |
+| 魔能祈唤全部灰显（条件不符） | 检查 `prerequisite` 格式，看 `checkPrerequisite` 解析是否正确 |
+| class_extra 选项重复 | `isSameSelection` 是否将不同来源的同规则选项去重？ |
+| 数据加载失败 | JSON 路径或格式错误 |
+
+---
+
+## 八、升级功能预备
+
+### 当前限制
+- `character.level` 固定为 1
+- 所有特性只加载 1 级数据
+- 没有升级流程
+- 法术位只计算 1 级
+- 先决条件检查中 `lv:class(X)=Y` 主要用于预览/灰显，当前等级不符的祈唤不会自动解锁
+
+### 预留接口
+- `character.level` 已定义
+- `classes.json` 中有 `feat_level`（专长等级）、`subclass_level`（子职等级）
+- `class_features.json` 每个特性关联 `level` 字段
+- `spellcasting.json` 含各职业各等级法术位数据
+- `class_extra.json` 含职业额外资源（如诗人激励骰、魔能祈唤列表）
+- `lookup_table.json` 支持扩展规则定义
+
+### 建议升级方案
+```
+角色卡 → 升级按钮 → 选择目标等级
+  → 计算新等级获得的新特性/法术位/专长
+  → 让用户逐项选择（参考建卡流程）
+  → 更新角色数据
+  → 重新计算所有数值
+  → 重新评估先决条件（等级变化自动解锁新祈唤）
+```
+
+---
+
+## 九、工具类型ID（tools.json）
+| ID | 类型 |
+|----|------|
+| 66 | 工匠工具（Artisan's Tools） |
+| 67 | 乐器（Musical Instruments） |
+| 68 | 赌具（Gaming Sets） |
+| 69 | 其他工具 |
+
+## 十、重要 link(id) 引用速查
+| ID | source_table | 用途 |
+|----|-------------|------|
+| 10 | tools | 武僧-1个工匠工具 |
+| 24 | tools | 艺人-1个乐器 |
+| 65 | tools | 吟游诗人-3个乐器 |
+| 189 | spells | 次级幻象（法术） |
+| 100 | spells | 动物交谈（法术） |
+| 278 | spells | 通晓语言（法术，已从森林侏儒移除） |
+| 279 | spells | 侦测善恶（法术） |
+| 294 | tools | 音乐家-3个乐器 |
+| 309 | basic | hp_per_lv+2 规则模式说明 |
+| 310 | tools | 武僧-工匠工具或乐器选1（choose 逻辑） |
+| **500** | spells | **知晓一道能造成伤害的魔契师戏法（class=11,lv=0,dice=1）** |
+| **501** | spells | **知晓一道通过攻击检定造成伤害的魔契师戏法（class=11,lv=0,dice=1,attack_roll=1）** |
+| **502** | class_extra | **具有刃之魔契祈唤（target_id=33）** |
+| **503** | class_extra | **具有链之魔契祈唤（target_id=34）** |
+| **504** | class_extra | **具有书之魔契祈唤（target_id=35）** |
+| **505** | class_extra | **具有饥渴魔刃祈唤（target_id=52）** |
+
+---
+
+## 十一、先决条件规则系统详解
+
+### 11.1 数据流
+```
+class_extra.json
+  ┌─────────────────────────────────────────┐
+  │ "prerequisite": "lv:class(11)=2,link(500)" │
+  └─────────────────────────────────────────┘
+                          │
+               parseRule ─┼─ 逗号分割（AND）
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+       lv:class(11)=2           link(500)
+              │                       │
+              ▼                       ▼
+    character.class.id === 11   lookup_table id=500
+    character.level >= 2        → source_table=spells
+                                → mode=filter
+                                → complex_logic=class=11,lv=0,dice=1
+                                → 检查 character 是否已有符合条件的选择
+```
+
+### 11.2 prerequisite 规则格式
+| 规则 | 格式 | 示例 |
+|------|------|------|
+| 纯等级条件 | `lv:class(职业ID)=等级` | `lv:class(11)=2` |
+| 等级+中间表引用 | `lv:class(职业ID)=等级,link(规则ID)` | `lv:class(11)=2,link(500)` |
+| 等级+高级祈唤依赖 | `lv:class(职业ID)=等级,link(祈唤ID)` | `lv:class(11)=5,link(502)` |
+
+### 11.3 lookup_table 先决条件规则（id=500~505）
+| id | 说明 | complex_logic |
+|----|------|---------------|
+| 500 | 知晓一道能造成伤害的魔契师戏法 | class=11,lv=0,dice=1 |
+| 501 | 知晓一道通过攻击检定造成伤害的魔契师戏法 | class=11,lv=0,dice=1,attack_roll=1 |
+| 502 | 具有刃之魔契祈唤 | （无，走 type=id + target_id=33 检查已选） |
+| 503 | 具有链之魔契祈唤 | （无，走 type=id + target_id=34 检查已选） |
+| 504 | 具有书之魔契祈唤 | （无，走 type=id + target_id=35 检查已选） |
+| 505 | 具有饥渴魔刃祈唤 | （无，走 type=id + target_id=52 检查已选） |
+
+### 11.4 先决条件检查函数
+```javascript
+// feature-selection.js
+function checkPrerequisite(prereqStr) {
+    // 解析 "lv:class(11)=2,link(500)" 格式
+    // 逗号分隔的多个条件全部满足才通过（AND）
+    // 支持:
+    //   lv:class(X)=Y  — 检查角色职业ID和等级
+    //   link(Z)        — 调用 checkLinkPrerequisite(Z)
+}
+
+function checkLinkPrerequisite(refId) {
+    // 从 lookup_table 读取规则
+    // source_table=spells → filter 检查角色已选法术是否匹配
+    // source_table=class_extra → 检查角色已选的 class_extra 是否包含 target_id
+}
+```
+
+### 11.5 三条魔契（刃之魔契/链之魔契/书之魔契）
+- id=33（刃之魔契）、id=34（链之魔契）、id=35（书之魔契）在 class_extra.json 中 **无先决条件**
+- 它们是 1 级魔能祈唤的三大分支，用户可自由选择
+- 高级祈唤（如饮命者 id=55）可能依赖拥有特定魔契（如 `link(502)` 检查已选刃之魔契）
+
+---
+
+## 十二、数据文件速查
+
+### 12.1 JSON 数据文件清单
+| 文件 | 用途 |
+|------|------|
+| classes.json | 职业定义 |
+| subclasses.json | 子职定义 |
+| class_features.json | 职业特性（含 extra 字段标记 class_extra/class_extra_all） |
+| class_extra.json | 职业额外选项（如魔能祈唤、魔能浪涌，含 prerequisite 先决条件） |
+| races.json | 种族定义 |
+| subraces.json | 亚种定义 |
+| backgrounds.json | 背景定义 |
+| feats.json | 专长定义 |
+| spells.json | 法术数据（含 dice 伤害骰字段） |
+| skills.json | 技能定义 |
+| tools.json | 工具定义 |
+| weapons.json | 武器定义 |
+| armors.json | 护甲定义 |
+| packages.json | 装备套装定义 |
+| proficiency.json | 环位熟练表（含 class_extra 每级获得数量） |
+| lookup_table.json | 中间引用表（规则路由核心） |
+| mapping.json | 映射表 |
+| languages.json | 语言定义 |
+
+---
+
+> **最后更新**：2026-09-17
+> **当前状态**：车卡功能完成，先决条件规则系统实现。后续可进行前端界面美化或开发升级系统。

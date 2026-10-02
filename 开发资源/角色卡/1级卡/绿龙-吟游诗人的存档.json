@@ -1,0 +1,146 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:16:51.291Z",
+  "raceId": 2,
+  "subraceId": 13,
+  "classId": 2,
+  "subclassId": null,
+  "backgroundId": 5,
+  "abilities": {
+    "1": 8,
+    "4": 14,
+    "9": 12,
+    "11": 13,
+    "18": 10,
+    "25": 15
+  },
+  "classSkills": [
+    30,
+    28,
+    27
+  ],
+  "backgroundSkills": [
+    29,
+    6
+  ],
+  "allSkills": [
+    "游说",
+    "威吓",
+    "欺瞒",
+    "表演",
+    "体操"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 67,
+        "toolId": 25,
+        "name": "风笛",
+        "source": "raceFeatures",
+        "sourceLabel": "吟游诗人",
+        "link": 2
+      },
+      {
+        "typeId": 67,
+        "toolId": 30,
+        "name": "鲁特琴",
+        "source": "raceFeatures",
+        "sourceLabel": "吟游诗人",
+        "link": 2
+      },
+      {
+        "typeId": 67,
+        "toolId": 34,
+        "name": "提琴",
+        "source": "raceFeatures",
+        "sourceLabel": "吟游诗人",
+        "link": 2
+      },
+      {
+        "typeId": 67,
+        "toolId": 27,
+        "name": "扬琴",
+        "source": "raceFeatures",
+        "sourceLabel": "艺人",
+        "link": 5
+      },
+      {
+        "typeId": 67,
+        "toolId": 28,
+        "name": "长笛",
+        "source": "raceFeatures",
+        "sourceLabel": "音乐家",
+        "link": 8
+      },
+      {
+        "typeId": 67,
+        "toolId": 32,
+        "name": "排箫",
+        "source": "raceFeatures",
+        "sourceLabel": "音乐家",
+        "link": 8
+      },
+      {
+        "typeId": 67,
+        "toolId": 31,
+        "name": "里拉琴",
+        "source": "raceFeatures",
+        "sourceLabel": "音乐家",
+        "link": 8
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "1": 1,
+      "4": 1,
+      "25": 1
+    }
+  },
+  "selectedFeat": 8,
+  "selectedSpells": [
+    32,
+    13,
+    47,
+    62,
+    89,
+    79
+  ],
+  "lockedSpells": [],
+  "classPackage": {
+    "id": 20
+  },
+  "bgPackage": {
+    "id": 5
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 101,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "吟游诗人",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    3,
+    4,
+    5
+  ]
+}

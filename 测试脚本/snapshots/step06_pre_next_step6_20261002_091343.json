@@ -1,0 +1,21 @@
+{
+  "step": 6,
+  "label": "pre_next_step6",
+  "ts": "20261002_091343",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n提夫林\n2\n炼狱\n3\n牧师\n4\n职业套装\n5\n贵族\n6\n背景套装\n7\n基础属性\n8\n背景加值\n10\n技能\n11\n专长\n12\n法术\n13\n商城\n14\n特性总览\n15\n角色详情\n16\n完成\n17\n保存\n贵族套装\n高档服装、香水、29GP\n背景积蓄\n50GP\n点击左侧套装查看详情\n← 上一步\n第 6 步，共 17 步\n下一步 →",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

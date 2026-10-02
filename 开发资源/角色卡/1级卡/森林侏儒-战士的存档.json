@@ -1,0 +1,124 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:21:16.762Z",
+  "raceId": 5,
+  "subraceId": 33,
+  "classId": 5,
+  "subclassId": null,
+  "backgroundId": 15,
+  "abilities": {
+    "1": 15,
+    "4": 14,
+    "9": 13,
+    "11": 8,
+    "18": 10,
+    "25": 12
+  },
+  "classSkills": [
+    23,
+    24
+  ],
+  "backgroundSkills": [
+    28,
+    3
+  ],
+  "allSkills": [
+    "察觉",
+    "求生",
+    "威吓",
+    "运动"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 68,
+        "toolId": 23,
+        "name": "三龙牌",
+        "source": "raceFeatures",
+        "sourceLabel": "士兵",
+        "link": 15
+      }
+    ],
+    "weapons": [
+      {
+        "weaponId": 22,
+        "featureId": 49,
+        "name": "长剑",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      },
+      {
+        "weaponId": 19,
+        "featureId": 49,
+        "name": "巨剑",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      },
+      {
+        "weaponId": 4,
+        "featureId": 49,
+        "name": "手斧",
+        "source": "unknown",
+        "sourceLabel": "武器精通",
+        "link": null
+      }
+    ],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [
+      {
+        "typeId": 44,
+        "featId": 57,
+        "name": "盲斗",
+        "source": "raceFeatures",
+        "sourceLabel": "战斗风格",
+        "link": 47
+      }
+    ],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "1": 2,
+      "4": 1
+    }
+  },
+  "selectedFeat": 9,
+  "selectedSpells": [
+    16,
+    91
+  ],
+  "lockedSpells": [
+    16,
+    91
+  ],
+  "classPackage": {
+    "id": 25
+  },
+  "bgPackage": {
+    "id": 15
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 18,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "森林侏儒-战士",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": []
+}

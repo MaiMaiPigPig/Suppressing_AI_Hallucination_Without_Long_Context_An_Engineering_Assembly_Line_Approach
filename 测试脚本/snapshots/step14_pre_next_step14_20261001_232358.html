@@ -1,0 +1,1046 @@
+<!-- SNAPSHOT step=14 label=pre_next_step14 ts=20261001_232358 url=http://127.0.0.1:5001/character/dnd_5r -->
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5R · 角色卡生成</title>
+    <base href="/character/dnd_5r/creation/">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/race.css">
+    <link rel="stylesheet" href="styles/ability.css">
+    <link rel="stylesheet" href="styles/skill.css">
+    <link rel="stylesheet" href="styles/bonus.css">
+    <link rel="stylesheet" href="styles/feat.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="styles/details.css">
+    <link rel="stylesheet" href="styles/spell.css">
+    <link rel="stylesheet" href="styles/sheet.css">
+    <style>
+        /* 欢迎页样式 */
+        .start-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .start-content {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .start-logo {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .start-title {
+            font-size: 2.2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+        .start-desc {
+            font-size: 1rem;
+            color: #a89b8c;
+            margin-bottom: 40px;
+        }
+        .start-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .start-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .start-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .start-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 8px;
+        }
+        .start-card-desc {
+            font-size: 0.85rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        /* 导出步骤样式 */
+        .export-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .export-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .export-header h2 {
+            font-size: 2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .export-subtitle {
+            font-size: 1rem;
+            color: #a89b8c;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .export-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .export-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .export-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .export-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 6px;
+        }
+        .export-card-desc {
+            font-size: 0.8rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        .upgrade-card {
+            border-color: rgba(201,168,76,0.25);
+            background: rgba(201,168,76,0.06);
+        }
+        .upgrade-card:hover {
+            border-color: #c9a84c;
+            background: rgba(201,168,76,0.12);
+            box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+        }
+        .upgrade-card .export-card-title {
+            color: #f0d878;
+        }
+        .export-info {
+            max-width: 500px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .export-info-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-info ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .export-info li {
+            font-size: 0.85rem;
+            color: #a89b8c;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        /* 导出摘要样式 */
+        .export-summary {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 24px;
+        }
+        .export-summary-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+        .export-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .export-summary-item-wide {
+            grid-column: 1 / -1;
+        }
+        .export-summary-label {
+            font-size: 0.7rem;
+            color: #8a7a6a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .export-summary-value {
+            font-size: 0.9rem;
+            color: #f0e6d3;
+        }
+        /* DLC选择步骤样式 */
+        .dlc-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .dlc-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .dlc-header h2 {
+            font-size: 1.8rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .dlc-header p {
+            font-size: 0.95rem;
+            color: #a89b8c;
+            margin: 0;
+        }
+        .dlc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .dlc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: border-color 0.2s;
+        }
+        .dlc-item:hover {
+            border-color: rgba(201,168,76,0.3);
+        }
+        .dlc-info {
+            flex: 1;
+        }
+        .dlc-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dlc-badge {
+            font-size: 0.7rem;
+            background: rgba(201,168,76,0.15);
+            color: #c9a84c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .dlc-desc {
+            font-size: 0.85rem;
+            color: #a89b8c;
+        }
+        .dlc-status {
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .dlc-status-on {
+            font-size: 0.85rem;
+            color: #4caf50;
+            font-weight: 600;
+            background: rgba(76,175,80,0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(76,175,80,0.2);
+        }
+        .dlc-footer {
+            text-align: center;
+        }
+    </style>
+    <!-- PDF 导出依赖：html2canvas（HTML→Canvas）+ jsPDF（Canvas→PDF） -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- 规则解析引擎（ES Module，通过 window.handlers 全局桥接兼容旧代码） -->
+    <script type="module" src="../handlers/index.js"></script>
+    <script type="module" src="../handlers/data-query.js"></script>
+    <!-- flow 函数窗口桥接 -->
+    <script type="module" src="flow/bridge.js"></script>
+    <!-- ES Module 入口 -->
+    <script type="module" src="app.js?v=20260914"></script>
+<style id="review-step-css">
+/* ===== 特性选择总览步骤 ===== */
+.review-summary {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+.review-summary-header {
+    color: #4caf50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.review-summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(76,175,80,0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+.review-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.review-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+.review-summary-label {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+.review-summary-value {
+    color: #f0e6d3;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+</style><style id="feature-selection-css">
+/* ===== 特性选择 - 新布局（左右分栏） ===== */
+
+/* step-container 容器：让内部布局可以撑满 */
+.step-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.step-title h2 {
+    color: #f0e6d3;
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+}
+.step-title p {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+
+/* 顶层布局：左（选择区）+ 右（预览） */
+.feature-selection-layout {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+    margin-top: 16px;
+    overflow: hidden;
+    padding-right: 4px;
+}
+
+/* 左侧：选择区 */
+.feature-selection-left {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+    min-height: 0;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* 右侧：角色预览 */
+.feature-selection-right {
+    flex: 1;
+    min-width: 240px;
+    max-width: 320px;
+    /* 跟随滚动：右侧整列固定在视口顶部 */
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    /* 高度自适应内容，不与左侧等高 */
+    height: fit-content;
+}
+
+/* ===== 可折叠选择区块 ===== */
+.feat-section {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 10px;
+    /* 不能隐藏溢出，否则网格第二行及以上会被裁剪无法点击 */
+    overflow: visible;
+    /* 避免内容溢出时圆角无法裁剪，但不影响布局 */
+}
+
+.feat-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    background: rgba(255,255,255,0.03);
+}
+.feat-section-header:hover {
+    background: rgba(255,255,255,0.06);
+}
+
+.feat-section-title {
+    color: #f0e6d3;
+    font-size: 0.95rem;
+    font-weight: 600;
+    flex: 1;
+}
+
+.feat-section-count {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.feat-section-toggle {
+    color: #c9a84c;
+    font-size: 0.8rem;
+    width: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.feat-section-body {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.25s ease;
+}
+.feat-section-body.collapsed {
+    display: none;
+}
+
+.feat-section-body .selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    padding: 4px;
+}
+
+.feat-section-body .selection-item {
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.feat-section-body .selection-item:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,168,76,0.3);
+}
+.feat-section-body .selection-item.selected {
+    background: rgba(201,168,76,0.15);
+    border-color: rgba(201,168,76,0.6);
+}
+/* 已选过的选项：置灰禁用 */
+.feat-section-body .selection-item.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    background: rgba(255,255,255,0.02);
+    border-color: rgba(255,255,255,0.06);
+}
+.feat-section-body .selection-item.disabled:hover {
+    background: rgba(255,255,255,0.02);
+    border-color: rgba(255,255,255,0.06);
+}
+/* 前置步骤已选：绿色选中 + 禁用不可操作 */
+.feat-section-body .selection-item.selected.disabled {
+    opacity: 0.7;
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.4);
+    cursor: not-allowed;
+}
+.feat-section-body .selection-item.selected.disabled:hover {
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.4);
+}
+.feat-section-body .selection-item .disabled-hint {
+    color: #888;
+    font-size: 0.7rem;
+    font-weight: normal;
+    margin-left: 6px;
+}
+/* 前置步骤已选标识：带星标，紫色调 */
+.feat-section-body .selection-item .disabled-hint.previous-step {
+    color: #b388ff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 6px;
+}
+.feat-section-body .selection-item.previous-step-selected {
+    opacity: 0.55;
+    border-color: rgba(179,136,255,0.25);
+    background: rgba(179,136,255,0.05);
+}
+/* 当前页其他分组已选标识：金色调 */
+.feat-section-body .selection-item .disabled-hint.current-page {
+    color: #c9a84c;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 6px;
+}
+.feat-section-body .selection-item.current-page-selected {
+    opacity: 0.55;
+    border-color: rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.05);
+}
+.feat-section-body .selection-item-name {
+    color: #f0e6d3; font-size: 0.85rem; font-weight: 600;
+}
+.feat-section-body .selection-item-desc {
+    color: #a89b8c; font-size: 0.7rem; margin-top: 2px;
+}
+.feat-section-body .empty-hint {
+    color: #a89b8c; font-size: 0.85rem; text-align: center; padding: 30px;
+}
+
+.feat-section-hint {
+    margin-top: 10px;
+    color: #a89b8c;
+    font-size: 0.8rem;
+    text-align: right;
+}
+
+/* ===== 右侧详情面板 ===== */
+.detail-panel {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 200px;
+}
+
+.detail-panel-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 0.9rem;
+}
+
+.detail-panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detail-panel-title {
+    color: #f0e6d3;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.detail-panel-type {
+    color: #c9a84c;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+
+.detail-panel-desc {
+    color: #a89b8c;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+/* 先决条件不满足：灰显 + 略透明 */
+.feat-section-body .selection-item.prereq-blocked {
+    opacity: 0.3;
+    border-color: rgba(255,80,80,0.15);
+    background: rgba(255,80,80,0.03);
+}
+.feat-section-body .selection-item .disabled-hint:has(+ .prereq-blocked),
+.feat-section-body .selection-item.prereq-blocked .disabled-hint {
+    color: #ff6666;
+}
+</style></head>
+<body>
+
+    <div class="container">
+        <!-- ===== 顶部导航 ===== -->
+        <nav class="nav-bar">
+            <a href="/character" class="nav-back">← 返回规则选择</a>
+            <span class="nav-title">DND 5R 角色卡生成</span>
+            <div class="nav-actions">
+                <!-- 货币显示 -->
+                <div class="currency-display">
+                    <span class="currency-item"><span class="coin coin-pp"></span> <input type="number" id="platinum" value="0" min="0" readonly=""> <label>PP</label></span>
+                    <span class="currency-item"><span class="coin coin-gp"></span> <input type="number" id="gold" value="0" min="0" readonly=""> <label>GP</label></span>
+                    <span class="currency-item"><span class="coin coin-sp"></span> <input type="number" id="silver" value="0" min="0" readonly=""> <label>SP</label></span>
+                    <span class="currency-item"><span class="coin coin-cp"></span> <input type="number" id="copper" value="0" min="0" readonly=""> <label>CP</label></span>
+                    <span class="currency-rate" title="兑率：1PP=10GP | 1GP=10SP | 1SP=10CP">ⓘ</span>
+                </div>
+                <button id="resetBtn" class="btn btn-secondary">↺ 重置</button>
+            </div>
+        </nav>
+
+        <!-- ===== 步骤进度条 ===== -->
+        <div class="step-progress" id="stepProgress" style="">
+            <div class="step-item completed" data-step="1" data-default-label="种族">
+                <span class="step-num">1</span>
+                <span class="step-label">兽人</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item disabled completed" data-step="2" data-default-label="亚种">
+                <span class="step-num">2</span>
+                <span class="step-label">亚种</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="3" data-default-label="职业">
+                <span class="step-num">3</span>
+                <span class="step-label">野蛮人</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="4" data-default-label="职业套装">
+                <span class="step-num">4</span>
+                <span class="step-label">职业套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="5" data-default-label="背景">
+                <span class="step-num">5</span>
+                <span class="step-label">士兵</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="6" data-default-label="背景套装">
+                <span class="step-num">6</span>
+                <span class="step-label">背景套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="7" data-default-label="基础属性">
+                <span class="step-num">7</span>
+                <span class="step-label">基础属性</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="8" data-default-label="背景加值">
+                <span class="step-num">8</span>
+                <span class="step-label">背景加值</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="10" data-default-label="技能">
+                <span class="step-num">10</span>
+                <span class="step-label">技能</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="11" data-default-label="专长">
+                <span class="step-num">11</span>
+                <span class="step-label">专长</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item disabled completed" data-step="12" data-default-label="法术">
+                <span class="step-num">12</span>
+                <span class="step-label">法术</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="13" data-default-label="商城">
+                <span class="step-num">13</span>
+                <span class="step-label">商城</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item active" data-step="14" data-default-label="特性总览">
+                <span class="step-num">14</span>
+                <span class="step-label">特性总览</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="15" data-default-label="角色详情">
+                <span class="step-num">15</span>
+                <span class="step-label">角色详情</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="16" data-default-label="完成">
+                <span class="step-num">16</span>
+                <span class="step-label">完成</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="17" data-default-label="保存">
+                <span class="step-num">17</span>
+                <span class="step-label">保存</span>
+            </div>
+        </div>
+
+        <!-- ===== 步骤内容容器 ===== -->
+        <div class="step-content" id="stepContent">
+        <div class="step-container">
+            <div class="step-title">
+                <h2>特性选择总览</h2>
+                <p>已汇总所有来源的特性，请完成以下所有选择</p>
+            </div>
+
+            <div class="feature-selection-layout">
+                <div class="feature-selection-left">
+            <div class="feat-section" data-index="0">
+                <div class="feat-section-header" data-target="feat-section-0">
+                    <span class="feat-section-title">（武器精通）-2个武器</span>
+                    <span class="feat-section-count">已选 2 / 2</span>
+                    <span class="feat-section-toggle">▼</span>
+                </div>
+                <div class="feat-section-body " id="feat-section-0">
+                    <div class="selection-grid" id="feat-grid-0">
+                        <div class="selection-item selected" data-id="1" data-category="weapons" data-compkey="weapons:1" data-fulldesc="
+伤害：1d4 bludgeoning
+重量：2 lb
+价格：1 SP gp" data-name="短棒">
+            <div class="selection-item-name">短棒</div>
+            <div class="selection-item-desc">1d4 bludgeoning</div>
+        </div><div class="selection-item selected" data-id="2" data-category="weapons" data-compkey="weapons:2" data-fulldesc="
+伤害：1d4 piercing
+重量：1 lb
+价格：2 GP gp" data-name="匕首">
+            <div class="selection-item-name">匕首</div>
+            <div class="selection-item-desc">1d4 piercing</div>
+        </div><div class="selection-item" data-id="3" data-category="weapons" data-compkey="weapons:3" data-fulldesc="
+伤害：1d8 bludgeoning
+重量：10 lb
+价格：2 SP gp" data-name="巨棒">
+            <div class="selection-item-name">巨棒</div>
+            <div class="selection-item-desc">1d8 bludgeoning</div>
+        </div><div class="selection-item" data-id="4" data-category="weapons" data-compkey="weapons:4" data-fulldesc="
+伤害：1d6 slashing
+重量：2 lb
+价格：5 GP gp" data-name="手斧">
+            <div class="selection-item-name">手斧</div>
+            <div class="selection-item-desc">1d6 slashing</div>
+        </div><div class="selection-item" data-id="5" data-category="weapons" data-compkey="weapons:5" data-fulldesc="
+伤害：1d6 piercing
+重量：2 lb
+价格：5 SP gp" data-name="标枪">
+            <div class="selection-item-name">标枪</div>
+            <div class="selection-item-desc">1d6 piercing</div>
+        </div><div class="selection-item" data-id="6" data-category="weapons" data-compkey="weapons:6" data-fulldesc="
+伤害：1d4 bludgeoning
+重量：2 lb
+价格：2 GP gp" data-name="轻锤">
+            <div class="selection-item-name">轻锤</div>
+            <div class="selection-item-desc">1d4 bludgeoning</div>
+        </div><div class="selection-item" data-id="7" data-category="weapons" data-compkey="weapons:7" data-fulldesc="
+伤害：1d6 bludgeoning
+重量：4 lb
+价格：5 GP gp" data-name="硬头锤">
+            <div class="selection-item-name">硬头锤</div>
+            <div class="selection-item-desc">1d6 bludgeoning</div>
+        </div><div class="selection-item" data-id="8" data-category="weapons" data-compkey="weapons:8" data-fulldesc="
+伤害：1d6 bludgeoning
+重量：4 lb
+价格：2 SP gp" data-name="长棍">
+            <div class="selection-item-name">长棍</div>
+            <div class="selection-item-desc">1d6 bludgeoning</div>
+        </div><div class="selection-item" data-id="9" data-category="weapons" data-compkey="weapons:9" data-fulldesc="
+伤害：1d4 slashing
+重量：2 lb
+价格：1 GP gp" data-name="镰刀">
+            <div class="selection-item-name">镰刀</div>
+            <div class="selection-item-desc">1d4 slashing</div>
+        </div><div class="selection-item" data-id="10" data-category="weapons" data-compkey="weapons:10" data-fulldesc="
+伤害：1d6 piercing
+重量：3 lb
+价格：1 GP gp" data-name="矛">
+            <div class="selection-item-name">矛</div>
+            <div class="selection-item-desc">1d6 piercing</div>
+        </div><div class="selection-item" data-id="11" data-category="weapons" data-compkey="weapons:11" data-fulldesc="
+伤害：1d4 piercing
+重量：0.25 lb
+价格：5 CP gp" data-name="飞镖">
+            <div class="selection-item-name">飞镖</div>
+            <div class="selection-item-desc">1d4 piercing</div>
+        </div><div class="selection-item" data-id="12" data-category="weapons" data-compkey="weapons:12" data-fulldesc="
+伤害：1d8 piercing
+重量：5 lb
+价格：25 GP gp" data-name="轻弩">
+            <div class="selection-item-name">轻弩</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="13" data-category="weapons" data-compkey="weapons:13" data-fulldesc="
+伤害：1d6 piercing
+重量：2 lb
+价格：25 GP gp" data-name="短弓">
+            <div class="selection-item-name">短弓</div>
+            <div class="selection-item-desc">1d6 piercing</div>
+        </div><div class="selection-item" data-id="14" data-category="weapons" data-compkey="weapons:14" data-fulldesc="
+伤害：1d4 bludgeoning
+价格：1 SP gp" data-name="投石索">
+            <div class="selection-item-name">投石索</div>
+            <div class="selection-item-desc">1d4 bludgeoning</div>
+        </div><div class="selection-item" data-id="15" data-category="weapons" data-compkey="weapons:15" data-fulldesc="
+伤害：1d8 slashing
+重量：4 lb
+价格：10 GP gp" data-name="战斧">
+            <div class="selection-item-name">战斧</div>
+            <div class="selection-item-desc">1d8 slashing</div>
+        </div><div class="selection-item" data-id="16" data-category="weapons" data-compkey="weapons:16" data-fulldesc="
+伤害：1d8 bludgeoning
+重量：2 lb
+价格：10 GP gp" data-name="链枷">
+            <div class="selection-item-name">链枷</div>
+            <div class="selection-item-desc">1d8 bludgeoning</div>
+        </div><div class="selection-item" data-id="17" data-category="weapons" data-compkey="weapons:17" data-fulldesc="
+伤害：1d10 slashing
+重量：6 lb
+价格：20 GP gp" data-name="长柄刀">
+            <div class="selection-item-name">长柄刀</div>
+            <div class="selection-item-desc">1d10 slashing</div>
+        </div><div class="selection-item" data-id="18" data-category="weapons" data-compkey="weapons:18" data-fulldesc="
+伤害：1d12 slashing
+重量：7 lb
+价格：30 GP gp" data-name="巨斧">
+            <div class="selection-item-name">巨斧</div>
+            <div class="selection-item-desc">1d12 slashing</div>
+        </div><div class="selection-item" data-id="19" data-category="weapons" data-compkey="weapons:19" data-fulldesc="
+伤害：2d6 slashing
+重量：6 lb
+价格：50 GP gp" data-name="巨剑">
+            <div class="selection-item-name">巨剑</div>
+            <div class="selection-item-desc">2d6 slashing</div>
+        </div><div class="selection-item disabled already-selected current-page-selected" data-id="20" data-category="weapons" data-compkey="weapons:20" data-fulldesc="
+伤害：1d10 slashing
+重量：6 lb
+价格：20 GP gp" data-name="戟">
+            <div class="selection-item-name">戟<span class="disabled-hint current-page">（本页已选）</span></div>
+            <div class="selection-item-desc">1d10 slashing</div>
+        </div><div class="selection-item" data-id="21" data-category="weapons" data-compkey="weapons:21" data-fulldesc="
+伤害：1d10 piercing
+重量：6 lb
+价格：10 GP gp" data-name="骑枪">
+            <div class="selection-item-name">骑枪</div>
+            <div class="selection-item-desc">1d10 piercing</div>
+        </div><div class="selection-item" data-id="22" data-category="weapons" data-compkey="weapons:22" data-fulldesc="
+伤害：1d8 slashing
+重量：3 lb
+价格：15 GP gp" data-name="长剑">
+            <div class="selection-item-name">长剑</div>
+            <div class="selection-item-desc">1d8 slashing</div>
+        </div><div class="selection-item" data-id="23" data-category="weapons" data-compkey="weapons:23" data-fulldesc="
+伤害：2d6 bludgeoning
+重量：10 lb
+价格：10 GP gp" data-name="巨锤">
+            <div class="selection-item-name">巨锤</div>
+            <div class="selection-item-desc">2d6 bludgeoning</div>
+        </div><div class="selection-item" data-id="24" data-category="weapons" data-compkey="weapons:24" data-fulldesc="
+伤害：1d8 piercing
+重量：4 lb
+价格：15 GP gp" data-name="钉头锤">
+            <div class="selection-item-name">钉头锤</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="25" data-category="weapons" data-compkey="weapons:25" data-fulldesc="
+伤害：1d10 piercing
+重量：18 lb
+价格：5 GP gp" data-name="长矛">
+            <div class="selection-item-name">长矛</div>
+            <div class="selection-item-desc">1d10 piercing</div>
+        </div><div class="selection-item" data-id="26" data-category="weapons" data-compkey="weapons:26" data-fulldesc="
+伤害：1d8 piercing
+重量：2 lb
+价格：25 GP gp" data-name="刺剑">
+            <div class="selection-item-name">刺剑</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="27" data-category="weapons" data-compkey="weapons:27" data-fulldesc="
+伤害：1d6 slashing
+重量：3 lb
+价格：25 GP gp" data-name="弯刀">
+            <div class="selection-item-name">弯刀</div>
+            <div class="selection-item-desc">1d6 slashing</div>
+        </div><div class="selection-item" data-id="28" data-category="weapons" data-compkey="weapons:28" data-fulldesc="
+伤害：1d6 piercing
+重量：2 lb
+价格：10 GP gp" data-name="短剑">
+            <div class="selection-item-name">短剑</div>
+            <div class="selection-item-desc">1d6 piercing</div>
+        </div><div class="selection-item" data-id="29" data-category="weapons" data-compkey="weapons:29" data-fulldesc="
+伤害：1d8 piercing
+重量：4 lb
+价格：5 GP gp" data-name="三叉戟">
+            <div class="selection-item-name">三叉戟</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="30" data-category="weapons" data-compkey="weapons:30" data-fulldesc="
+伤害：1d8 piercing
+重量：2 lb
+价格：5 GP gp" data-name="战镐">
+            <div class="selection-item-name">战镐</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="31" data-category="weapons" data-compkey="weapons:31" data-fulldesc="
+伤害：1d8 bludgeoning
+重量：2 lb
+价格：15 GP gp" data-name="战锤">
+            <div class="selection-item-name">战锤</div>
+            <div class="selection-item-desc">1d8 bludgeoning</div>
+        </div><div class="selection-item" data-id="32" data-category="weapons" data-compkey="weapons:32" data-fulldesc="
+伤害：1d4 slashing
+重量：3 lb
+价格：2 GP gp" data-name="鞭">
+            <div class="selection-item-name">鞭</div>
+            <div class="selection-item-desc">1d4 slashing</div>
+        </div><div class="selection-item" data-id="33" data-category="weapons" data-compkey="weapons:33" data-fulldesc="
+伤害：1 piercing
+重量：1 lb
+价格：10 GP gp" data-name="吹箭筒">
+            <div class="selection-item-name">吹箭筒</div>
+            <div class="selection-item-desc">1 piercing</div>
+        </div><div class="selection-item" data-id="34" data-category="weapons" data-compkey="weapons:34" data-fulldesc="
+伤害：1d6 piercing
+重量：3 lb
+价格：75 GP gp" data-name="手弩">
+            <div class="selection-item-name">手弩</div>
+            <div class="selection-item-desc">1d6 piercing</div>
+        </div><div class="selection-item" data-id="35" data-category="weapons" data-compkey="weapons:35" data-fulldesc="
+伤害：1d10 piercing
+重量：18 lb
+价格：50 GP gp" data-name="重弩">
+            <div class="selection-item-name">重弩</div>
+            <div class="selection-item-desc">1d10 piercing</div>
+        </div><div class="selection-item" data-id="36" data-category="weapons" data-compkey="weapons:36" data-fulldesc="
+伤害：1d8 piercing
+重量：2 lb
+价格：50 GP gp" data-name="长弓">
+            <div class="selection-item-name">长弓</div>
+            <div class="selection-item-desc">1d8 piercing</div>
+        </div><div class="selection-item" data-id="37" data-category="weapons" data-compkey="weapons:37" data-fulldesc="
+伤害：1d12 piercing
+重量：10 lb
+价格：500 GP gp" data-name="火铳">
+            <div class="selection-item-name">火铳</div>
+            <div class="selection-item-desc">1d12 piercing</div>
+        </div><div class="selection-item" data-id="38" data-category="weapons" data-compkey="weapons:38" data-fulldesc="
+伤害：1d10 piercing
+重量：3 lb
+价格：250 GP gp" data-name="手铳">
+            <div class="selection-item-name">手铳</div>
+            <div class="selection-item-desc">1d10 piercing</div>
+        </div>
+                    </div>
+                    <div class="feat-section-hint">
+                        需要选择 2 项，当前已选 <span class="section-selected-count">2</span> / 2
+                    </div>
+                </div>
+            </div>
+            <div class="feat-section" data-index="1">
+                <div class="feat-section-header" data-target="feat-section-1">
+                    <span class="feat-section-title">（士兵）-1个赌具</span>
+                    <span class="feat-section-count">已选 1 / 1</span>
+                    <span class="feat-section-toggle">▼</span>
+                </div>
+                <div class="feat-section-body " id="feat-section-1">
+                    <div class="selection-grid" id="feat-grid-1">
+                        <div class="selection-item selected" data-id="20" data-category="tools" data-compkey="tools:20" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC20）" data-name="骰子">
+            <div class="selection-item-name">骰子</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC20）</div>
+        </div><div class="selection-item" data-id="21" data-category="tools" data-compkey="tools:21" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC21）" data-name="龙棋">
+            <div class="selection-item-name">龙棋</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC21）</div>
+        </div><div class="selection-item" data-id="22" data-category="tools" data-compkey="tools:22" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC22）" data-name="纸牌">
+            <div class="selection-item-name">纸牌</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC22）</div>
+        </div><div class="selection-item" data-id="23" data-category="tools" data-compkey="tools:23" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC23）" data-name="三龙牌">
+            <div class="selection-item-name">三龙牌</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC23）</div>
+        </div>
+                    </div>
+                    <div class="feat-section-hint">
+                        需要选择 1 项，当前已选 <span class="section-selected-count">1</span> / 1
+                    </div>
+                </div>
+            </div></div>
+                <div class="feature-selection-right">
+                    <div class="detail-panel" id="detailPanel"><div class="detail-panel-content"><h3 class="detail-panel-title">骰子</h3><div class="detail-panel-type">tools</div><div class="detail-panel-desc">用法：判断某人是否作弊（DC10），或赢取游戏（DC20）</div></div></div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+
+        <!-- ===== 底部按钮 ===== -->
+        <div class="step-footer">
+            <button id="prevBtn" class="btn btn-secondary" style="visibility: visible;">← 上一步</button>
+            <div class="step-footer-center">
+                <span id="stepIndicator" class="step-indicator" style="">第 14 步，共 17 步</span>
+            </div>
+            <button id="nextBtn" class="btn btn-primary" style="visibility: visible;">下一步 →</button>
+        </div>
+
+    </div>
+
+    <!-- ===== 选择弹窗模态框（供工具/法术等条件筛选选择使用） ===== -->
+    <div class="selection-modal-overlay" id="selectionModalOverlay" style="display:none;">
+        <div class="selection-modal" id="selectionModalContent">
+            <div class="selection-modal-header">
+                <h3 class="selection-modal-title" id="selectionModalTitle">请选择</h3>
+                <button class="selection-modal-close" id="selectionModalClose">✕</button>
+            </div>
+            <div class="selection-modal-body" id="selectionModalBody">
+                <!-- 内容由JS动态填充 -->
+            </div>
+            <div class="selection-modal-footer">
+                <div class="selection-modal-hint" id="selectionModalHint">已选：0 / 0</div>
+                <button class="btn btn-secondary" id="selectionModalCancel">取消</button>
+                <button class="btn btn-primary" id="selectionModalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>

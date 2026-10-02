@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "力量",
+    "type": 1,
+    "attr": "strength",
+    "name_en": "Strength",
+    "desc": "力气"
+  },
+  {
+    "id": 2,
+    "name": "力量豁免",
+    "type": 2,
+    "attr": "strength",
+    "name_en": "StrengthSave",
+    "desc": "用于抵抗力量相关的效果"
+  },
+  {
+    "id": 3,
+    "name": "运动",
+    "type": 3,
+    "attr": "strength",
+    "name_en": "Athletics",
+    "desc": "比平时跳的更远，在汹涌的水面上漂浮或是打碎什么东西。"
+  },
+  {
+    "id": 4,
+    "name": "敏捷",
+    "type": 1,
+    "attr": "dexterity",
+    "name_en": "Dexterity",
+    "desc": "灵活性、反应能力和平衡感"
+  },
+  {
+    "id": 5,
+    "name": "敏捷豁免",
+    "type": 2,
+    "attr": "dexterity",
+    "name_en": "DexteritySave",
+    "desc": "用于抵抗敏捷相关的效果"
+  },
+  {
+    "id": 6,
+    "name": "体操",
+    "type": 3,
+    "attr": "dexterity",
+    "name_en": "Acrobatics",
+    "desc": "在复杂的环境里屹立不倒或是表演杂技特技。"
+  },
+  {
+    "id": 7,
+    "name": "巧手",
+    "type": 3,
+    "attr": "dexterity",
+    "name_en": "SleightOfHand",
+    "desc": "扒窃口袋，藏起只手可握的小物件或是耍一些手上把戏。"
+  },
+  {
+    "id": 8,
+    "name": "隐匿",
+    "type": 3,
+    "attr": "dexterity",
+    "name_en": "Stealth",
+    "desc": "通过悄悄地移动和藏在事物后面来躲避别人的注意。"
+  },
+  {
+    "id": 9,
+    "name": "体质",
+    "type": 1,
+    "attr": "constitution",
+    "name_en": "Constitution",
+    "desc": "健康程度和耐力"
+  },
+  {
+    "id": 10,
+    "name": "体质豁免",
+    "type": 2,
+    "attr": "constitution",
+    "name_en": "ConstitutionSave",
+    "desc": "用于抵抗体质相关的效果"
+  },
+  {
+    "id": 11,
+    "name": "智力",
+    "type": 1,
+    "attr": "intelligence",
+    "name_en": "Intelligence",
+    "desc": "推理能力和记忆力"
+  },
+  {
+    "id": 12,
+    "name": "智力豁免",
+    "type": 2,
+    "attr": "intelligence",
+    "name_en": "IntelligenceSave",
+    "desc": "用于抵抗智力相关的效果"
+  },
+  {
+    "id": 13,
+    "name": "奥秘",
+    "type": 3,
+    "attr": "intelligence",
+    "name_en": "Arcana",
+    "desc": "回忆有关于法术、魔法物品和存在位面的知识。"
+  },
+  {
+    "id": 14,
+    "name": "历史",
+    "type": 3,
+    "attr": "intelligence",
+    "name_en": "History",
+    "desc": "回忆有关历史事件、人民、国家和文化传统的知识。"
+  },
+  {
+    "id": 15,
+    "name": "调查",
+    "type": 3,
+    "attr": "intelligence",
+    "name_en": "Investigation",
+    "desc": "在书本中寻辨晦涩难懂的信息或推断某些事物是如何运作的。"
+  },
+  {
+    "id": 16,
+    "name": "自然",
+    "type": 3,
+    "attr": "intelligence",
+    "name_en": "Nature",
+    "desc": "回忆有关地形、植物、动物和天气的知识。"
+  },
+  {
+    "id": 17,
+    "name": "宗教",
+    "type": 3,
+    "attr": "intelligence",
+    "name_en": "Religion",
+    "desc": "回忆有关神的传说、宗教仪式的学问以及圣徽的知识。"
+  },
+  {
+    "id": 18,
+    "name": "感知",
+    "type": 1,
+    "attr": "wisdom",
+    "name_en": "Wisdom",
+    "desc": "洞察力和精神坚韧程度"
+  },
+  {
+    "id": 19,
+    "name": "感知豁免",
+    "type": 2,
+    "attr": "wisdom",
+    "name_en": "WisdomSave",
+    "desc": "用于抵抗感知相关的效果"
+  },
+  {
+    "id": 20,
+    "name": "驯兽",
+    "type": 3,
+    "attr": "wisdom",
+    "name_en": "AnimalHandling",
+    "desc": "让动物平静下来、训练它们，又或者让它们做某种特定的事。"
+  },
+  {
+    "id": 21,
+    "name": "洞悉",
+    "type": 3,
+    "attr": "wisdom",
+    "name_en": "Insight",
+    "desc": "辨别某人的情绪或意图。"
+  },
+  {
+    "id": 22,
+    "name": "医药",
+    "type": 3,
+    "attr": "wisdom",
+    "name_en": "Medicine",
+    "desc": "诊断某种疾病或是确定近期死亡的死者的死因。"
+  },
+  {
+    "id": 23,
+    "name": "察觉",
+    "type": 3,
+    "attr": "wisdom",
+    "name_en": "Perception",
+    "desc": "结合各种感官，注意一些容易忽略的细节。"
+  },
+  {
+    "id": 24,
+    "name": "求生",
+    "type": 3,
+    "attr": "wisdom",
+    "name_en": "Survival",
+    "desc": "跟踪追查、寻找食物、寻觅踪迹或是避免遭遇自然灾害。"
+  },
+  {
+    "id": 25,
+    "name": "魅力",
+    "type": 1,
+    "attr": "charisma",
+    "name_en": "Charisma",
+    "desc": "自信、仪态以及吸引力"
+  },
+  {
+    "id": 26,
+    "name": "魅力豁免",
+    "type": 2,
+    "attr": "charisma",
+    "name_en": "CharismaSave",
+    "desc": "用于抵抗魅力相关的效果"
+  },
+  {
+    "id": 27,
+    "name": "欺瞒",
+    "type": 3,
+    "attr": "charisma",
+    "name_en": "Deception",
+    "desc": "撒一个让人信服的谎话或者做出让人深信不疑的伪装。"
+  },
+  {
+    "id": 28,
+    "name": "威吓",
+    "type": 3,
+    "attr": "charisma",
+    "name_en": "Intimidation",
+    "desc": "恫吓他人或胁迫某人去做你想要他做的事。"
+  },
+  {
+    "id": 29,
+    "name": "表演",
+    "type": 3,
+    "attr": "charisma",
+    "name_en": "Performance",
+    "desc": "演戏、讲述故事、演奏乐曲或翩翩起舞。"
+  },
+  {
+    "id": 30,
+    "name": "游说",
+    "type": 3,
+    "attr": "charisma",
+    "name_en": "Persuasion",
+    "desc": "真诚且优雅地在某件事上说服他人。"
+  }
+]

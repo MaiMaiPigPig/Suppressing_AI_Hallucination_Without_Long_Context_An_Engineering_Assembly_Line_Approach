@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-20T10:17:56.579Z",
+  "raceId": 3,
+  "subraceId": null,
+  "classId": 3,
+  "subclassId": null,
+  "backgroundId": 1,
+  "abilities": {
+    "1": 14,
+    "4": 8,
+    "9": 13,
+    "11": 10,
+    "18": 15,
+    "25": 12
+  },
+  "classSkills": [
+    14,
+    30
+  ],
+  "backgroundSkills": [
+    17,
+    21
+  ],
+  "allSkills": [
+    "历史",
+    "游说",
+    "宗教",
+    "洞悉"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 3,
+        "name": "书法工具",
+        "source": "raceFeatures",
+        "sourceLabel": "侍僧",
+        "link": 1
+      }
+    ],
+    "weapons": [],
+    "spells": [
+      {
+        "classId": 3,
+        "lv": 0,
+        "spellId": 11,
+        "name": "光亮术",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(牧师)",
+        "link": 5
+      },
+      {
+        "classId": 3,
+        "lv": 0,
+        "spellId": 28,
+        "name": "奇术",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(牧师)",
+        "link": 5
+      },
+      {
+        "classId": 3,
+        "lv": 1,
+        "spellId": 51,
+        "name": "侦测魔法",
+        "source": "raceFeatures",
+        "sourceLabel": "魔法学徒(牧师)",
+        "link": 5
+      }
+    ],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "18": 2,
+      "25": 1
+    }
+  },
+  "selectedFeat": 5,
+  "selectedSpells": [
+    26,
+    22,
+    21,
+    13,
+    48,
+    45,
+    40,
+    39,
+    11,
+    28,
+    51
+  ],
+  "lockedSpells": [
+    11,
+    28,
+    51
+  ],
+  "classPackage": {
+    "id": 21
+  },
+  "bgPackage": {
+    "id": 1
+  },
+  "shoppingItems": [],
+  "currency": {
+    "pp": 0,
+    "gp": 15,
+    "ep": 0,
+    "sp": 0,
+    "cp": 0
+  },
+  "name": "牧师",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": [
+    12,
+    13,
+    11
+  ]
+}

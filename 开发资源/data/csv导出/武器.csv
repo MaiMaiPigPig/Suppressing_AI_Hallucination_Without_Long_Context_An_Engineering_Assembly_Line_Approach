@@ -1,0 +1,39 @@
+﻿id,名字,英文名,伤害骰,伤害类型,词条,精通,重量,weight_unit,价格,简易/军用,近战/远程,dlc
+1,短棒,Club,1d4,bludgeoning,4,16,2,lb,1 SP,63,61,
+2,匕首,Dagger,1d4,piercing,"2,4,8（射程 20/60）",13,1,lb,2 GP,63,61,
+3,巨棒,Greatclub,1d8,bludgeoning,9,14,10,lb,2 SP,63,61,
+4,手斧,Handaxe,1d6,slashing,"4,8（射程 20/60）",18,2,lb,5 GP,63,61,
+5,标枪,Javelin,1d6,piercing,8（射程 30/120）,16,2,lb,5 SP,63,61,
+6,轻锤,Light Hammer,1d4,bludgeoning,"4,8（射程 20/60）",13,2,lb,2 GP,63,61,
+7,硬头锤,Mace,1d6,bludgeoning,—,15,4,lb,5 GP,63,61,
+8,长棍,Quarterstaff,1d6,bludgeoning,10（1d8）,17,4,lb,2 SP,63,61,
+9,镰刀,Sickle,1d4,slashing,4,13,2,lb,1 GP,63,61,
+10,矛,Spear,1d6,piercing,"8（射程 20/60）,10（1d8）",15,3,lb,1 GP,63,61,phb
+11,飞镖,Dart,1d4,piercing,"2,8（射程 20/60）",18,0.25,lb,5 CP,63,62,phb
+12,轻弩,Light Crossbow,1d8,piercing,"1（射程 80/320；弩矢）,5,9",16,5,lb,25 GP,63,62,phb
+13,短弓,Shortbow,1d6,piercing,"1（射程 80/320；箭矢）,9",18,2,lb,25 GP,63,62,phb
+14,投石索,Sling,1d4,bludgeoning,1（射程 30/120；子弹）,16,,,1 SP,63,62,phb
+15,战斧,Battleaxe,1d8,slashing,10（1d10）,17,4,lb,10 GP,64,61,phb
+16,链枷,Flail,1d8,bludgeoning,—,15,2,lb,10 GP,64,61,phb
+17,长柄刀,Glaive,1d10,slashing,"3,6,9",12,6,lb,20 GP,64,61,phb
+18,巨斧,Greataxe,1d12,slashing,"3,9",11,7,lb,30 GP,64,61,phb
+19,巨剑,Greatsword,2d6,slashing,"3,9",12,6,lb,50 GP,64,61,phb
+20,戟,Halberd,1d10,slashing,"3,6,9",11,6,lb,20 GP,64,61,phb
+21,骑枪,Lance,1d10,piercing,"3,6,9（骑乘时除外）",17,6,lb,10 GP,64,61,phb
+22,长剑,Longsword,1d8,slashing,10（1d10）,15,3,lb,15 GP,64,61,phb
+23,巨锤,Maul,2d6,bludgeoning,"3,9",17,10,lb,10 GP,64,61,phb
+24,钉头锤,Morningstar,1d8,piercing,—,15,4,lb,15 GP,64,61,phb
+25,长矛,Pike,1d10,piercing,"3,6,9",14,18,lb,5 GP,64,61,phb
+26,刺剑,Rapier,1d8,piercing,2,18,2,lb,25 GP,64,61,phb
+27,弯刀,Scimitar,1d6,slashing,"2,4",13,3,lb,25 GP,64,61,phb
+28,短剑,Shortsword,1d6,piercing,"2,4",18,2,lb,10 GP,64,61,phb
+29,三叉戟,Trident,1d8,piercing,"8（射程 20/60）,10（1d10）",17,4,lb,5 GP,64,61,phb
+30,战镐,Warpick,1d8,piercing,10（1d10）,15,2,lb,5 GP,64,61,phb
+31,战锤,Warhammer,1d8,bludgeoning,10（1d10）,14,2,lb,15 GP,64,61,phb
+32,鞭,Whip,1d4,slashing,"2,6",16,3,lb,2 GP,64,61,phb
+33,吹箭筒,Blowgun,1,piercing,"1（射程 25/100；吹矢）,5",18,1,lb,10 GP,64,62,phb
+34,手弩,Hand Crossbow,1d6,piercing,"1（射程 30/120；弩矢）,4,5",18,3,lb,75 GP,64,62,phb
+35,重弩,Heavy Crossbow,1d10,piercing,"1（射程 100/400；弩矢）,3,5,9",14,18,lb,50 GP,64,62,phb
+36,长弓,Longbow,1d8,piercing,"1（射程 150/600；箭矢）,3,9",16,2,lb,50 GP,64,62,phb
+37,火铳,Musket,1d12,piercing,"1（射程 40/120；子弹）,5,9",16,10,lb,500 GP,64,62,phb
+38,手铳,Pistol,1d10,piercing,"1（射程 30/90；子弹）,5",18,3,lb,250 GP,64,62,phb

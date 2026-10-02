@@ -1,0 +1,7 @@
+种族：character_dnd5r_race
+职业：character_dnd5r_class
+子职业：character_dnd5r_subclass
+背景：character_dnd5r_background
+专长：character_dnd5r_feat
+法术：character_dnd5r_spell
+武器：character_dnd5r_weapon

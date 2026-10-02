@@ -1,0 +1,706 @@
+步骤: 14
+标注: pre_next_step14
+时间: 20261002_091409
+URL : http://127.0.0.1:5001/character/dnd_5r
+==================================================
+← 返回规则选择
+DND 5R 角色卡生成
+PP
+GP
+SP
+CP
+ⓘ
+↺ 重置
+1
+提夫林
+2
+炼狱
+3
+牧师
+4
+职业套装
+5
+贵族
+6
+背景套装
+7
+基础属性
+8
+背景加值
+10
+技能
+11
+专长
+12
+法术
+13
+商城
+14
+特性总览
+15
+角色详情
+16
+完成
+17
+保存
+特性选择总览
+已汇总所有来源的特性，请完成以下所有选择
+（异界存在）-1个NULL环法术
+已选 1 / 1
+▼
+酸液飞溅
+塑能 · Acid Splash
+剑刃防护（本页已选）
+防护 · Blade Ward
+颤栗之触（本页已选）
+死灵 · Chill Touch
+舞光术
+幻术 · Dancing Lights
+德鲁伊伎俩
+变化 · Druidcraft
+魔能爆（本页已选）
+塑能 · Eldritch Blast
+四象法门（本页已选）
+变化 · Elementalism
+火焰箭
+塑能 · Fire Bolt
+交友术
+附魔 · Friends
+神导术
+预言 · Guidance
+光亮术
+塑能 · Light
+法师之手
+咒法 · Mage Hand
+修复术
+变化 · Mending
+传讯术
+变化 · Message
+心灵之楔
+附魔 · Mind Sliver
+次级幻象
+幻术 · Minor Illusion
+毒气喷涌
+死灵 · Poison Spray
+魔法伎俩
+变化 · Prestidigitation
+燃火术
+咒法 · Produce Flame
+冷冻射线（本页已选）
+塑能 · Ray of Frost
+抵抗术
+防护 · Resistance
+圣火术
+塑能 · Sacred Flame
+橡棍术
+变化 · Shillelagh
+电爪
+塑能 · Shocking Grasp
+术法爆发
+塑能 · Sorcerous Burst
+维生术
+死灵 · Spare the Dying
+点点星芒
+塑能 · Starry Wisp
+奇术
+变化 · Thaumaturgy
+荆棘之鞭
+变化 · Thorn Whip
+鸣雷破
+塑能 · Thunderclap
+亡者丧钟
+死灵 · Toll the Dead
+克敌先击
+预言 · True Strike
+恶言相加
+附魔 · Vicious Mockery
+光耀祷词
+塑能 · Word of Radiance
+警报术
+防护 · Alarm
+化兽为友
+附魔 · Animal Friendship
+黯冰狱铠
+防护 · Armor of Agathys
+哈达之臂
+咒法 · Arms of Hadar
+灾祸术
+附魔 · Bane
+祝福术
+附魔 · Bless
+燃烧之手
+塑能 · Burning Hands
+魅惑类人
+附魔 · Charm Person
+繁彩球
+塑能 · Chromatic Orb
+七彩喷射
+幻术 · Color Spray
+命令术
+附魔 · Command
+强令对决
+附魔 · Compelled Duel
+通晓语言
+预言 · Comprehend Languages
+造水术/枯水术
+变化 · Create or Destroy Water
+疗伤术
+防护 · Cure Wounds
+侦测善恶
+预言 · Detect Evil and Good
+侦测魔法
+预言 · Detect Magic
+侦测毒性和疾病
+预言 · Detect Poison and Disease
+易容术
+幻术 · Disguise Self
+不谐低语
+附魔 · Dissonant Whispers
+神恩
+变化 · Divine Favor
+至圣斩
+塑能 · Divine Smite
+捕获打击
+咒法 · Ensnaring Strike
+纠缠术
+咒法 · Entangle
+脚底抹油
+变化 · Expeditious Retreat
+妖火
+塑能 · Faerie Fire
+虚假生命
+死灵 · False Life
+羽落术
+变化 · Feather Fall
+寻获魔宠
+咒法 · Find Familiar
+云雾术
+咒法 · Fog Cloud
+神莓术
+咒法 · Goodberry
+油腻术
+咒法 · Grease
+光导箭
+塑能 · Guiding Bolt
+荆棘之雨
+咒法 · Hail of Thorns
+治愈真言
+防护 · Healing Word
+炼狱叱喝
+塑能 · Hellish Rebuke
+英雄气概
+附魔 · Heroism
+脆弱诅咒
+附魔 · Hex
+猎人印记
+预言 · Hunter's Mark
+冰刃
+咒法 · Ice Knife
+鉴定术
+预言 · Identify
+迷幻手稿
+幻术 · Illusory Script
+致伤术
+死灵 · Inflict Wounds
+跳跃术
+变化 · Jump
+大步奔行
+变化 · Longstrider
+法师护甲
+防护 · Mage Armor
+魔法飞弹
+塑能 · Magic Missile
+防护善恶
+防护 · Protection from Evil and Good
+净化饮食
+变化 · Purify Food and Drink
+致病射线
+死灵 · Ray of Sickness
+庇护术
+防护 · Sanctuary
+炽焰斩
+塑能 · Searing Smite
+护盾术
+防护 · Shield
+虔诚护盾
+防护 · Shield of Faith
+无声幻影
+幻术 · Silent Image
+睡眠术
+附魔 · Sleep
+动物交谈
+预言 · Speak with Animals
+塔莎狂笑术
+附魔 · Tasha's Hideous Laughter
+谭森浮碟术
+咒法 · Tenser's Floating Disk
+雷鸣斩
+塑能 · Thunderous Smite
+雷鸣波
+塑能 · Thunderwave
+隐形仆役
+咒法 · Unseen Servant
+巫术箭
+塑能 · Witch Bolt
+激愤斩
+死灵 · Wrathful Smite
+援助术
+防护 · Aid
+变身术
+变化 · Alter Self
+动物信使
+附魔 · Animal Messenger
+秘法锁
+防护 · Arcane Lock
+复苏秘法
+防护 · Arcane Vigor
+卜筮术
+预言 · Augury
+树肤术
+变化 · Barkskin
+野兽感官
+预言 · Beast Sense
+目盲术/耳聋术
+变化 · Blindness/Deafness
+朦胧术
+幻术 · Blur
+安定心神
+附魔 · Calm Emotions
+匕首之云
+咒法 · Cloud of Daggers
+不灭明焰
+塑能 · Continual Flame
+警戒箭阵
+变化 · Cordon of Arrows
+疯狂冠冕
+附魔 · Crown of Madness
+黑暗术
+塑能 · Darkness
+黑暗视觉
+变化 · Darkvision
+侦测思想
+预言 · Detect Thoughts
+龙息术
+变化 · Dragon's Breath
+强化属性
+变化 · Enhance Ability
+变巨术/缩小术
+变化 · Enlarge/Reduce
+注目术
+附魔 · Enthrall
+寻获坐骑
+咒法 · Find Steed
+寻找陷阱
+预言 · Find Traps
+火焰刀
+塑能 · Flame Blade
+炽焰法球
+咒法 · Flaming Sphere
+遗体防腐
+死灵 · Gentle Repose
+造风术
+塑能 · Gust of Wind
+灼热金属
+变化 · Heat Metal
+定身类人
+附魔 · Hold Person
+隐形术
+幻术 · Invisibility
+敲击术
+变化 · Knock
+次等复原术
+防护 · Lesser Restoration
+浮空术
+变化 · Levitate
+动植物定位术
+预言 · Locate Animals or Plants
+物件定位术
+预言 · Locate Object
+魔嘴术
+幻术 · Magic Mouth
+魔化武器
+变化 · Magic Weapon
+马友夫强酸箭
+塑能 · Melf's Acid Arrow
+心灵尖刺
+预言 · Mind Spike
+镜影术
+幻术 · Mirror Image
+迷踪步
+咒法 · Misty Step
+月华之光
+塑能 · Moonbeam
+涅斯图魔法灵光
+幻术 · Nystul's Magic Aura
+行动无踪
+防护 · Pass without Trace
+魅影之力
+幻术 · Phantasmal Force
+治疗祷言
+防护 · Prayer of Healing
+防护毒素
+防护 · Protection from Poison
+衰弱射线
+死灵 · Ray of Enfeeblement
+魔绳术
+变化 · Rope Trick
+灼热射线
+塑能 · Scorching Ray
+识破隐形
+预言 · See Invisibility
+粉碎音波
+塑能 · Shatter
+闪耀斩
+变化 · Shining Smite
+沉默术
+幻术 · Silence
+蛛行术
+变化 · Spider Climb
+荆棘丛生
+变化 · Spike Growth
+灵体武器
+塑能 · Spiritual Weapon
+暗示术
+附魔 · Suggestion
+野兽召唤术
+咒法 · Summon Beast
+守护之链
+防护 · Warding Bond
+蛛网术
+咒法 · Web
+诚实之域
+附魔 · Zone of Truth
+活化死尸
+死灵 · Animate Dead
+活力灵光
+防护 · Aura of Vitality
+希望信标
+防护 · Beacon of Hope
+降咒
+死灵 · Bestow Curse
+致盲斩
+塑能 · Blinding Smite
+闪现术
+变化 · Blink
+召雷术
+咒法 · Call Lightning
+鹰眼术
+预言 · Clairvoyance
+咒唤兽群
+咒法 · Conjure Animals
+箭如雨下
+咒法 · Conjure Barrage
+法术反制
+防护 · Counterspell
+造粮术
+咒法 · Create Food and Water
+十字军披风
+塑能 · Crusader's Mantle
+昼明术
+塑能 · Daylight
+解除魔法
+防护 · Dispel Magic
+元素武器
+变化 · Elemental Weapon
+恐惧术
+幻术 · Fear
+假死术
+死灵 · Feign Death
+火球术
+塑能 · Fireball
+飞行术
+变化 · Fly
+气化形体
+变化 · Gaseous Form
+守卫刻纹
+防护 · Glyph of Warding
+加速术
+变化 · Haste
+哈达之欲
+咒法 · Hunger of Hadar
+催眠图纹
+幻术 · Hypnotic Pattern
+李欧蒙小屋
+塑能 · Leomund's Tiny Hut
+闪电箭矢
+变化 · Lightning Arrows
+闪电束
+塑能 · Lightning Bolt
+防护法阵
+防护 · Magic Circle
+高级幻影
+幻术 · Major Image
+群体治愈真言
+防护 · Mass Healing Word
+融身入石
+变化 · Meld Into Stone
+回避侦测
+防护 · Nondetection
+魅影驹
+幻术 · Phantom Steed
+植物滋长
+变化 · Plant Growth
+防护能量
+防护 · Protection from Energy
+移除诅咒
+防护 · Remove Curse
+回生术
+死灵 · Revivify
+短讯术
+预言 · Sending
+雪雨暴
+咒法 · Sleet Storm
+缓慢术
+变化 · Slow
+死者交谈
+死灵 · Speak with Dead
+植物交谈
+变化 · Speak with Plants
+灵体卫士
+咒法 · Spirit Guardians
+臭云术
+咒法 · Stinking Cloud
+妖精召唤术
+咒法 · Summon Fey
+亡灵召唤术
+死灵 · Summon Undead
+巧言术
+预言 · Tongues
+汲血之触
+死灵 · Vampiric Touch
+水下呼吸
+变化 · Water Breathing
+水上行走
+变化 · Water Walk
+风墙术
+塑能 · Wind Wall
+秘法眼
+预言 · Arcane Eye
+生命灵光
+防护 · Aura of Life
+净化灵光
+防护 · Aura of Purity
+放逐术
+防护 · Banishment
+枯萎术
+死灵 · Blight
+魅惑怪物
+附魔 · Charm Monster
+强迫术
+附魔 · Compulsion
+困惑术
+附魔 · Confusion
+咒唤微元素群
+咒法 · Conjure Minor Elementals
+咒唤林地卫士
+咒法 · Conjure Woodland Beings
+操控水体
+变化 · Control Water
+防死结界
+防护 · Death Ward
+任意门
+咒法 · Dimension Door
+预言术
+预言 · Divination
+支配野兽
+附魔 · Dominate Beast
+艾伐黑触手
+咒法 · Evard's Black Tentacles
+鬼斧神工
+变化 · Fabricate
+火焰护盾
+塑能 · Fire Shield
+月光涌泉
+塑能 · Fount of Moonlight
+行动自如
+防护 · Freedom of Movement
+巨虫术
+咒法 · Giant Insect
+擒抱藤
+咒法 · Grasping Vine
+高等隐形术
+幻术 · Greater Invisibility
+信仰守卫
+咒法 · Guardian of Faith
+幻景
+幻术 · Hallucinatory Terrain
+冰风暴
+塑能 · Ice Storm
+李欧蒙秘藏箱
+咒法 · Leomund's Secret Chest
+生物定位术
+预言 · Locate Creature
+魔邓肯忠犬
+咒法 · Mordenkainen's Faithful Hound
+魔邓肯私人密室
+防护 · Mordenkainen's Private Sanctum
+欧提路克弹力法球
+防护 · Otiluke's Resilient Sphere
+魅影杀手
+幻术 · Phantasmal Killer
+变形术
+变化 · Polymorph
+惊惧斩
+附魔 · Staggering Smite
+塑石术
+变化 · Stone Shape
+石肤术
+防护 · Stoneskin
+异怪召唤术
+咒法 · Summon Aberration
+构装召唤术
+咒法 · Summon Construct
+元素召唤术
+咒法 · Summon Elemental
+浓酸球
+塑能 · Vitriolic Sphere
+火墙术
+塑能 · Wall of Fire
+活化物件
+变化 · Animate Objects
+防活物护罩
+防护 · Antilife Shell
+启蒙术
+变化 · Awaken
+放逐斩
+咒法 · Banishing Smite
+毕格比之手
+塑能 · Bigby's Hand
+原力法阵
+防护 · Circle of Power
+死云术
+咒法 · Cloudkill
+通神术
+预言 · Commune
+问道自然
+预言 · Commune with Nature
+寒冰锥
+塑能 · Cone of Cold
+咒唤元素
+咒法 · Conjure Elemental
+万箭齐发
+咒法 · Conjure Volley
+异界探知
+预言 · Contact Other Plane
+疫病术
+死灵 · Contagion
+造物术
+幻术 · Creation
+湮灭波
+塑能 · Destructive Wave
+驱逐善恶
+防护 · Dispel Evil and Good
+支配类人
+附魔 · Dominate Person
+托梦术
+幻术 · Dream
+焰击术
+塑能 · Flame Strike
+指使术
+附魔 · Geas
+高等复原术
+防护 · Greater Restoration
+圣居
+防护 · Hallow
+定身怪物
+附魔 · Hold Monster
+疫病虫群
+咒法 · Insect Plague
+贾拉兹光辉风暴
+塑能 · Jallarzi's Storm of Radiance
+通晓传奇
+预言 · Legend Lore
+群体疗伤术
+防护 · Mass Cure Wounds
+假象术
+幻术 · Mislead
+篡改记忆
+附魔 · Modify Memory
+穿墙术
+变化 · Passwall
+异界誓缚
+防护 · Planar Binding
+死者复活
+死灵 · Raise Dead
+拉瑞心灵联结
+预言 · Rary's Telepathic Bond
+转生术
+死灵 · Reincarnate
+探知术
+预言 · Scrying
+伪装术
+幻术 · Seeming
+钢风斩
+咒法 · Steel Wind Strike
+天界召唤术
+咒法 · Summon Celestial
+龙类召唤术
+咒法 · Summon Dragon
+迅捷箭袋
+变化 · Swift Quiver
+突触静止
+附魔 · Synaptic Static
+心灵遥控
+变化 · Telekinesis
+传送法阵
+咒法 · Teleportation Circle
+树跃术
+咒法 · Tree Stride
+力场墙
+塑能 · Wall of Force
+石墙术
+塑能 · Wall of Stone
+悠兰德王者威仪
+附魔 · Yolande's Regal Presence
+秘法门
+咒法 · Arcane Gate
+剑刃护壁
+塑能 · Blade Barrier
+连锁闪电
+塑能 · Chain Lightning
+死亡法阵
+死灵 · Circle of Death
+咒唤妖精
+咒法 · Conjure Fey
+触发术
+防护 · Contingency
+唤起亡灵
+死灵 · Create Undead
+解离术
+变化 · Disintegrate
+卓姆吉瞬间召唤
+咒法 · Drawmij's Instant Summons
+摄心目光
+死灵 · Eyebite
+寻路术
+预言 · Find the Path
+石化术
+变化 · Flesh to Stone
+禁制术
+防护 · Forbiddance
+法术无效结界
+防护 · Globe of Invulnerability
+铜墙铁壁
+防护 · Guards and Wards
+重伤术
+死灵 · Harm
+医疗术
+防护 · Heal
+英雄宴
+咒法 · Heroes' Feast
+魔魂壶
+死灵 · Magic Jar
+群体暗示术
+附魔 · Mass Suggestion
+地动术
+变化 · Move Earth
+欧提路克冰封法球
+塑能 · Otiluke's Freezing Sphere
+奥图迷舞
+附魔 · Otto's Irresistible Dance
+异界誓盟
+咒法 · Planar Ally
+预置幻象
+幻术 · Programmed Illusion
+邪魔召唤术
+咒

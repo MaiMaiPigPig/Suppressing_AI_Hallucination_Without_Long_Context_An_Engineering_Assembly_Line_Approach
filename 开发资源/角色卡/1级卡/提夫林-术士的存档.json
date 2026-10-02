@@ -1,0 +1,103 @@
+{
+  "version": "1.0",
+  "createdAt": "2026-09-21T04:24:07.404Z",
+  "raceId": 10,
+  "subraceId": 32,
+  "classId": 10,
+  "subclassId": null,
+  "backgroundId": 10,
+  "abilities": {
+    "1": 10,
+    "4": 13,
+    "9": 14,
+    "11": 8,
+    "18": 12,
+    "25": 15
+  },
+  "classSkills": [
+    27,
+    21
+  ],
+  "backgroundSkills": [
+    30,
+    20
+  ],
+  "allSkills": [
+    "欺瞒",
+    "洞悉",
+    "游说",
+    "驯兽"
+  ],
+  "featureSelections": {
+    "tools": [
+      {
+        "typeId": 0,
+        "toolId": 35,
+        "name": "领航工具",
+        "source": "raceFeatures",
+        "sourceLabel": "商人",
+        "link": 10
+      }
+    ],
+    "weapons": [],
+    "spells": [],
+    "languages": [],
+    "armors": [],
+    "feats": [],
+    "skills": [],
+    "expertise": [],
+    "classExtra": []
+  },
+  "backgroundBonus": {
+    "bonus": {
+      "9": 1,
+      "25": 2
+    }
+  },
+  "selectedFeat": 4,
+  "selectedSpells": [
+    28,
+    8,
+    18,
+    25,
+    2,
+    14,
+    43,
+    87
+  ],
+  "lockedSpells": [
+    28,
+    8
+  ],
+  "classPackage": {
+    "id": 36
+  },
+  "bgPackage": {
+    "id": 10
+  },
+  "shoppingItems": [
+    {
+      "name": "篮子",
+      "cat": "items",
+      "qty": 2,
+      "priceCP": 40
+    }
+  ],
+  "currency": {
+    "pp": 4,
+    "gp": 9,
+    "ep": 0,
+    "sp": 2,
+    "cp": 0
+  },
+  "name": "提夫林-术士",
+  "player": "1",
+  "alignment": "",
+  "level": 1,
+  "personalTraits": "2",
+  "ideals": "3",
+  "bonds": "4",
+  "flaws": "5",
+  "backstory": "6",
+  "selectedLanguages": []
+}
