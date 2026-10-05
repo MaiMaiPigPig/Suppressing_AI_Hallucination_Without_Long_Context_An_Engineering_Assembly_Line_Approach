@@ -12,7 +12,8 @@
 
 1.  **第一步：试试“重载窗口”和“重启服务”**
     这是最快的方法，能解决大部分临时的进程卡死问题。
-    *   **重载窗口**：在 VS Code 中按 `Ctrl+Shift+P` (Windows) 或 `Cmd+Shift+P` (Mac) 打开命令面板，输入并执行 `Developer: Reload Window`。
+    *   **重载窗口**：在 VS Code 中按 `Ctrl+Shift+P` (Windows) 或 `Cmd+Shift+P` (Mac) 打开命令面板，
+    输入并执行 `Developer: Reload Window`。
     *   **重启 AI 服务**：同样在命令面板里，搜一下 `Trae: Restart AI Service` 并执行。
 
 2.  **第二步：检查网络和代理设置**

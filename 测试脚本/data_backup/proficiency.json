@@ -3245,7 +3245,8 @@
     "level": 1,
     "prof_bonus": "",
     "type": "martial_arts_dice",
-    "value": "",
+    "value": "1d6",
+    "value_unit": "",
     "slot_1": "",
     "slot_2": "",
     "slot_3": "",
@@ -3256,7 +3257,6 @@
     "slot_8": "",
     "slot_9": "",
     "class_id": 6,
-    "value_unit": "",
     "说明": "武学骰"
   },
   {
@@ -3265,7 +3265,8 @@
     "level": 5,
     "prof_bonus": "",
     "type": "martial_arts_dice",
-    "value": "",
+    "value": "1d8",
+    "value_unit": "",
     "slot_1": "",
     "slot_2": "",
     "slot_3": "",
@@ -3276,7 +3277,6 @@
     "slot_8": "",
     "slot_9": "",
     "class_id": 6,
-    "value_unit": "",
     "说明": "武学骰"
   },
   {
@@ -3285,7 +3285,8 @@
     "level": 11,
     "prof_bonus": "",
     "type": "martial_arts_dice",
-    "value": "",
+    "value": "1d10",
+    "value_unit": "",
     "slot_1": "",
     "slot_2": "",
     "slot_3": "",
@@ -3296,7 +3297,6 @@
     "slot_8": "",
     "slot_9": "",
     "class_id": 6,
-    "value_unit": "",
     "说明": "武学骰"
   },
   {
@@ -3305,7 +3305,8 @@
     "level": 17,
     "prof_bonus": "",
     "type": "martial_arts_dice",
-    "value": "",
+    "value": "1d12",
+    "value_unit": "",
     "slot_1": "",
     "slot_2": "",
     "slot_3": "",
@@ -3316,7 +3317,6 @@
     "slot_8": "",
     "slot_9": "",
     "class_id": 6,
-    "value_unit": "",
     "说明": "武学骰"
   },
   {

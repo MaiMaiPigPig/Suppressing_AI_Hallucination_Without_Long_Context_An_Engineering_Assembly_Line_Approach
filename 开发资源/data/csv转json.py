@@ -984,6 +984,10 @@ def parse_value(value):
     if m:
         return int(m.group(1)), 'feet'
     
+    # 骰子格式（如 1d6、2d8），保持原字符串
+    if re.match(r'^\d+d\d+$', value):
+        return (value, '')
+
     # 纯数字
     try:
         return int(value), ''

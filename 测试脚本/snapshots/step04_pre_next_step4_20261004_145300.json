@@ -1,0 +1,25 @@
+{
+  "step": 4,
+  "label": "pre_next_step4",
+  "ts": "20261004_145300",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n人类\n2\n亚种\n3\n战士\n4\n职业套装\n5\n背景\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n战士套装\n链甲，巨剑，链枷，8杆标枪，地城套组以及...\n战士套装\n镶钉皮甲，弯刀，短剑，长弓，20支箭矢，...\n战士套装\n155GP\n战士套装\n起始装备套装\n包含物品\n链甲，巨剑，链枷，8杆标枪，地城套组以及4GP\n链甲\n巨剑\n链枷\n标枪*8\n地城套组\n地城套组\n金币组成：\n职业套装结余：4 GP\n此套装结余：4 GP\n合计：4 GP\n← 上一步\n第 4 步，共 16 步\n下一步 →",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "战士套装"
+  ],
+  "json_verify": {
+    "passed": false,
+    "errors": [
+      "步骤4：页面显示「战士套装」在 JSON 数据中未找到匹配记录"
+    ]
+  }
+}

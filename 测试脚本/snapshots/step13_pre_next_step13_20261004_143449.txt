@@ -1,0 +1,159 @@
+步骤: 13
+标注: pre_next_step13
+时间: 20261004_143449
+URL : http://127.0.0.1:5001/character/dnd_5r
+==================================================
+← 返回规则选择
+DND 5R 角色卡生成
+PP
+GP
+SP
+CP
+ⓘ
+↺ 重置
+1
+侏儒
+2
+岩石侏儒
+3
+游荡者
+4
+职业套装
+5
+士兵
+6
+背景套装
+7
+基础属性
+8
+背景加值
+9
+技能
+10
+专长
+11
+法术
+12
+商城
+13
+特性总览
+14
+角色详情
+15
+完成
+16
+保存
+特性选择总览
+已汇总所有来源的特性，请完成以下所有选择
+（专精）-1个专精
+已选 1 / 1
+▼
+运动
+strength
+体操
+dexterity
+洞悉
+wisdom
+欺瞒
+charisma
+需要选择 1 项，当前已选 1 / 1
+（武器精通）-2个武器
+已选 2 / 2
+▼
+短棒
+1d4 bludgeoning
+匕首
+1d4 piercing
+巨棒
+（本页已选）
+1d8 bludgeoning
+手斧
+1d6 slashing
+标枪
+1d6 piercing
+轻锤
+1d4 bludgeoning
+硬头锤
+1d6 bludgeoning
+长棍
+1d6 bludgeoning
+镰刀
+1d4 slashing
+矛
+1d6 piercing
+飞镖
+1d4 piercing
+轻弩
+1d8 piercing
+短弓
+1d6 piercing
+投石索
+1d4 bludgeoning
+战斧
+1d8 slashing
+链枷
+1d8 bludgeoning
+长柄刀
+1d10 slashing
+巨斧
+1d12 slashing
+巨剑
+2d6 slashing
+戟
+（本页已选）
+1d10 slashing
+骑枪
+1d10 piercing
+长剑
+1d8 slashing
+巨锤
+2d6 bludgeoning
+钉头锤
+1d8 piercing
+长矛
+1d10 piercing
+刺剑
+1d8 piercing
+弯刀
+1d6 slashing
+短剑
+1d6 piercing
+三叉戟
+1d8 piercing
+战镐
+1d8 piercing
+战锤
+1d8 bludgeoning
+鞭
+1d4 slashing
+吹箭筒
+1 piercing
+手弩
+1d6 piercing
+重弩
+1d10 piercing
+长弓
+1d8 piercing
+火铳
+1d12 piercing
+手铳
+1d10 piercing
+需要选择 2 项，当前已选 2 / 2
+（士兵）-1个赌具
+已选 1 / 1
+▼
+骰子
+判断某人是否作弊（DC10），或赢取游戏（DC20）
+龙棋
+判断某人是否作弊（DC10），或赢取游戏（DC21）
+纸牌
+判断某人是否作弊（DC10），或赢取游戏（DC22）
+三龙牌
+判断某人是否作弊（DC10），或赢取游戏（DC23）
+需要选择 1 项，当前已选 1 / 1
+骰子
+tools
+用法：判断某人是否作弊（DC10），或赢取游戏（DC20）
+← 上一步
+第 13 步，共 16 步
+下一步 →

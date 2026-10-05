@@ -1,0 +1,48 @@
+{
+  "step": 9,
+  "label": "pre_next_step9",
+  "ts": "20261004_143437",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n侏儒\n2\n岩石侏儒\n3\n游荡者\n4\n职业套装\n5\n士兵\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n技能选择\n职业技能 — 选择 4 项\n已选 4 / 4\n🔓\n解绑职业\n请先与你的DM商议后再决定是否解绑\n体操\ndexterity\n运动\nstrength\n欺瞒\ncharisma\n洞悉\nwisdom\n威吓\ncharisma\n调查\nintelligence\n察觉\nwisdom\n游说\ncharisma\n巧手\ndexterity\n隐匿\ndexterity\n背景技能\n已选 0\n🔓\n解绑背景\n请先与你的DM商议后再决定是否解绑\n运动\nstrength\n威吓\ncharisma\n← 上一步\n第 9 步，共 16 步\n下一步 →",
+  "elements": {
+    "技能区": {
+      "count": 2,
+      "samples": [
+        "职业技能 — 选择 4 项\n已选 4 / 4\n🔓\n解绑职业\n请先与你的DM商议后",
+        "背景技能\n已选 0\n🔓\n解绑背景\n请先与你的DM商议后再决定是否解绑\n运动\nst"
+      ]
+    },
+    "已选技能": {
+      "count": 4,
+      "samples": [
+        "体操\ndexterity",
+        "运动\nstrength",
+        "欺瞒\ncharisma",
+        "洞悉\nwisdom"
+      ]
+    },
+    "可选技能": {
+      "count": 1,
+      "samples": [
+        "威吓\ncharisma"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "体操",
+    "运动",
+    "欺瞒",
+    "洞悉"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

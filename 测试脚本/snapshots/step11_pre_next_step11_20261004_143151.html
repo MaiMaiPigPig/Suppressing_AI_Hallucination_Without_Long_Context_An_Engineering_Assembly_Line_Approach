@@ -1,0 +1,996 @@
+<!-- SNAPSHOT step=11 label=pre_next_step11 ts=20261004_143151 url=http://127.0.0.1:5001/character/dnd_5r -->
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5R · 角色卡生成</title>
+    <base href="/character/dnd_5r/creation/">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/race.css">
+    <link rel="stylesheet" href="styles/ability.css">
+    <link rel="stylesheet" href="styles/skill.css">
+    <link rel="stylesheet" href="styles/bonus.css">
+    <link rel="stylesheet" href="styles/feat.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="styles/details.css">
+    <link rel="stylesheet" href="styles/spell.css">
+    <link rel="stylesheet" href="styles/sheet.css">
+    <style>
+        /* 欢迎页样式 */
+        .start-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .start-content {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .start-logo {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .start-title {
+            font-size: 2.2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+        .start-desc {
+            font-size: 1rem;
+            color: #a89b8c;
+            margin-bottom: 40px;
+        }
+        .start-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .start-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .start-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .start-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 8px;
+        }
+        .start-card-desc {
+            font-size: 0.85rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        /* 导出步骤样式 */
+        .export-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .export-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .export-header h2 {
+            font-size: 2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .export-subtitle {
+            font-size: 1rem;
+            color: #a89b8c;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .export-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .export-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .export-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .export-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 6px;
+        }
+        .export-card-desc {
+            font-size: 0.8rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        .upgrade-card {
+            border-color: rgba(201,168,76,0.25);
+            background: rgba(201,168,76,0.06);
+        }
+        .upgrade-card:hover {
+            border-color: #c9a84c;
+            background: rgba(201,168,76,0.12);
+            box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+        }
+        .upgrade-card .export-card-title {
+            color: #f0d878;
+        }
+        .export-info {
+            max-width: 500px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .export-info-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-info ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .export-info li {
+            font-size: 0.85rem;
+            color: #a89b8c;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        /* 导出摘要样式 */
+        .export-summary {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 24px;
+        }
+        .export-summary-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+        .export-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .export-summary-item-wide {
+            grid-column: 1 / -1;
+        }
+        .export-summary-label {
+            font-size: 0.7rem;
+            color: #8a7a6a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .export-summary-value {
+            font-size: 0.9rem;
+            color: #f0e6d3;
+        }
+        /* DLC选择步骤样式 */
+        .dlc-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .dlc-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .dlc-header h2 {
+            font-size: 1.8rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .dlc-header p {
+            font-size: 0.95rem;
+            color: #a89b8c;
+            margin: 0;
+        }
+        .dlc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .dlc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: border-color 0.2s;
+        }
+        .dlc-item:hover {
+            border-color: rgba(201,168,76,0.3);
+        }
+        .dlc-info {
+            flex: 1;
+        }
+        .dlc-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dlc-badge {
+            font-size: 0.7rem;
+            background: rgba(201,168,76,0.15);
+            color: #c9a84c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .dlc-desc {
+            font-size: 0.85rem;
+            color: #a89b8c;
+        }
+        .dlc-status {
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .dlc-status-on {
+            font-size: 0.85rem;
+            color: #4caf50;
+            font-weight: 600;
+            background: rgba(76,175,80,0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(76,175,80,0.2);
+        }
+        .dlc-footer {
+            text-align: center;
+        }
+    </style>
+    <!-- PDF 导出依赖：html2canvas（HTML→Canvas）+ jsPDF（Canvas→PDF） -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- 规则解析引擎（ES Module，通过 window.handlers 全局桥接兼容旧代码） -->
+    <script type="module" src="../handlers/index.js"></script>
+    <script type="module" src="../handlers/data-query.js"></script>
+    <!-- flow 函数窗口桥接 -->
+    <script type="module" src="flow/bridge.js"></script>
+    <!-- ES Module 入口 -->
+    <script type="module" src="app.js?v=20260914"></script>
+<style id="review-step-css">
+/* ===== 特性选择总览步骤 ===== */
+.review-summary {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+.review-summary-header {
+    color: #4caf50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.review-summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(76,175,80,0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+.review-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.review-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+.review-summary-label {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+.review-summary-value {
+    color: #f0e6d3;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ===== 特性选择页布局 ===== */
+.feature-selection-layout {
+    display: flex;
+    gap: 24px;
+    min-height: 400px;
+}
+.feature-selection-left {
+    flex: 0 0 60%;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+.feature-selection-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 选择分组 */
+.feat-section {
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.feat-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    user-select: none;
+}
+.feat-section-header:hover {
+    background: rgba(255,255,255,0.07);
+}
+.feat-section-title {
+    flex: 1;
+    color: #c9a84c;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.feat-section-count {
+    color: #8a9b6e;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.feat-section-toggle {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    width: 16px;
+    text-align: center;
+}
+.feat-section-body {
+    padding: 10px 14px;
+}
+.feat-section-body.collapsed {
+    display: none;
+}
+.feat-section-hint {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 选择网格 */
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* 选择项卡片 */
+.selection-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.selection-item:hover:not(.disabled):not(.selected) {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+}
+.selection-item.selected {
+    border-color: #4caf50;
+    background: rgba(76,175,80,0.12);
+}
+.selection-item.disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+.selection-item.prereq-blocked {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.selection-item-name {
+    color: #f0e6d3;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.selection-item-desc {
+    color: #a89b8c;
+    font-size: 0.78rem;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* 禁用提示标签 */
+.disabled-hint {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #8a9b6e;
+}
+.disabled-hint.previous-step {
+    color: #8a9b6e;
+}
+.disabled-hint.current-page {
+    color: #c9a84c;
+}
+
+/* 详情面板 */
+.detail-panel {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 16px;
+    position: sticky;
+    top: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.detail-panel-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.9rem;
+}
+.detail-panel-content {
+    color: #f0e6d3;
+}
+.detail-panel-title {
+    color: #c9a84c;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+.detail-panel-type {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+.detail-panel-desc {
+    color: #ccc;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* 空提示 */
+.empty-hint {
+    color: #666;
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+}
+
+/* 完成页底部按钮区 */
+.feature-selection-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.feature-selection-footer-hint {
+    color: #a89b8c;
+    font-size: 0.85rem;
+}
+</style></head>
+<body>
+
+    <div class="container">
+        <!-- ===== 顶部导航 ===== -->
+        <nav class="nav-bar">
+            <a href="/character" class="nav-back">← 返回规则选择</a>
+            <span class="nav-title">DND 5R 角色卡生成</span>
+            <div class="nav-actions">
+                <!-- 货币显示 -->
+                <div class="currency-display">
+                    <span class="currency-item"><span class="coin coin-pp"></span> <input type="number" id="platinum" value="0" min="0" readonly=""> <label>PP</label></span>
+                    <span class="currency-item"><span class="coin coin-gp"></span> <input type="number" id="gold" value="0" min="0" readonly=""> <label>GP</label></span>
+                    <span class="currency-item"><span class="coin coin-sp"></span> <input type="number" id="silver" value="0" min="0" readonly=""> <label>SP</label></span>
+                    <span class="currency-item"><span class="coin coin-cp"></span> <input type="number" id="copper" value="0" min="0" readonly=""> <label>CP</label></span>
+                    <span class="currency-rate" title="兑率：1PP=10GP | 1GP=10SP | 1SP=10CP">ⓘ</span>
+                </div>
+                <button id="resetBtn" class="btn btn-secondary">↺ 重置</button>
+            </div>
+        </nav>
+
+        <!-- ===== 步骤进度条 ===== -->
+        <div class="step-progress" id="stepProgress" style="">
+            <div class="step-item completed" data-step="1" data-default-label="种族">
+                <span class="step-num">1</span>
+                <span class="step-label">精灵</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="2" data-default-label="亚种">
+                <span class="step-num">2</span>
+                <span class="step-label">高等精灵</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="3" data-default-label="职业">
+                <span class="step-num">3</span>
+                <span class="step-label">法师</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="4" data-default-label="职业套装">
+                <span class="step-num">4</span>
+                <span class="step-label">职业套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="5" data-default-label="背景">
+                <span class="step-num">5</span>
+                <span class="step-label">侍僧</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="6" data-default-label="背景套装">
+                <span class="step-num">6</span>
+                <span class="step-label">背景套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="7" data-default-label="基础属性">
+                <span class="step-num">7</span>
+                <span class="step-label">基础属性</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="8" data-default-label="背景加值">
+                <span class="step-num">8</span>
+                <span class="step-label">背景加值</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="9" data-default-label="技能">
+                <span class="step-num">9</span>
+                <span class="step-label">技能</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="10" data-default-label="专长">
+                <span class="step-num">10</span>
+                <span class="step-label">专长</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item active" data-step="11" data-default-label="法术">
+                <span class="step-num">11</span>
+                <span class="step-label">法术</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="12" data-default-label="商城">
+                <span class="step-num">12</span>
+                <span class="step-label">商城</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="13" data-default-label="特性总览">
+                <span class="step-num">13</span>
+                <span class="step-label">特性总览</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="14" data-default-label="角色详情">
+                <span class="step-num">14</span>
+                <span class="step-label">角色详情</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="15" data-default-label="完成">
+                <span class="step-num">15</span>
+                <span class="step-label">完成</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="16" data-default-label="保存">
+                <span class="step-num">16</span>
+                <span class="step-label">保存</span>
+            </div>
+        </div>
+
+        <!-- ===== 步骤内容容器 ===== -->
+        <div class="step-content" id="stepContent">
+        <div class="spell-step">
+            <!-- 顶部信息 -->
+            <div class="ability-header">
+                <h2>法术选择</h2>
+                <div class="spell-header-info">
+                    
+                    <span class="spell-casting-ability">施法属性：智力</span>
+                    <span class="spell-casting-ability">法术书（6个）</span>
+                    <span class="spell-casting-ability">法术书：0 / 6</span>
+                </div>
+                
+                <div class="spell-rule">
+                    <span class="spell-rule-text">每当你完成一次长休时，你可以将已准备的一道或更多法术替换为法术书上的其他法师法术，新替换的法术必须是你拥有法术位的法术。</span>
+                    <span class="spell-rule-formula">1级时法术书中已有6个1环法术，可在冒险中抄录更多法术进入法术书</span>
+                </div>
+                
+            </div>
+
+            <!-- 计数器区 -->
+            <div class="spell-counters">
+                
+                <div class="spell-counter ">
+                    <span class="spell-counter-label">戏法</span>
+                    <span class="spell-counter-value">0 / 3</span>
+                </div>
+                
+                
+                <div class="spell-counter ">
+                    <span class="spell-counter-label">法术书</span>
+                    <span class="spell-counter-value">0 / 6</span>
+                </div>
+                
+                
+                    <div class="spell-counter">
+                        <span class="spell-counter-label">1环</span>
+                        <span class="spell-counter-value">2</span>
+                    </div>
+                    
+            </div>
+
+            <!-- 左右分栏 -->
+            <div class="spell-body">
+                <!-- 左侧：正方形按钮列表 -->
+                <div class="spell-left">
+                    <!-- 戏法 -->
+                    
+                    <div class="spell-left-section">
+                        <div class="spell-left-section-title">戏法（20）</div>
+                        <div class="spell-btn-grid">
+                            
+                                    <div class="spell-btn    preview" onclick="toggleSpell(1, 0, 3)" onmouseenter="previewSpell(1)" title="">
+                                        酸液飞溅
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(2, 0, 3)" onmouseenter="previewSpell(2)" title="">
+                                        剑刃防护
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(3, 0, 3)" onmouseenter="previewSpell(3)" title="">
+                                        颤栗之触
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(4, 0, 3)" onmouseenter="previewSpell(4)" title="">
+                                        舞光术
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(7, 0, 3)" onmouseenter="previewSpell(7)" title="">
+                                        四象法门
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(8, 0, 3)" onmouseenter="previewSpell(8)" title="">
+                                        火焰箭
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(9, 0, 3)" onmouseenter="previewSpell(9)" title="">
+                                        交友术
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(11, 0, 3)" onmouseenter="previewSpell(11)" title="">
+                                        光亮术
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(12, 0, 3)" onmouseenter="previewSpell(12)" title="">
+                                        法师之手
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(13, 0, 3)" onmouseenter="previewSpell(13)" title="">
+                                        修复术
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(14, 0, 3)" onmouseenter="previewSpell(14)" title="">
+                                        传讯术
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(15, 0, 3)" onmouseenter="previewSpell(15)" title="">
+                                        心灵之楔
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(16, 0, 3)" onmouseenter="previewSpell(16)" title="">
+                                        次级幻象
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(17, 0, 3)" onmouseenter="previewSpell(17)" title="">
+                                        毒气喷涌
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(18, 0, 3)" onmouseenter="previewSpell(18)" title="">
+                                        魔法伎俩
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(20, 0, 3)" onmouseenter="previewSpell(20)" title="">
+                                        冷冻射线
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(24, 0, 3)" onmouseenter="previewSpell(24)" title="">
+                                        电爪
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(30, 0, 3)" onmouseenter="previewSpell(30)" title="">
+                                        鸣雷破
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(31, 0, 3)" onmouseenter="previewSpell(31)" title="">
+                                        亡者丧钟
+                                    </div>
+                                
+                                    <div class="spell-btn    " onclick="toggleSpell(32, 0, 3)" onmouseenter="previewSpell(32)" title="">
+                                        克敌先击
+                                    </div>
+                                
+                        </div>
+                    </div>
+                    
+
+                    
+        <div class="spell-left-section">
+            <div class="spell-left-section-title">1环法术（31）</div>
+            <div class="spell-btn-grid">
+                
+                        <div class="spell-btn    " onclick="toggleSpell(35, 1, 6)" onmouseenter="previewSpell(35)" title="">
+                            警报术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(41, 1, 6)" onmouseenter="previewSpell(41)" title="">
+                            燃烧之手
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(42, 1, 6)" onmouseenter="previewSpell(42)" title="">
+                            魅惑类人
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(43, 1, 6)" onmouseenter="previewSpell(43)" title="">
+                            繁彩球
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(44, 1, 6)" onmouseenter="previewSpell(44)" title="">
+                            七彩喷射
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(47, 1, 6)" onmouseenter="previewSpell(47)" title="">
+                            通晓语言
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(51, 1, 6)" onmouseenter="previewSpell(51)" title="">
+                            侦测魔法
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(53, 1, 6)" onmouseenter="previewSpell(53)" title="">
+                            易容术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(59, 1, 6)" onmouseenter="previewSpell(59)" title="">
+                            脚底抹油
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(61, 1, 6)" onmouseenter="previewSpell(61)" title="">
+                            虚假生命
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(62, 1, 6)" onmouseenter="previewSpell(62)" title="">
+                            羽落术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(63, 1, 6)" onmouseenter="previewSpell(63)" title="">
+                            寻获魔宠
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(64, 1, 6)" onmouseenter="previewSpell(64)" title="">
+                            云雾术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(66, 1, 6)" onmouseenter="previewSpell(66)" title="">
+                            油腻术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(74, 1, 6)" onmouseenter="previewSpell(74)" title="">
+                            冰刃
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(75, 1, 6)" onmouseenter="previewSpell(75)" title="">
+                            鉴定术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(76, 1, 6)" onmouseenter="previewSpell(76)" title="">
+                            迷幻手稿
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(78, 1, 6)" onmouseenter="previewSpell(78)" title="">
+                            跳跃术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(79, 1, 6)" onmouseenter="previewSpell(79)" title="">
+                            大步奔行
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(80, 1, 6)" onmouseenter="previewSpell(80)" title="">
+                            法师护甲
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(81, 1, 6)" onmouseenter="previewSpell(81)" title="">
+                            魔法飞弹
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(82, 1, 6)" onmouseenter="previewSpell(82)" title="">
+                            防护善恶
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(84, 1, 6)" onmouseenter="previewSpell(84)" title="">
+                            致病射线
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(87, 1, 6)" onmouseenter="previewSpell(87)" title="">
+                            护盾术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(89, 1, 6)" onmouseenter="previewSpell(89)" title="">
+                            无声幻影
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(90, 1, 6)" onmouseenter="previewSpell(90)" title="">
+                            睡眠术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(92, 1, 6)" onmouseenter="previewSpell(92)" title="">
+                            塔莎狂笑术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(93, 1, 6)" onmouseenter="previewSpell(93)" title="">
+                            谭森浮碟术
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(95, 1, 6)" onmouseenter="previewSpell(95)" title="">
+                            雷鸣波
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(96, 1, 6)" onmouseenter="previewSpell(96)" title="">
+                            隐形仆役
+                        </div>
+                    
+                        <div class="spell-btn    " onclick="toggleSpell(97, 1, 6)" onmouseenter="previewSpell(97)" title="">
+                            巫术箭
+                        </div>
+                    
+            </div>
+        </div>
+        
+
+                    
+                </div>
+
+                <!-- 右侧：详情面板 -->
+                <div class="spell-right" id="spellDetailPanel">
+                    
+        <div class="spell-detail">
+            <div class="spell-detail-header">
+                <div class="spell-detail-name">酸液飞溅<span class="sd-header-en"> ｜Acid Splash</span></div>
+                <div class="spell-detail-level">戏法 · 塑能（术士，法师，奇械师）</div>
+            </div>
+            <div class="spell-detail-meta">
+                <div class="spell-detail-meta-row">
+                    <span class="spell-detail-meta-label">施法时间</span>
+                    <span class="spell-detail-meta-value">—</span>
+                </div>
+                <div class="spell-detail-meta-row">
+                    <span class="spell-detail-meta-label">施法距离</span>
+                    <span class="spell-detail-meta-value">60</span>
+                </div>
+                <div class="spell-detail-meta-row">
+                    <span class="spell-detail-meta-label">法术成分</span>
+                    <span class="spell-detail-meta-value">V、S</span>
+                </div>
+                <div class="spell-detail-meta-row">
+                    <span class="spell-detail-meta-label">持续时间</span>
+                    <span class="spell-detail-meta-value">—</span>
+                </div>
+            </div>
+            <div class="spell-detail-desc">你在施法距离内一点创造出一颗酸液泡,以该点5尺球状范围爆发。该球状区域内的每名生物必须通过一次敏捷豁免,否则受到1d6点acid伤害。</div>
+            <div class="spell-detail-higher"><strong>升环效果：</strong>level:1,5,11,17</div>
+        </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- ===== 底部按钮 ===== -->
+        <div class="step-footer">
+            <button id="prevBtn" class="btn btn-secondary" style="visibility: visible;">← 上一步</button>
+            <div class="step-footer-center">
+                <span id="stepIndicator" class="step-indicator" style="">第 11 步，共 16 步</span>
+            </div>
+            <button id="nextBtn" class="btn btn-primary" style="visibility: visible;">下一步 →</button>
+        </div>
+
+    </div>
+
+    <!-- ===== 选择弹窗模态框（供工具/法术等条件筛选选择使用） ===== -->
+    <div class="selection-modal-overlay" id="selectionModalOverlay" style="display:none;">
+        <div class="selection-modal" id="selectionModalContent">
+            <div class="selection-modal-header">
+                <h3 class="selection-modal-title" id="selectionModalTitle">请选择</h3>
+                <button class="selection-modal-close" id="selectionModalClose">✕</button>
+            </div>
+            <div class="selection-modal-body" id="selectionModalBody">
+                <!-- 内容由JS动态填充 -->
+            </div>
+            <div class="selection-modal-footer">
+                <div class="selection-modal-hint" id="selectionModalHint">已选：0 / 0</div>
+                <button class="btn btn-secondary" id="selectionModalCancel">取消</button>
+                <button class="btn btn-primary" id="selectionModalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>

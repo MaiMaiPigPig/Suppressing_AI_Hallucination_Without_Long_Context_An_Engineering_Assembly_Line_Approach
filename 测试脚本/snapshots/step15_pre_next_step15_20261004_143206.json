@@ -1,0 +1,21 @@
+{
+  "step": 15,
+  "label": "pre_next_step15",
+  "ts": "20261004_143206",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n精灵\n2\n高等精灵\n3\n法师\n4\n职业套装\n5\n侍僧\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n回归测试_43844\nLv.1\n精灵（高等精灵） · 侍僧 · 法师 · 守序善良\n玩家：测试玩家\n战斗\nHP\n7\n6 (D6) + +1 (体质)\nAC\n11\n先攻\n+1\n熟练\n+2\n速度\n30\n被动感知\n10\n属性 · 技能\n力量\n14\n+2\n○\n豁免\n+2\n○\n运动\n+2\n敏捷\n12\n+1\n○\n豁免\n+1\n○\n体操\n+1\n○\n巧手\n+1\n○\n隐匿\n+1\n体质\n12\n+1\n○\n豁免\n+1\n智力\n12\n+1\n●\n豁免\n+3\n●\n奥秘\n+3\n●\n历史\n+3\n○\n调查\n+1\n○\n自然\n+1\n○\n宗教\n+1\n感知\n11\n+0\n●\n豁免\n+2\n○\n驯兽\n+0\n○\n洞悉\n+0\n○\n医药\n+0\n○\n察觉\n+0\n○\n求生\n+0\n魅力\n7\n-2\n○\n豁免\n-2\n○\n欺瞒\n-2\n○\n威吓\n-2\n○\n表演\n-2\n○\n游说\n-",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

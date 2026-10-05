@@ -1,0 +1,41 @@
+{
+  "step": 10,
+  "label": "pre_next_step10",
+  "ts": "20261004_143228",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n人类\n2\n亚种\n3\n战士\n4\n职业套装\n5\n罪犯\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n专长确认\n🔓\n解绑专长\n请先与你的DM商议后再决定是否解绑\n背景推荐\n警戒\n先攻熟练Initiative Proficiency。当你投掷先攻时，你可以将你的熟练加值加入结果。 先攻互换Initi…\n警戒\n先攻熟练Initiative Proficiency。当你投掷先攻时，你可以将你的熟练加值加入结果。\n先攻互换Initiative Swap。当你掷完先攻，你可以立即与处于同一场战斗中的一名自愿的盟友交换先攻。如果你或那个盟友正处于失能状态，则不能进行交换。\n← 上一步\n第 10 步，共 16 步\n下一步 →",
+  "elements": {
+    "特性分组": {
+      "count": 1,
+      "samples": [
+        "背景推荐\n警戒\n先攻熟练Initiative Proficiency。当你投掷先"
+      ]
+    },
+    "专长卡片": {
+      "count": 1,
+      "samples": [
+        "警戒\n先攻熟练Initiative Proficiency。当你投掷先攻时，你可"
+      ]
+    },
+    "已选专长": {
+      "count": 1,
+      "samples": [
+        "警戒\n先攻熟练Initiative Proficiency。当你投掷先攻时，你可"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "警戒"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

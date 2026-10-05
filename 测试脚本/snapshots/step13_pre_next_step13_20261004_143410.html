@@ -1,0 +1,818 @@
+<!-- SNAPSHOT step=13 label=pre_next_step13 ts=20261004_143410 url=http://127.0.0.1:5001/character/dnd_5r -->
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5R · 角色卡生成</title>
+    <base href="/character/dnd_5r/creation/">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/race.css">
+    <link rel="stylesheet" href="styles/ability.css">
+    <link rel="stylesheet" href="styles/skill.css">
+    <link rel="stylesheet" href="styles/bonus.css">
+    <link rel="stylesheet" href="styles/feat.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="styles/details.css">
+    <link rel="stylesheet" href="styles/spell.css">
+    <link rel="stylesheet" href="styles/sheet.css">
+    <style>
+        /* 欢迎页样式 */
+        .start-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .start-content {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .start-logo {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .start-title {
+            font-size: 2.2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+        .start-desc {
+            font-size: 1rem;
+            color: #a89b8c;
+            margin-bottom: 40px;
+        }
+        .start-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .start-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .start-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .start-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 8px;
+        }
+        .start-card-desc {
+            font-size: 0.85rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        /* 导出步骤样式 */
+        .export-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .export-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .export-header h2 {
+            font-size: 2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .export-subtitle {
+            font-size: 1rem;
+            color: #a89b8c;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .export-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .export-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .export-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .export-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 6px;
+        }
+        .export-card-desc {
+            font-size: 0.8rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        .upgrade-card {
+            border-color: rgba(201,168,76,0.25);
+            background: rgba(201,168,76,0.06);
+        }
+        .upgrade-card:hover {
+            border-color: #c9a84c;
+            background: rgba(201,168,76,0.12);
+            box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+        }
+        .upgrade-card .export-card-title {
+            color: #f0d878;
+        }
+        .export-info {
+            max-width: 500px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .export-info-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-info ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .export-info li {
+            font-size: 0.85rem;
+            color: #a89b8c;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        /* 导出摘要样式 */
+        .export-summary {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 24px;
+        }
+        .export-summary-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+        .export-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .export-summary-item-wide {
+            grid-column: 1 / -1;
+        }
+        .export-summary-label {
+            font-size: 0.7rem;
+            color: #8a7a6a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .export-summary-value {
+            font-size: 0.9rem;
+            color: #f0e6d3;
+        }
+        /* DLC选择步骤样式 */
+        .dlc-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .dlc-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .dlc-header h2 {
+            font-size: 1.8rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .dlc-header p {
+            font-size: 0.95rem;
+            color: #a89b8c;
+            margin: 0;
+        }
+        .dlc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .dlc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: border-color 0.2s;
+        }
+        .dlc-item:hover {
+            border-color: rgba(201,168,76,0.3);
+        }
+        .dlc-info {
+            flex: 1;
+        }
+        .dlc-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dlc-badge {
+            font-size: 0.7rem;
+            background: rgba(201,168,76,0.15);
+            color: #c9a84c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .dlc-desc {
+            font-size: 0.85rem;
+            color: #a89b8c;
+        }
+        .dlc-status {
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .dlc-status-on {
+            font-size: 0.85rem;
+            color: #4caf50;
+            font-weight: 600;
+            background: rgba(76,175,80,0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(76,175,80,0.2);
+        }
+        .dlc-footer {
+            text-align: center;
+        }
+    </style>
+    <!-- PDF 导出依赖：html2canvas（HTML→Canvas）+ jsPDF（Canvas→PDF） -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- 规则解析引擎（ES Module，通过 window.handlers 全局桥接兼容旧代码） -->
+    <script type="module" src="../handlers/index.js"></script>
+    <script type="module" src="../handlers/data-query.js"></script>
+    <!-- flow 函数窗口桥接 -->
+    <script type="module" src="flow/bridge.js"></script>
+    <!-- ES Module 入口 -->
+    <script type="module" src="app.js?v=20260914"></script>
+<style id="review-step-css">
+/* ===== 特性选择总览步骤 ===== */
+.review-summary {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+.review-summary-header {
+    color: #4caf50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.review-summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(76,175,80,0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+.review-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.review-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+.review-summary-label {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+.review-summary-value {
+    color: #f0e6d3;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ===== 特性选择页布局 ===== */
+.feature-selection-layout {
+    display: flex;
+    gap: 24px;
+    min-height: 400px;
+}
+.feature-selection-left {
+    flex: 0 0 60%;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+.feature-selection-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 选择分组 */
+.feat-section {
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.feat-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    user-select: none;
+}
+.feat-section-header:hover {
+    background: rgba(255,255,255,0.07);
+}
+.feat-section-title {
+    flex: 1;
+    color: #c9a84c;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.feat-section-count {
+    color: #8a9b6e;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.feat-section-toggle {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    width: 16px;
+    text-align: center;
+}
+.feat-section-body {
+    padding: 10px 14px;
+}
+.feat-section-body.collapsed {
+    display: none;
+}
+.feat-section-hint {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 选择网格 */
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* 选择项卡片 */
+.selection-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.selection-item:hover:not(.disabled):not(.selected) {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+}
+.selection-item.selected {
+    border-color: #4caf50;
+    background: rgba(76,175,80,0.12);
+}
+.selection-item.disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+.selection-item.prereq-blocked {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.selection-item-name {
+    color: #f0e6d3;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.selection-item-desc {
+    color: #a89b8c;
+    font-size: 0.78rem;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* 禁用提示标签 */
+.disabled-hint {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #8a9b6e;
+}
+.disabled-hint.previous-step {
+    color: #8a9b6e;
+}
+.disabled-hint.current-page {
+    color: #c9a84c;
+}
+
+/* 详情面板 */
+.detail-panel {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 16px;
+    position: sticky;
+    top: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.detail-panel-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.9rem;
+}
+.detail-panel-content {
+    color: #f0e6d3;
+}
+.detail-panel-title {
+    color: #c9a84c;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+.detail-panel-type {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+.detail-panel-desc {
+    color: #ccc;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* 空提示 */
+.empty-hint {
+    color: #666;
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+}
+
+/* 完成页底部按钮区 */
+.feature-selection-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.feature-selection-footer-hint {
+    color: #a89b8c;
+    font-size: 0.85rem;
+}
+</style></head>
+<body>
+
+    <div class="container">
+        <!-- ===== 顶部导航 ===== -->
+        <nav class="nav-bar">
+            <a href="/character" class="nav-back">← 返回规则选择</a>
+            <span class="nav-title">DND 5R 角色卡生成</span>
+            <div class="nav-actions">
+                <!-- 货币显示 -->
+                <div class="currency-display">
+                    <span class="currency-item"><span class="coin coin-pp"></span> <input type="number" id="platinum" value="0" min="0" readonly=""> <label>PP</label></span>
+                    <span class="currency-item"><span class="coin coin-gp"></span> <input type="number" id="gold" value="0" min="0" readonly=""> <label>GP</label></span>
+                    <span class="currency-item"><span class="coin coin-sp"></span> <input type="number" id="silver" value="0" min="0" readonly=""> <label>SP</label></span>
+                    <span class="currency-item"><span class="coin coin-cp"></span> <input type="number" id="copper" value="0" min="0" readonly=""> <label>CP</label></span>
+                    <span class="currency-rate" title="兑率：1PP=10GP | 1GP=10SP | 1SP=10CP">ⓘ</span>
+                </div>
+                <button id="resetBtn" class="btn btn-secondary">↺ 重置</button>
+            </div>
+        </nav>
+
+        <!-- ===== 步骤进度条 ===== -->
+        <div class="step-progress" id="stepProgress" style="">
+            <div class="step-item completed" data-step="1" data-default-label="种族">
+                <span class="step-num">1</span>
+                <span class="step-label">提夫林</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="2" data-default-label="亚种">
+                <span class="step-num">2</span>
+                <span class="step-label">炼狱</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="3" data-default-label="职业">
+                <span class="step-num">3</span>
+                <span class="step-label">牧师</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="4" data-default-label="职业套装">
+                <span class="step-num">4</span>
+                <span class="step-label">职业套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="5" data-default-label="背景">
+                <span class="step-num">5</span>
+                <span class="step-label">贵族</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="6" data-default-label="背景套装">
+                <span class="step-num">6</span>
+                <span class="step-label">背景套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="7" data-default-label="基础属性">
+                <span class="step-num">7</span>
+                <span class="step-label">基础属性</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="8" data-default-label="背景加值">
+                <span class="step-num">8</span>
+                <span class="step-label">背景加值</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="9" data-default-label="技能">
+                <span class="step-num">9</span>
+                <span class="step-label">技能</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="10" data-default-label="专长">
+                <span class="step-num">10</span>
+                <span class="step-label">专长</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="11" data-default-label="法术">
+                <span class="step-num">11</span>
+                <span class="step-label">法术</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="12" data-default-label="商城">
+                <span class="step-num">12</span>
+                <span class="step-label">商城</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item active" data-step="13" data-default-label="特性总览">
+                <span class="step-num">13</span>
+                <span class="step-label">特性总览</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="14" data-default-label="角色详情">
+                <span class="step-num">14</span>
+                <span class="step-label">角色详情</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="15" data-default-label="完成">
+                <span class="step-num">15</span>
+                <span class="step-label">完成</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="16" data-default-label="保存">
+                <span class="step-num">16</span>
+                <span class="step-label">保存</span>
+            </div>
+        </div>
+
+        <!-- ===== 步骤内容容器 ===== -->
+        <div class="step-content" id="stepContent">
+        <div class="step-container">
+            <div class="step-title">
+                <h2>特性选择总览</h2>
+                <p>已汇总所有来源的特性，请完成以下所有选择</p>
+            </div>
+
+            <div class="feature-selection-layout">
+                <div class="feature-selection-left">
+            <div class="feat-section" data-index="0">
+                <div class="feat-section-header" data-target="feat-section-0">
+                    <span class="feat-section-title">（圣职）-undefined项</span>
+                    <span class="feat-section-count">已选 0 / undefined</span>
+                    <span class="feat-section-toggle">▼</span>
+                </div>
+                <div class="feat-section-body " id="feat-section-0">
+                    <div class="selection-grid" id="feat-grid-0">
+                        <div class="empty-hint">没有可用的选项</div>
+                    </div>
+                    <div class="feat-section-hint">
+                        需要选择 undefined 项，当前已选 <span class="section-selected-count">0</span> / undefined
+                    </div>
+                </div>
+            </div>
+            <div class="feat-section" data-index="1">
+                <div class="feat-section-header" data-target="feat-section-1">
+                    <span class="feat-section-title">（贵族）-1个赌具</span>
+                    <span class="feat-section-count">已选 1 / 1</span>
+                    <span class="feat-section-toggle">▼</span>
+                </div>
+                <div class="feat-section-body " id="feat-section-1">
+                    <div class="selection-grid" id="feat-grid-1">
+                        <div class="selection-item selected" data-id="20" data-category="tools" data-compkey="tools:20" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC20）" data-name="骰子">
+            <div class="selection-item-name">骰子</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC20）</div>
+        </div><div class="selection-item" data-id="21" data-category="tools" data-compkey="tools:21" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC21）" data-name="龙棋">
+            <div class="selection-item-name">龙棋</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC21）</div>
+        </div><div class="selection-item" data-id="22" data-category="tools" data-compkey="tools:22" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC22）" data-name="纸牌">
+            <div class="selection-item-name">纸牌</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC22）</div>
+        </div><div class="selection-item" data-id="23" data-category="tools" data-compkey="tools:23" data-fulldesc="用法：判断某人是否作弊（DC10），或赢取游戏（DC23）" data-name="三龙牌">
+            <div class="selection-item-name">三龙牌</div>
+            <div class="selection-item-desc">判断某人是否作弊（DC10），或赢取游戏（DC23）</div>
+        </div>
+                    </div>
+                    <div class="feat-section-hint">
+                        需要选择 1 项，当前已选 <span class="section-selected-count">1</span> / 1
+                    </div>
+                </div>
+            </div>
+            <div class="feat-section" data-index="2">
+                <div class="feat-section-header" data-target="feat-section-2">
+                    <span class="feat-section-title">（熟习）-3个技能熟练</span>
+                    <span class="feat-section-count">已选 3 / 3</span>
+                    <span class="feat-section-toggle">▼</span>
+                </div>
+                <div class="feat-section-body " id="feat-section-2">
+                    <div class="selection-grid" id="feat-grid-2">
+                        <div class="selection-item selected" data-id="3" data-category="skills" data-compkey="skills:3" data-fulldesc="比平时跳的更远，在汹涌的水面上漂浮或是打碎什么东西。" data-name="运动">
+            <div class="selection-item-name">运动</div>
+            <div class="selection-item-desc">strength</div>
+        </div><div class="selection-item selected" data-id="6" data-category="skills" data-compkey="skills:6" data-fulldesc="在复杂的环境里屹立不倒或是表演杂技特技。" data-name="体操">
+            <div class="selection-item-name">体操</div>
+            <div class="selection-item-desc">dexterity</div>
+        </div><div class="selection-item selected" data-id="7" data-category="skills" data-compkey="skills:7" data-fulldesc="扒窃口袋，藏起只手可握的小物件或是耍一些手上把戏。" data-name="巧手">
+            <div class="selection-item-name">巧手</div>
+            <div class="selection-item-desc">dexterity</div>
+        </div><div class="selection-item" data-id="8" data-category="skills" data-compkey="skills:8" data-fulldesc="通过悄悄地移动和藏在事物后面来躲避别人的注意。" data-name="隐匿">
+            <div class="selection-item-name">隐匿</div>
+            <div class="selection-item-desc">dexterity</div>
+        </div><div class="selection-item" data-id="13" data-category="skills" data-compkey="skills:13" data-fulldesc="回忆有关于法术、魔法物品和存在位面的知识。" data-name="奥秘">
+            <div class="selection-item-name">奥秘</div>
+            <div class="selection-item-desc">intelligence</div>
+        </div><div class="selection-item selected disabled previous-step-selected already-selected" data-id="14" data-category="skills" data-compkey="skills:14" data-fulldesc="回忆有关历史事件、人民、国家和文化传统的知识。" data-name="历史" title="已在技能页选择">
+            <div class="selection-item-name">历史<span class="disabled-hint previous-step">（技能页已选）</span></div>
+            <div class="selection-item-desc">intelligence</div>
+        </div><div class="selection-item" data-id="15" data-category="skills" data-compkey="skills:15" data-fulldesc="在书本中寻辨晦涩难懂的信息或推断某些事物是如何运作的。" data-name="调查">
+            <div class="selection-item-name">调查</div>
+            <div class="selection-item-desc">intelligence</div>
+        </div><div class="selection-item" data-id="16" data-category="skills" data-compkey="skills:16" data-fulldesc="回忆有关地形、植物、动物和天气的知识。" data-name="自然">
+            <div class="selection-item-name">自然</div>
+            <div class="selection-item-desc">intelligence</div>
+        </div><div class="selection-item" data-id="17" data-category="skills" data-compkey="skills:17" data-fulldesc="回忆有关神的传说、宗教仪式的学问以及圣徽的知识。" data-name="宗教">
+            <div class="selection-item-name">宗教</div>
+            <div class="selection-item-desc">intelligence</div>
+        </div><div class="selection-item disabled already-selected current-page-selected" data-id="20" data-category="skills" data-compkey="skills:20" data-fulldesc="让动物平静下来、训练它们，又或者让它们做某种特定的事。" data-name="驯兽">
+            <div class="selection-item-name">驯兽<span class="disabled-hint current-page">（本页已选）</span></div>
+            <div class="selection-item-desc">wisdom</div>
+        </div><div class="selection-item selected disabled previous-step-selected already-selected" data-id="21" data-category="skills" data-compkey="skills:21" data-fulldesc="辨别某人的情绪或意图。" data-name="洞悉" title="已在技能页选择">
+            <div class="selection-item-name">洞悉<span class="disabled-hint previous-step">（技能页已选）</span></div>
+            <div class="selection-item-desc">wisdom</div>
+        </div><div class="selection-item" data-id="22" data-category="skills" data-compkey="skills:22" data-fulldesc="诊断某种疾病或是确定近期死亡的死者的死因。" data-name="医药">
+            <div class="selection-item-name">医药</div>
+            <div class="selection-item-desc">wisdom</div>
+        </div><div class="selection-item" data-id="23" data-category="skills" data-compkey="skills:23" data-fulldesc="结合各种感官，注意一些容易忽略的细节。" data-name="察觉">
+            <div class="selection-item-name">察觉</div>
+            <div class="selection-item-desc">wisdom</div>
+        </div><div class="selection-item" data-id="24" data-category="skills" data-compkey="skills:24" data-fulldesc="跟踪追查、寻找食物、寻觅踪迹或是避免遭遇自然灾害。" data-name="求生">
+            <div class="selection-item-name">求生</div>
+            <div class="selection-item-desc">wisdom</div>
+        </div><div class="selection-item" data-id="27" data-category="skills" data-compkey="skills:27" data-fulldesc="撒一个让人信服的谎话或者做出让人深信不疑的伪装。" data-name="欺瞒">
+            <div class="selection-item-name">欺瞒</div>
+            <div class="selection-item-desc">charisma</div>
+        </div><div class="selection-item" data-id="28" data-category="skills" data-compkey="skills:28" data-fulldesc="恫吓他人或胁迫某人去做你想要他做的事。" data-name="威吓">
+            <div class="selection-item-name">威吓</div>
+            <div class="selection-item-desc">charisma</div>
+        </div><div class="selection-item" data-id="29" data-category="skills" data-compkey="skills:29" data-fulldesc="演戏、讲述故事、演奏乐曲或翩翩起舞。" data-name="表演">
+            <div class="selection-item-name">表演</div>
+            <div class="selection-item-desc">charisma</div>
+        </div><div class="selection-item" data-id="30" data-category="skills" data-compkey="skills:30" data-fulldesc="真诚且优雅地在某件事上说服他人。" data-name="游说">
+            <div class="selection-item-name">游说</div>
+            <div class="selection-item-desc">charisma</div>
+        </div>
+                    </div>
+                    <div class="feat-section-hint">
+                        需要选择 3 项，当前已选 <span class="section-selected-count">3</span> / 3
+                    </div>
+                </div>
+            </div></div>
+                <div class="feature-selection-right">
+                    <div class="detail-panel" id="detailPanel"><div class="detail-panel-content"><h3 class="detail-panel-title">巧手</h3><div class="detail-panel-type">skills</div><div class="detail-panel-desc">扒窃口袋，藏起只手可握的小物件或是耍一些手上把戏。</div></div></div>
+                </div>
+            </div>
+
+            </div>
+    </div>
+
+        <!-- ===== 底部按钮 ===== -->
+        <div class="step-footer">
+            <button id="prevBtn" class="btn btn-secondary" style="visibility: visible;">← 上一步</button>
+            <div class="step-footer-center">
+                <span id="stepIndicator" class="step-indicator" style="">第 13 步，共 16 步</span>
+            </div>
+            <button id="nextBtn" class="btn btn-primary" style="visibility: visible;">下一步 →</button>
+        </div>
+
+    </div>
+
+    <!-- ===== 选择弹窗模态框（供工具/法术等条件筛选选择使用） ===== -->
+    <div class="selection-modal-overlay" id="selectionModalOverlay" style="display:none;">
+        <div class="selection-modal" id="selectionModalContent">
+            <div class="selection-modal-header">
+                <h3 class="selection-modal-title" id="selectionModalTitle">请选择</h3>
+                <button class="selection-modal-close" id="selectionModalClose">✕</button>
+            </div>
+            <div class="selection-modal-body" id="selectionModalBody">
+                <!-- 内容由JS动态填充 -->
+            </div>
+            <div class="selection-modal-footer">
+                <div class="selection-modal-hint" id="selectionModalHint">已选：0 / 0</div>
+                <button class="btn btn-secondary" id="selectionModalCancel">取消</button>
+                <button class="btn btn-primary" id="selectionModalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>

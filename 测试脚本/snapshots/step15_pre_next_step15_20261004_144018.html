@@ -1,0 +1,1146 @@
+<!-- SNAPSHOT step=15 label=pre_next_step15 ts=20261004_144018 url=http://127.0.0.1:5001/character/dnd_5r -->
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5R · 角色卡生成</title>
+    <base href="/character/dnd_5r/creation/">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/race.css">
+    <link rel="stylesheet" href="styles/ability.css">
+    <link rel="stylesheet" href="styles/skill.css">
+    <link rel="stylesheet" href="styles/bonus.css">
+    <link rel="stylesheet" href="styles/feat.css">
+    <link rel="stylesheet" href="styles/shop.css">
+    <link rel="stylesheet" href="styles/details.css">
+    <link rel="stylesheet" href="styles/spell.css">
+    <link rel="stylesheet" href="styles/sheet.css">
+    <style>
+        /* 欢迎页样式 */
+        .start-step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .start-content {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .start-logo {
+            font-size: 4rem;
+            margin-bottom: 16px;
+        }
+        .start-title {
+            font-size: 2.2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+        .start-desc {
+            font-size: 1rem;
+            color: #a89b8c;
+            margin-bottom: 40px;
+        }
+        .start-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .start-card {
+            flex: 1;
+            min-width: 200px;
+            max-width: 260px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 32px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .start-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .start-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        .start-card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 8px;
+        }
+        .start-card-desc {
+            font-size: 0.85rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        /* 导出步骤样式 */
+        .export-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .export-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .export-header h2 {
+            font-size: 2rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .export-subtitle {
+            font-size: 1rem;
+            color: #a89b8c;
+        }
+        .export-buttons {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .export-card {
+            flex: 1;
+            min-width: 220px;
+            max-width: 280px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 24px 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .export-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(201,168,76,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .export-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .export-card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 6px;
+        }
+        .export-card-desc {
+            font-size: 0.8rem;
+            color: #8a7a6a;
+            line-height: 1.4;
+        }
+        .upgrade-card {
+            border-color: rgba(201,168,76,0.25);
+            background: rgba(201,168,76,0.06);
+        }
+        .upgrade-card:hover {
+            border-color: #c9a84c;
+            background: rgba(201,168,76,0.12);
+            box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+        }
+        .upgrade-card .export-card-title {
+            color: #f0d878;
+        }
+        .export-info {
+            max-width: 500px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .export-info-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-info ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .export-info li {
+            font-size: 0.85rem;
+            color: #a89b8c;
+            line-height: 1.6;
+            margin-bottom: 4px;
+        }
+        /* 导出摘要样式 */
+        .export-summary {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 18px 24px;
+            border: 1px solid rgba(255,255,255,0.06);
+            margin-bottom: 24px;
+        }
+        .export-summary-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 10px;
+        }
+        .export-summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+        .export-summary-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .export-summary-item-wide {
+            grid-column: 1 / -1;
+        }
+        .export-summary-label {
+            font-size: 0.7rem;
+            color: #8a7a6a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .export-summary-value {
+            font-size: 0.9rem;
+            color: #f0e6d3;
+        }
+        /* DLC选择步骤样式 */
+        .dlc-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            height: 100%;
+        }
+        .dlc-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .dlc-header h2 {
+            font-size: 1.8rem;
+            color: #f0e6d3;
+            margin: 0 0 8px;
+        }
+        .dlc-header p {
+            font-size: 0.95rem;
+            color: #a89b8c;
+            margin: 0;
+        }
+        .dlc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+        .dlc-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+            transition: border-color 0.2s;
+        }
+        .dlc-item:hover {
+            border-color: rgba(201,168,76,0.3);
+        }
+        .dlc-info {
+            flex: 1;
+        }
+        .dlc-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f0e6d3;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .dlc-badge {
+            font-size: 0.7rem;
+            background: rgba(201,168,76,0.15);
+            color: #c9a84c;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .dlc-desc {
+            font-size: 0.85rem;
+            color: #a89b8c;
+        }
+        .dlc-status {
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+        .dlc-status-on {
+            font-size: 0.85rem;
+            color: #4caf50;
+            font-weight: 600;
+            background: rgba(76,175,80,0.1);
+            padding: 4px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(76,175,80,0.2);
+        }
+        .dlc-footer {
+            text-align: center;
+        }
+    </style>
+    <!-- PDF 导出依赖：html2canvas（HTML→Canvas）+ jsPDF（Canvas→PDF） -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- 规则解析引擎（ES Module，通过 window.handlers 全局桥接兼容旧代码） -->
+    <script type="module" src="../handlers/index.js"></script>
+    <script type="module" src="../handlers/data-query.js"></script>
+    <!-- flow 函数窗口桥接 -->
+    <script type="module" src="flow/bridge.js"></script>
+    <!-- ES Module 入口 -->
+    <script type="module" src="app.js?v=20260914"></script>
+<style id="review-step-css">
+/* ===== 特性选择总览步骤 ===== */
+.review-summary {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+.review-summary-header {
+    color: #4caf50;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.review-summary-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(76,175,80,0.2);
+    border-radius: 50%;
+    font-size: 1rem;
+}
+.review-summary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.review-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+.review-summary-label {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+.review-summary-value {
+    color: #f0e6d3;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ===== 特性选择页布局 ===== */
+.feature-selection-layout {
+    display: flex;
+    gap: 24px;
+    min-height: 400px;
+}
+.feature-selection-left {
+    flex: 0 0 60%;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+.feature-selection-right {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* 选择分组 */
+.feat-section {
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.feat-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    user-select: none;
+}
+.feat-section-header:hover {
+    background: rgba(255,255,255,0.07);
+}
+.feat-section-title {
+    flex: 1;
+    color: #c9a84c;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.feat-section-count {
+    color: #8a9b6e;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.feat-section-toggle {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    width: 16px;
+    text-align: center;
+}
+.feat-section-body {
+    padding: 10px 14px;
+}
+.feat-section-body.collapsed {
+    display: none;
+}
+.feat-section-hint {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* 选择网格 */
+.selection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+/* 选择项卡片 */
+.selection-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.selection-item:hover:not(.disabled):not(.selected) {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.08);
+}
+.selection-item.selected {
+    border-color: #4caf50;
+    background: rgba(76,175,80,0.12);
+}
+.selection-item.disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+.selection-item.prereq-blocked {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+.selection-item-name {
+    color: #f0e6d3;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+.selection-item-desc {
+    color: #a89b8c;
+    font-size: 0.78rem;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* 禁用提示标签 */
+.disabled-hint {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #8a9b6e;
+}
+.disabled-hint.previous-step {
+    color: #8a9b6e;
+}
+.disabled-hint.current-page {
+    color: #c9a84c;
+}
+
+/* 详情面板 */
+.detail-panel {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 16px;
+    position: sticky;
+    top: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.detail-panel-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.9rem;
+}
+.detail-panel-content {
+    color: #f0e6d3;
+}
+.detail-panel-title {
+    color: #c9a84c;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+.detail-panel-type {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+.detail-panel-desc {
+    color: #ccc;
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+/* 空提示 */
+.empty-hint {
+    color: #666;
+    text-align: center;
+    padding: 16px;
+    font-size: 0.85rem;
+}
+
+/* 完成页底部按钮区 */
+.feature-selection-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.feature-selection-footer-hint {
+    color: #a89b8c;
+    font-size: 0.85rem;
+}
+</style></head>
+<body>
+
+    <div class="container">
+        <!-- ===== 顶部导航 ===== -->
+        <nav class="nav-bar">
+            <a href="/character" class="nav-back">← 返回规则选择</a>
+            <span class="nav-title">DND 5R 角色卡生成</span>
+            <div class="nav-actions">
+                <!-- 货币显示 -->
+                <div class="currency-display">
+                    <span class="currency-item"><span class="coin coin-pp"></span> <input type="number" id="platinum" value="0" min="0" readonly=""> <label>PP</label></span>
+                    <span class="currency-item"><span class="coin coin-gp"></span> <input type="number" id="gold" value="0" min="0" readonly=""> <label>GP</label></span>
+                    <span class="currency-item"><span class="coin coin-sp"></span> <input type="number" id="silver" value="0" min="0" readonly=""> <label>SP</label></span>
+                    <span class="currency-item"><span class="coin coin-cp"></span> <input type="number" id="copper" value="0" min="0" readonly=""> <label>CP</label></span>
+                    <span class="currency-rate" title="兑率：1PP=10GP | 1GP=10SP | 1SP=10CP">ⓘ</span>
+                </div>
+                <button id="resetBtn" class="btn btn-secondary">↺ 重置</button>
+            </div>
+        </nav>
+
+        <!-- ===== 步骤进度条 ===== -->
+        <div class="step-progress" id="stepProgress" style="">
+            <div class="step-item completed" data-step="1" data-default-label="种族">
+                <span class="step-num">1</span>
+                <span class="step-label">歌利亚</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="2" data-default-label="亚种">
+                <span class="step-num">2</span>
+                <span class="step-label">山丘巨人</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="3" data-default-label="职业">
+                <span class="step-num">3</span>
+                <span class="step-label">法师</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="4" data-default-label="职业套装">
+                <span class="step-num">4</span>
+                <span class="step-label">职业套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="5" data-default-label="背景">
+                <span class="step-num">5</span>
+                <span class="step-label">警卫</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="6" data-default-label="背景套装">
+                <span class="step-num">6</span>
+                <span class="step-label">背景套装</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="7" data-default-label="基础属性">
+                <span class="step-num">7</span>
+                <span class="step-label">基础属性</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="8" data-default-label="背景加值">
+                <span class="step-num">8</span>
+                <span class="step-label">背景加值</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="9" data-default-label="技能">
+                <span class="step-num">9</span>
+                <span class="step-label">技能</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="10" data-default-label="专长">
+                <span class="step-num">10</span>
+                <span class="step-label">专长</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="11" data-default-label="法术">
+                <span class="step-num">11</span>
+                <span class="step-label">法术</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="12" data-default-label="商城">
+                <span class="step-num">12</span>
+                <span class="step-label">商城</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="13" data-default-label="特性总览">
+                <span class="step-num">13</span>
+                <span class="step-label">特性总览</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item completed" data-step="14" data-default-label="角色详情">
+                <span class="step-num">14</span>
+                <span class="step-label">角色详情</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item active" data-step="15" data-default-label="完成">
+                <span class="step-num">15</span>
+                <span class="step-label">完成</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="16" data-default-label="保存">
+                <span class="step-num">16</span>
+                <span class="step-label">保存</span>
+            </div>
+        </div>
+
+        <!-- ===== 步骤内容容器 ===== -->
+        <div class="step-content" id="stepContent">
+        <div class="sheet-container">
+            <!-- ===== 头部 ===== -->
+            <div class="sheet-header">
+                <div class="sheet-title-row">
+                    <h1 class="sheet-name">回归测试_67194</h1>
+                    <span class="sheet-level">Lv.1</span>
+                </div>
+                <div class="sheet-subtitle">
+                    歌利亚（山丘巨人） ·
+                    警卫 ·
+                    法师
+                     · 守序善良
+                </div>
+                <div class="sheet-player">玩家：测试玩家</div>
+            </div>
+
+            <div class="sheet-body">
+
+                <!-- ===== 战斗面板（全宽，一行） ===== -->
+                <div class="fl-section">
+                    <div class="fl-section-title">战斗</div>
+                    <div class="combat-bar">
+                        <div class="cb-item cb-item-hp">
+                            <span class="cb-label">HP</span>
+                            <span class="cb-value">8</span>
+                            <span class="cb-hp-detail" title="6 (D6) + +2 (体质)">6 (D6) + +2 (体质)</span>
+                        </div>
+                        <div class="cb-item">
+                            <span class="cb-label">AC</span>
+                            <span class="cb-value">13</span>
+                            
+                        </div>
+                        <div class="cb-item">
+                            <span class="cb-label">先攻</span>
+                            <span class="cb-value">+3</span>
+                        </div>
+                        
+                        <div class="cb-item">
+                            <span class="cb-label">熟练</span>
+                            <span class="cb-value">+2</span>
+                        </div>
+                        <div class="cb-item">
+                            <span class="cb-label">速度</span>
+                            <span class="cb-value">30</span>
+                        </div>
+                        <div class="cb-item">
+                            <span class="cb-label">被动感知</span>
+                            <span class="cb-value">11</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 属性 × 技能（全宽6列） ===== -->
+                <div class="fl-section">
+                    <div class="fl-section-title">属性 · 技能</div>
+                    <div class="ability-grid">
+                        
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">力量</div>
+                                        <div class="ag-val">18</div>
+                                        <div class="ag-mod">+4</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row ">
+                                                <span class="ag-dot">○</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+4</span>
+                                            </div>
+                                        
+                                        
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">运动</span>
+                                                    <span class="ag-rv">+4</span>
+                                                </div>
+                                            
+                                    </div>
+                                </div>
+                            
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">敏捷</div>
+                                        <div class="ag-val">17</div>
+                                        <div class="ag-mod">+3</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row ">
+                                                <span class="ag-dot">○</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+3</span>
+                                            </div>
+                                        
+                                        
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">体操</span>
+                                                    <span class="ag-rv">+3</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">巧手</span>
+                                                    <span class="ag-rv">+3</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">隐匿</span>
+                                                    <span class="ag-rv">+3</span>
+                                                </div>
+                                            
+                                    </div>
+                                </div>
+                            
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">体质</div>
+                                        <div class="ag-val">14</div>
+                                        <div class="ag-mod">+2</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row ">
+                                                <span class="ag-dot">○</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+2</span>
+                                            </div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">智力</div>
+                                        <div class="ag-val">15</div>
+                                        <div class="ag-mod">+2</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row on">
+                                                <span class="ag-dot">●</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+4</span>
+                                            </div>
+                                        
+                                        
+                                                <div class="ag-row on ">
+                                                    <span class="ag-dot">●</span>
+                                                    <span class="ag-rl">奥秘</span>
+                                                    <span class="ag-rv">+4</span>
+                                                </div>
+                                            
+                                                <div class="ag-row on ">
+                                                    <span class="ag-dot">●</span>
+                                                    <span class="ag-rl">历史</span>
+                                                    <span class="ag-rv">+4</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">调查</span>
+                                                    <span class="ag-rv">+2</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">自然</span>
+                                                    <span class="ag-rv">+2</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">宗教</span>
+                                                    <span class="ag-rv">+2</span>
+                                                </div>
+                                            
+                                    </div>
+                                </div>
+                            
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">感知</div>
+                                        <div class="ag-val">13</div>
+                                        <div class="ag-mod">+1</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row on">
+                                                <span class="ag-dot">●</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+3</span>
+                                            </div>
+                                        
+                                        
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">驯兽</span>
+                                                    <span class="ag-rv">+1</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">洞悉</span>
+                                                    <span class="ag-rv">+1</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">医药</span>
+                                                    <span class="ag-rv">+1</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">察觉</span>
+                                                    <span class="ag-rv">+1</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">求生</span>
+                                                    <span class="ag-rv">+1</span>
+                                                </div>
+                                            
+                                    </div>
+                                </div>
+                            
+                                <div class="ag-col">
+                                    <div class="ag-col-hd">
+                                        <div class="ag-name">魅力</div>
+                                        <div class="ag-val">11</div>
+                                        <div class="ag-mod">+0</div>
+                                    </div>
+                                    <div class="ag-col-bd">
+                                        
+                                            <div class="ag-row ">
+                                                <span class="ag-dot">○</span>
+                                                <span class="ag-rl">豁免</span>
+                                                <span class="ag-rv">+0</span>
+                                            </div>
+                                        
+                                        
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">欺瞒</span>
+                                                    <span class="ag-rv">+0</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">威吓</span>
+                                                    <span class="ag-rv">+0</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">表演</span>
+                                                    <span class="ag-rv">+0</span>
+                                                </div>
+                                            
+                                                <div class="ag-row  ">
+                                                    <span class="ag-dot">○</span>
+                                                    <span class="ag-rl">游说</span>
+                                                    <span class="ag-rv">+0</span>
+                                                </div>
+                                            
+                                    </div>
+                                </div>
+                            
+                    </div>
+                </div>
+
+                <!-- ===== 武器 ===== -->
+                
+                <div class="fl-section">
+                    <div class="fl-section-title">武器</div>
+                    <table class="wp-table">
+                        <thead>
+                            <tr>
+                                <th>武器名</th>
+                                <th>攻击加值</th>
+                                <th>伤害骰</th>
+                                <th>伤害类型</th>
+                                <th>效果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td class="wp-n">匕首</td>
+                                    <td class="wp-a">+6</td>
+                                    <td class="wp-d">1d4</td>
+                                    <td class="wp-t">穿刺</td>
+                                    <td class="wp-e">灵巧、轻型、投掷（射程 20/60）</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                
+
+                <!-- ===== 法术 + 施法能力 ===== -->
+                
+
+                <!-- ===== 物品 · 货币 ===== -->
+                <div class="fl-section">
+                    <div class="fl-section-title">物品 · 货币</div>
+                    <div class="inv-row">
+                        <div class="inv-equip">
+                            
+                                <span class="inv-tag">
+                                    <span class="inv-q">2x</span>
+                                    <span>把匕首，奥术法器（长棍），长袍，法术书，学者套组以及5GP</span>
+                                </span>
+                            
+                                <span class="inv-tag">
+                                    <span class="inv-q">20x</span>
+                                    <span>弩矢，附盖提灯，镣铐，箭袋，旅行服装，12GP</span>
+                                </span>
+                            
+                                <span class="inv-tag">
+                                    
+                                    <span>蜡烛</span>
+                                </span>
+                            
+                        </div>
+                        <div class="inv-coin">
+                            <span class="coin-tag coin-pp">1 PP</span><span class="coin-tag coin-gp">6 GP</span><span class="coin-tag coin-ep">1 EP</span><span class="coin-tag coin-sp">4 SP</span><span class="coin-tag coin-cp">9 CP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 角色详情 ===== -->
+                
+                <div class="fl-section">
+                    <div class="fl-section-title">角色详情</div>
+                    <div class="detail-list">
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">个人特点</div>
+                            <div class="detail-text">测试内容</div>
+                        </div>
+                        
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">理想</div>
+                            <div class="detail-text">测试内容</div>
+                        </div>
+                        
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">羁绊 / 心结</div>
+                            <div class="detail-text">测试内容</div>
+                        </div>
+                        
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">缺点</div>
+                            <div class="detail-text">测试内容</div>
+                        </div>
+                        
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">背景故事</div>
+                            <div class="detail-text">测试内容</div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- ===== 熟练·语言 ===== -->
+                
+                <div class="fl-section">
+                    <div class="fl-section-title">熟练 · 语言</div>
+                    <div class="prof-list">
+                        
+                        <div class="prof-item">
+                            <span class="prof-label">技能熟练</span>
+                            <span class="prof-value">奥秘、历史</span>
+                        </div>
+                        
+                        
+                        <div class="prof-item">
+                            <span class="prof-label">武器熟练</span>
+                            <span class="prof-value">简易武器</span>
+                        </div>
+                        
+                        
+                        
+                        <div class="prof-item">
+                            <span class="prof-label">工具熟练</span>
+                            <span class="prof-value">骰子</span>
+                        </div>
+                        
+                        
+                        <div class="prof-item">
+                            <span class="prof-label">语言</span>
+                            <span class="prof-value">通用语、通用手语、龙语</span>
+                        </div>
+                        
+                        
+                        <div class="prof-item">
+                            <span class="prof-label">专长</span>
+                            <span class="prof-value">警戒</span>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+
+                <!-- ===== 特性 · 专长 ===== -->
+                <div class="fl-section">
+                    <div class="fl-section-title">特性 · 专长</div>
+                    <div class="feat-list">
+                        
+                        <div class="feat-item">
+                            <div class="feat-n">警戒<span class="feat-src">专长</span></div>
+                            <div class="feat-d">先攻熟练Initiative Proficiency。当你投掷先攻时，你可以将你的熟练加值加入结果。<br>先攻互换Initiative Swap。当你掷完先攻，你可以立即与处于同一场战斗中的一名自愿的盟友交换先攻。如果你或那个盟友正处于失能状态，则不能进行交换。</div>
+                        </div>
+                        
+                        
+                            <div class="feat-item">
+                                <div class="feat-n">山之翻撞<span class="feat-src">歌利亚（山丘巨人）</span></div>
+                                <div class="feat-d">当你以攻击检定击中一个体型不超过大型的生物并对其造成伤害时</div>
+                            </div>
+                        
+                        
+                            <div class="feat-item">
+                                <div class="feat-n">仪式学家<span class="feat-src">法师</span></div>
+                                <div class="feat-d">你能以仪式施展你法术书中任何带有仪式标签的法术。你不需要准备这些法术，但你以此法施展法术时必须阅读这本书。</div>
+                                
+                            </div>
+                            
+                            <div class="feat-item">
+                                <div class="feat-n">奥术回想<span class="feat-src">法师</span></div>
+                                <div class="feat-d">你学会了通过研读法术书来恢复魔法能量的办法。你完成一次短休后，可以选择恢复已消耗的法术位。所恢复的法术位环阶总和不得大于你法师等级的一半（向上取整），且任何一个法术位的环阶都必须小于六环。例如，作为一名4级法师时，你可恢复环阶总数最多为二的法术位。你可以选择恢复一个二环法术位或两个一环法术位。<br>此特性一经使用，直至完成长休你都无法再次使用。</div>
+                                
+                            </div>
+                            
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- ===== 底部按钮 ===== -->
+        <div class="step-footer">
+            <button id="prevBtn" class="btn btn-secondary" style="visibility: visible;">← 上一步</button>
+            <div class="step-footer-center">
+                <span id="stepIndicator" class="step-indicator" style="">第 15 步，共 16 步</span>
+            </div>
+            <button id="nextBtn" class="btn btn-primary" style="visibility: visible;">下一步 →</button>
+        </div>
+
+    </div>
+
+    <!-- ===== 选择弹窗模态框（供工具/法术等条件筛选选择使用） ===== -->
+    <div class="selection-modal-overlay" id="selectionModalOverlay" style="display:none;">
+        <div class="selection-modal" id="selectionModalContent">
+            <div class="selection-modal-header">
+                <h3 class="selection-modal-title" id="selectionModalTitle">请选择</h3>
+                <button class="selection-modal-close" id="selectionModalClose">✕</button>
+            </div>
+            <div class="selection-modal-body" id="selectionModalBody">
+                <!-- 内容由JS动态填充 -->
+            </div>
+            <div class="selection-modal-footer">
+                <div class="selection-modal-hint" id="selectionModalHint">已选：0 / 0</div>
+                <button class="btn btn-secondary" id="selectionModalCancel">取消</button>
+                <button class="btn btn-primary" id="selectionModalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>

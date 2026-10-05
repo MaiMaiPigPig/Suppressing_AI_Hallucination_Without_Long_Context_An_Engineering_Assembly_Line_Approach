@@ -1,0 +1,23 @@
+{
+  "step": 2,
+  "label": "pre_next_step2",
+  "ts": "20261004_144455",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n精灵\n2\n高等精灵\n3\n职业\n4\n职业套装\n5\n背景\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n卓尔\n黑暗视觉120尺、法术:舞光术\n高等精灵\n黑暗视觉、法师戏法\n木精灵\n黑暗视觉、法术:德鲁伊伎俩\n高等精灵\n精灵 亚种\n特性\n黑暗视觉\n你拥有60尺黑暗视觉\n法师戏法\n每当你完成长休时，你可以将它替换为法师法术列表中的另一个戏法。\n← 上一步\n第 2 步，共 16 步\n下一步 →",
+  "elements": {
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "高等精灵"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}

@@ -5,7 +5,7 @@
 
 设计思路（和旧版的区别）：
     旧版：按死顺序硬调每一步，遇到页面自动跳步（如无亚种）就会错位。
-    新版：每一步都先读页面上的“第 X 步，共 17 步”指示器，
+    新版：每一步都先读页面上的“第 X 步，共 16 步”指示器，
           根据真实的步骤编号决定做什么，并把每个待选要求选满后再点下一步。
 
 覆盖步骤：
@@ -197,6 +197,9 @@ class CharacterCreationTester:
         self.driver = driver
         self.wait = WebDriverWait(driver, EXPLICIT_WAIT)
         self.data = CharacterData()
+        # 控制台日志采集
+        self.console_errors = []       # 本次测试用例的全部 SEVERE + 选择性 WARNING
+        self._console_consumed = 0     # 已消费的日志条目序号（避免重复拉取）
 
     # ---------- 基础操作 ----------
 
@@ -265,7 +268,7 @@ class CharacterCreationTester:
 
     def get_step(self) -> int:
         """
-        翻译：读取页面上的步骤指示器“第 X 步，共 17 步”，返回 X。
+        翻译：读取页面上的步骤指示器“第 X 步，共 16 步”，返回 X。
         如果还在开始页（没有指示器），返回 0。
         """
         try:
@@ -288,6 +291,87 @@ class CharacterCreationTester:
             return text
         except TimeoutException:
             return None
+
+    def _capture_console(self, step_label=None):
+        """
+        翻译：从浏览器拉取自上次捕获后新产生的控制台日志。
+        SEVERE 级别（JS 运行时错误）全部记录；
+        WARNING 级别选择性记录（过滤第三方库噪音）。
+        返回：本次新捕获的错误列表。
+        """
+        try:
+            logs = self.driver.get_log('browser')
+        except Exception:
+            return []
+
+        new_errors = []
+        for entry in logs[self._console_consumed:]:
+            level = entry.get('level', '')
+            message = entry.get('message', '')
+
+            if level == 'SEVERE':
+                new_errors.append({'level': level, 'message': message, 'step': step_label})
+                print(f"  [控制台SEVERE] 步骤{step_label}: {message[:250]}")
+            elif level == 'WARNING':
+                # 过滤常见的第三方噪音
+                noise_keywords = [
+                    'favicon', 'Third-party', 'chrome-extension',
+                    'Autofill', 'deprecated',
+                ]
+                if any(kw.lower() in message.lower() for kw in noise_keywords):
+                    self._console_consumed += 1
+                    continue
+                new_errors.append({'level': level, 'message': message, 'step': step_label})
+
+            self._console_consumed += 1
+
+        self.console_errors.extend(new_errors)
+        return new_errors
+
+    def get_console_summary(self):
+        """
+        翻译：返回本次测试用例的控制台错误汇总。
+        按步骤分组，统计 SEVERE 和 WARNING 数量。
+        """
+        severe_count = sum(1 for e in self.console_errors if e['level'] == 'SEVERE')
+        warning_count = sum(1 for e in self.console_errors if e['level'] == 'WARNING')
+
+        by_step = {}
+        for e in self.console_errors:
+            step = e.get('step') or '?'
+            if step not in by_step:
+                by_step[step] = []
+            by_step[step].append(e)
+
+        return {
+            'total_severe': severe_count,
+            'total_warning': warning_count,
+            'total': len(self.console_errors),
+            'by_step': by_step,
+        }
+
+    def print_console_summary(self):
+        """
+        翻译：打印本次测试用例的控制台错误汇总报告。
+        """
+        summary = self.get_console_summary()
+        total = summary['total']
+        if total == 0:
+            print("\n  [控制台汇总] 无错误")
+            return
+
+        print(f"\n  {'=' * 50}")
+        print(f"  控制台错误汇总：SEVERE {summary['total_severe']} 条, WARNING {summary['total_warning']} 条")
+        print(f"  {'=' * 50}")
+        for step in sorted(summary['by_step'].keys(), key=lambda x: (str(x) if str(x).isdigit() else 'z', x)):
+            errs = summary['by_step'][step]
+            print(f"\n  --- 步骤 {step}（{len(errs)} 条）---")
+            for e in errs[:3]:
+                msg = e['message'][:200]
+                print(f"    [{e['level']}] {msg}")
+            if len(errs) > 3:
+                print(f"    ... 还有 {len(errs) - 3} 条")
+        print(f"  {'=' * 50}\n")
 
     def go_next(self, timeout=8):
         """
@@ -338,6 +422,9 @@ class CharacterCreationTester:
                     # 对比失败时保存快照供分析
                     if SNAPSHOT_ON_ERROR:
                         self.snapshot(f"data_mismatch_step{step_before}", step=step_before, extra_data=page_data)
+
+            # ===== 控制台错误捕获 =====
+            self._capture_console(step_label=step_after)
 
             return True, ""
         except TimeoutException:
@@ -438,8 +525,8 @@ class CharacterCreationTester:
                         pass
                 data["character_data"]["ability_scores"] = scores
 
-            # 步骤 10: 技能
-            elif step == 10:
+            # 步骤 9: 技能
+            elif step == 9:
                 selected = self.find_all(By.CSS_SELECTOR, ".skill-item.selected")
                 for el in selected[:10]:
                     try:
@@ -449,8 +536,8 @@ class CharacterCreationTester:
                     except Exception:
                         pass
 
-            # 步骤 11: 专长
-            elif step == 11:
+            # 步骤 10: 专长
+            elif step == 10:
                 selected = self.find_all(By.CSS_SELECTOR, ".feat-card.selected, .feat-card[class*='selected']")
                 for el in selected[:5]:
                     try:
@@ -460,8 +547,8 @@ class CharacterCreationTester:
                     except Exception:
                         pass
 
-            # 步骤 14: 特性总览 - 收集所有已选特性
-            elif step == 14:
+            # 步骤 13: 特性总览 - 收集所有已选特性
+            elif step == 13:
                 selected = self.find_all(By.CSS_SELECTOR, ".selection-item.selected")
                 for el in selected[:20]:
                     try:
@@ -471,8 +558,8 @@ class CharacterCreationTester:
                     except Exception:
                         pass
 
-            # 步骤 15: 角色详情
-            elif step == 15:
+            # 步骤 14: 角色详情
+            elif step == 14:
                 try:
                     name_input = self.find(By.ID, "detailName", timeout=3)
                     data["character_data"]["character_name"] = name_input.get_attribute("value")
@@ -625,15 +712,15 @@ class CharacterCreationTester:
                             found = True
                             break
 
-            # 步骤 10: 技能 → skills.json
-            elif step == 10:
+            # 步骤 9: 技能 → skills.json
+            elif step == 9:
                 for item in self._load_json_data().get('skills', []):
                     if self._normalize_name(item.get('name', '')) == norm_name:
                         found = True
                         break
 
-            # 步骤 11: 专长 → feats.json
-            elif step == 11:
+            # 步骤 10: 专长 → feats.json
+            elif step == 10:
                 for item in self._load_json_data().get('feats', []):
                     if self._normalize_name(item.get('name', '')) == norm_name:
                         found = True
@@ -1072,7 +1159,7 @@ class CharacterCreationTester:
         """
         print("  [法术] 按测试策略跳过选择")
 
-    # ---------- 步骤 13：商城购物 ----------
+    # ---------- 步骤 12：商城购物 ----------
 
     def do_shopping(self):
         """
@@ -1121,11 +1208,11 @@ class CharacterCreationTester:
         self.data.shopping_cart = [name]
         print(f"  [商城] 已购买：{name}")
 
-    # ---------- 步骤 14：特性总览 ----------
+    # ---------- 步骤 13：特性总览 ----------
 
     def do_feature_review(self):
         """特性总览页：纯 Selenium 逐分组点选，不求快只求稳"""
-        print("[步骤14] 特性总览")
+        print("[步骤13] 特性总览")
 
         max_rounds = 80
         for _ in range(max_rounds):
@@ -1191,7 +1278,7 @@ class CharacterCreationTester:
 
         return None
 
-    # ---------- 步骤 15：角色详情 ----------
+    # ---------- 步骤 14：角色详情 ----------
 
     def do_details(self):
         """
@@ -1258,7 +1345,7 @@ class CharacterCreationTester:
 
         print(f"  [角色详情] 名字：{char_name}，语言：{chosen_langs}")
 
-    # ---------- 步骤 16：角色卡 ----------
+    # ---------- 步骤 15：角色卡 ----------
 
     def verify_sheet(self):
         """翻译：在最终角色卡页面确认名字/种族/职业这些关键信息都展示出来了"""
@@ -1274,7 +1361,7 @@ class CharacterCreationTester:
             assert value in body_text, f"角色卡上找不到{label}：{value}"
             print(f"  [角色卡] {label}「{value}」显示正常")
 
-    # ---------- 步骤 17：完成页 ----------
+    # ---------- 步骤 16：完成页 ----------
 
     def verify_finish_page(self):
         """翻译：确认完成页上有“导出 JSON / 导出 PDF / 升级角色”三个入口"""
@@ -1382,13 +1469,13 @@ class CharacterCreationTester:
     def verify_import_result(self, expected_data: dict):
         """
         翻译：验证导入后页面显示的数据是否和导出时一致。
-        导入后会跳转到角色卡展示页（步骤16）。
+        导入后会跳转到角色卡展示页（步骤15）。
         """
         from selenium.webdriver.common.by import By
         
         step = self.get_step()
-        # 导入后应该在步骤16（角色卡页）
-        assert step == 16, f"导入后期望在步骤16，实际在步骤{step}"
+        # 导入后应该在步骤15（角色卡页）
+        assert step == 15, f"导入后期望在步骤15，实际在步骤{step}"
 
         body_text = self.driver.find_element(By.TAG_NAME, "body").text
 
@@ -1534,7 +1621,7 @@ class CharacterCreationTester:
         返回：实际是否有法术页
         """
         step = self.get_step()
-        if step == 12:
+        if step == 11:
             body_text = self.driver.find_element(By.TAG_NAME, "body").text
             has_spells = "法术选择" in body_text or "施法属性" in body_text
             if expect_spells_page:
@@ -1689,14 +1776,14 @@ class CharacterCreationTester:
             6: [("#bgPackageGrid", "背景套装列表"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
             7: [(".ability-set", "属性组"), (".ability-tabs", "属性模式切换"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
             8: [(".bonus-row", "加值行"), (".unbind-toggle", "解绑开关"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            10: [(".skill-section", "技能区"), (".skill-count", "技能计数"), (".unbind-toggle", "解绑开关"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            11: [(".feat-card-grid", "专长卡片网格"), (".feat-card", "专长卡片"), (".unbind-toggle", "解绑开关"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            12: [("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            13: [(".shop-balance", "余额"), (".shop-grid", "商品网格"), (".shop-cart", "购物车"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            14: [(".feat-section", "特性分组"), (".feat-section-count", "特性计数"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            15: [("#detailName", "角色名输入框"), ("#detailAlignment", "阵营下拉"), ("#languageGrid", "语言网格"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
-            16: [(".sheet-container", "角色卡容器")],
-            17: [(".export-card", "导出卡片")],
+            9: [(".skill-section", "技能区"), (".skill-count", "技能计数"), (".unbind-toggle", "解绑开关"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            10: [(".feat-card-grid", "专长卡片网格"), (".feat-card", "专长卡片"), (".unbind-toggle", "解绑开关"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            11: [("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            12: [(".shop-balance", "余额"), (".shop-grid", "商品网格"), (".shop-cart", "购物车"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            13: [(".feat-section", "特性分组"), (".feat-section-count", "特性计数"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            14: [("#detailName", "角色名输入框"), ("#detailAlignment", "阵营下拉"), ("#languageGrid", "语言网格"), ("#nextBtn", "下一步按钮"), ("#prevBtn", "上一步按钮")],
+            15: [(".sheet-container", "角色卡容器")],
+            16: [(".export-card", "导出卡片")],
         }
 
         elements = required.get(step, [])
@@ -1711,7 +1798,7 @@ class CharacterCreationTester:
                 missing.append(f"{name}（{selector}）- 元素不存在")
 
         # 步骤2+ 都应该有上一步按钮（除了步骤1）
-        if step >= 2 and step != 17:
+        if step >= 2 and step != 16:
             try:
                 prev_btn = self.find(By.ID, "prevBtn", timeout=3)
                 style = prev_btn.get_attribute("style") or ""
@@ -1734,7 +1821,7 @@ class CharacterCreationTester:
         """
         翻译：主循环——看当前在第几步，就做那一步的事，然后点下一步；
         如果点下一步被弹窗拦住（没选够），就重新执行这一步再点，
-        最多重试 3 轮，直到走到第 17 步并完成检查。
+        最多重试 3 轮，直到走到第 16 步并完成检查。
         """
         # 翻译：步骤号到处理函数的对照表
         handlers = {
@@ -1746,13 +1833,13 @@ class CharacterCreationTester:
             6: lambda: self._do_package_step("bgPackageGrid", "bg_package", "背景套装"),
             7: self.do_ability,
             8: self.do_bg_bonus,
-            10: self.do_skills,
-            11: self.do_feat,
-            12: self.do_spells_skip,
-            13: self.do_shopping,
-            14: self.do_feature_review,
-            15: self.do_details,
-            16: self.verify_sheet,
+            9: self.do_skills,
+            10: self.do_feat,
+            11: self.do_spells_skip,
+            12: self.do_shopping,
+            13: self.do_feature_review,
+            14: self.do_details,
+            15: self.verify_sheet,
         }
 
         rounds = 0
@@ -1761,13 +1848,15 @@ class CharacterCreationTester:
             step = self.get_step()
             print(f"\n--- 当前第 {step} 步 ---")
 
-            # 翻译：走到第 17 步说明全流程完成，做最后检查后退出循环
-            if step == 17:
+            # 翻译：走到第 16 步说明全流程完成，做最后检查后退出循环
+            if step == 16:
                 self.verify_finish_page()
                 print("\n全流程走通，停在完成页。")
                 # 最后一步快照（成功时可选）
                 if SNAPSHOT_EACH_STEP:
                     self.snapshot("完成")
+                # 控制台错误汇总
+                self.print_console_summary()
                 return self.data
 
             handler = handlers.get(step)
@@ -1815,6 +1904,9 @@ def _build_options(options):
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
     options.add_experimental_option("excludeSwitches", ["enable-logging"])
+
+    # 开启浏览器控制台日志采集（供 get_log('browser') 使用）
+    options.set_capability("goog:loggingPrefs", {"browser": "ALL"})
 
     # 配置下载目录（不弹下载提示）
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
@@ -2002,7 +2094,13 @@ class TestCrossCoverage:
             assert ok, f"背景套装页下一步失败：{msg}"
 
         # 步骤7-17：用默认流程跑完
-        tester.run_full_flow()
+        try:
+            tester.run_full_flow()
+        except Exception:
+            # 失败时自动输出控制台日志辅助排查
+            print("\n  [交叉覆盖] 用例失败，输出控制台日志：")
+            tester.print_console_summary()
+            raise
         return tester.data
 
     def test_CROSS_001_elf_wizard(self, driver):
@@ -2106,9 +2204,12 @@ class TestDataChangeValidation:
         tester.do_bg_bonus()
         tester.go_next()
         
-        # 步骤10：验证技能列表
+        # 技能选择
+        tester.do_skills()
+        
+        # 步骤9：验证技能列表（在 go_next 之前验证技能页显示）
         step = tester.get_step()
-        assert step == 10, f"期望到步骤10，实际在步骤{step}"
+        assert step == 9, f"期望在步骤9，实际在步骤{step}"
         
         # 检查职业技能区是否显示修改后的技能
         # 修改后的技能ID：7=巧手, 20=驯兽, 28=威吓
@@ -2118,12 +2219,15 @@ class TestDataChangeValidation:
         
         print("  [DATA-001] 职业技能修改后显示正常（巧手、驯兽、威吓）")
         
+        # 继续下一步
+        tester.go_next()
+        
         # 恢复原始数据
         tester.restore_json_data()
         tester.refresh_page()
 
     def test_DATA_002_modify_race_feature_expression(self, driver):
-        """DATA-002：修改种族特性表达式后验证步骤14正确解析"""
+        """DATA-002：修改种族特性表达式后验证步骤13正确解析"""
         tester = CharacterCreationTester(driver)
         assert tester.backup_json_data(), "备份失败"
         
@@ -2150,10 +2254,10 @@ class TestDataChangeValidation:
         tester.do_subrace("高等精灵")
         tester.go_next()
         
-        # 快速走到步骤14
-        for target_step in range(3, 15):
+        # 快速走到步骤13
+        for target_step in range(3, 14):
             step = tester.get_step()
-            if step == 14:
+            if step == 13:
                 break
             handler = {
                 3: lambda: tester.do_class("法师"),
@@ -2162,10 +2266,10 @@ class TestDataChangeValidation:
                 6: lambda: tester._do_package_step("bgPackageGrid", "bg_package", "背景套装"),
                 7: tester.do_ability,
                 8: tester.do_bg_bonus,
-                10: tester.do_skills,
-                11: tester.do_feat,
-                12: tester.do_spells_skip,
-                13: tester.do_shopping,
+                9: tester.do_skills,
+                10: tester.do_feat,
+                11: tester.do_spells_skip,
+                12: tester.do_shopping,
             }.get(step)
             if handler:
                 try:
@@ -2174,9 +2278,9 @@ class TestDataChangeValidation:
                     pass
             tester.go_next()
         
-        # 验证步骤14特性总览
+        # 验证步骤13特性总览
         step = tester.get_step()
-        assert step == 14, f"期望到步骤14，实际在步骤{step}"
+        assert step == 13, f"期望到步骤13，实际在步骤{step}"
         
         # 验证特性总览能正常显示（不崩溃）
         body_text = driver.find_element(By.TAG_NAME, "body").text
@@ -2238,19 +2342,28 @@ class TestDataChangeValidation:
         tester.do_bg_bonus()
         tester.go_next()
         
-        # 步骤10：验证全技能池
-        step = tester.get_step()
-        assert step == 10, f"期望到步骤10，实际在步骤{step}"
+        # 技能选择
+        tester.do_skills()
         
-        # 验证职业技能区显示全部技能可选
-        # 使用 Selenium 查找技能元素，而不是 body.text（CSS类名不会出现在文本中）
-        skill_items = tester.find_all(By.CSS_SELECTOR, ".skill-item:not(.disabled)")
-        skill_count = len(skill_items)
-        print(f"  [DATA-007] 全技能池可选技能数量：{skill_count}")
-        # 全技能池应该有 18+ 个技能（D&D 5E 标准技能列表）
-        assert skill_count > 15, f"全技能池技能数量异常：{skill_count}"
+        # 步骤9：验证全技能池（在 go_next 之前验证技能页显示）
+        step = tester.get_step()
+        assert step == 9, f"期望在步骤9，实际在步骤{step}"
+        
+        # 验证职业技能区显示全部技能可选（18个技能）
+        # 注意：do_skills() 选满后，未选中的技能会被标记为 disabled
+        # 所以要验证的是职业技能区的总技能数，而不是 .skill-item:not(.disabled) 的数量
+        skill_section = tester.find(By.CSS_SELECTOR, ".skill-section")
+        skill_grid = skill_section.find_element(By.CSS_SELECTOR, ".skill-grid")
+        all_class_skills = skill_grid.find_elements(By.CSS_SELECTOR, ".skill-item")
+        skill_count = len(all_class_skills)
+        print(f"  [DATA-007] 职业技能区总技能数量：{skill_count}")
+        # 全技能池应该有 18 个技能（D&D 5E 标准技能列表）
+        assert skill_count == 18, f"全技能池技能数量异常：{skill_count}（期望18）"
         
         print("  [DATA-007] skill_prof='all' 路径验证正常")
+        
+        # 继续下一步
+        tester.go_next()
         
         # 恢复原始数据
         tester.restore_json_data()
@@ -2261,13 +2374,13 @@ class TestExportImport:
     """导出/导入测试：验证导出 JSON 数据一致性、导入恢复、PDF 导出"""
 
     def _run_full_flow_to_finish(self, driver):
-        """翻译：跑完整个车卡流程，停在完成页（步骤17）"""
+        """翻译：跑完整个车卡流程，停在完成页（步骤16）"""
         tester = CharacterCreationTester(driver)
         tester.enter_dnd_5r()
         tester.start_new_character()
         tester.run_full_flow()
         step = tester.get_step()
-        assert step == 17, f"期望停在步骤17，实际在步骤{step}"
+        assert step == 16, f"期望停在步骤16，实际在步骤{step}"
         return tester
 
     def test_EXPORT_001_json_export_consistency(self, driver):
@@ -2341,7 +2454,7 @@ class TestUnbind:
     """解绑功能测试：验证解绑开关能正常切换并影响选择"""
 
     def _go_to_skills(self, driver):
-        """翻译：快速走到步骤10技能页"""
+        """翻译：快速走到步骤9技能页"""
         tester = CharacterCreationTester(driver)
         tester.enter_dnd_5r()
         tester.start_new_character()
@@ -2371,7 +2484,7 @@ class TestUnbind:
         """UNBIND-001：职业技能解绑后能选择非职业池技能"""
         tester = self._go_to_skills(driver)
         step = tester.get_step()
-        assert step == 10, f"期望到步骤10，实际在步骤{step}"
+        assert step == 9, f"期望到步骤9，实际在步骤{step}"
 
         # 验证解绑开关初始状态为未激活
         assert not tester.is_unbind_active("classSkill"), "职业技能解绑初始状态异常"
@@ -2441,7 +2554,7 @@ class TestUnbind:
         tester.go_next()
 
         step = tester.get_step()
-        assert step == 11, f"期望到步骤11，实际在步骤{step}"
+        assert step == 10, f"期望到步骤10（专长），实际在步骤{step}"
 
         # 验证解绑开关
         assert not tester.is_unbind_active("feat"), "专长解绑初始状态异常"

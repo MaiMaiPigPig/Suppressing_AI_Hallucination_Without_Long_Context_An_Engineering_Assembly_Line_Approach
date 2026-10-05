@@ -1,0 +1,61 @@
+{
+  "step": 13,
+  "label": "pre_next_step13",
+  "ts": "20261004_143329",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n龙裔\n2\n白龙\n3\n野蛮人\n4\n职业套装\n5\n流浪者\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n特性选择总览\n已汇总所有来源的特性，请完成以下所有选择\n（武器精通）-2个武器\n已选 2 / 2\n▼\n短棒\n1d4 bludgeoning\n匕首\n1d4 piercing\n巨棒\n1d8 bludgeoning\n手斧\n1d6 slashing\n标枪\n1d6 piercing\n轻锤\n1d4 bludgeoning\n硬头锤\n1d6 bludgeoning\n长棍\n1d6 bludgeoning\n镰刀\n1d4 slashing\n矛\n1d6 piercing\n飞镖\n1d4 piercing\n轻弩\n1d8 piercing\n短弓\n1d6 piercing\n投石索\n1d4 bludgeoning\n战斧\n1d8 slashing\n链枷\n1d8 bludgeoning\n长柄刀\n1d10 slashing\n巨斧\n1d12 sla",
+  "elements": {
+    "特性分组": {
+      "count": 1,
+      "samples": [
+        "（武器精通）-2个武器\n已选 2 / 2\n▼\n短棒\n1d4 bludgeonin"
+      ]
+    },
+    "特性计数": {
+      "count": 1,
+      "samples": [
+        "已选 2 / 2"
+      ]
+    },
+    "可选特性项": {
+      "count": 36,
+      "samples": [
+        "巨棒\n1d8 bludgeoning",
+        "手斧\n1d6 slashing",
+        "标枪\n1d6 piercing",
+        "轻锤\n1d4 bludgeoning",
+        "硬头锤\n1d6 bludgeoning",
+        "长棍\n1d6 bludgeoning",
+        "镰刀\n1d4 slashing",
+        "矛\n1d6 piercing",
+        "飞镖\n1d4 piercing",
+        "轻弩\n1d8 piercing"
+      ]
+    },
+    "已选特性项": {
+      "count": 2,
+      "samples": [
+        "短棒\n1d4 bludgeoning",
+        "匕首\n1d4 piercing"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "短棒",
+    "匕首"
+  ],
+  "json_verify": {
+    "passed": false,
+    "errors": [
+      "步骤13：页面显示「短棒」在 JSON 数据中未找到匹配记录",
+      "步骤13：页面显示「匕首」在 JSON 数据中未找到匹配记录"
+    ]
+  }
+}

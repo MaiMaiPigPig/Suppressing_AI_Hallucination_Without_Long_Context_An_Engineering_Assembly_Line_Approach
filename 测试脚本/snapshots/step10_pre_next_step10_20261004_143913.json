@@ -1,0 +1,41 @@
+{
+  "step": 10,
+  "label": "pre_next_step10",
+  "ts": "20261004_143913",
+  "url": "http://127.0.0.1:5001/character/dnd_5r",
+  "page_text_preview": "← 返回规则选择\nDND 5R 角色卡生成\nPP\nGP\nSP\nCP\nⓘ\n↺ 重置\n1\n侏儒\n2\n岩石侏儒\n3\n吟游诗人\n4\n职业套装\n5\n工匠\n6\n背景套装\n7\n基础属性\n8\n背景加值\n9\n技能\n10\n专长\n11\n法术\n12\n商城\n13\n特性总览\n14\n角色详情\n15\n完成\n16\n保存\n专长确认\n🔓\n解绑专长\n请先与你的DM商议后再决定是否解绑\n背景推荐\n巧匠\n工具熟练Tool Proficiency。你从快速制作表中自选三项不同的工匠工具并获得其熟练。 折扣Discount。你…\n巧匠\n工具熟练Tool Proficiency。你从快速制作表中自选三项不同的工匠工具并获得其熟练。\n折扣Discount。你在购买非魔法物品时具有20%的折扣。\n快速制作Fast Crafting。当你完成一次长休时，你可以制作一件快速制作栏中的装备。你必须拥有与该物品对应的工匠工具以及与这些工具对应的工具熟练才能尝试制作。造出的物品会持续存在到你下次完成长休，随后该物品解体坏损。\n快速制作Fast Crafting\n工匠工具 可制造的装备\n木匠工具Carpenter's Tools 梯子、火把\n皮匠工具",
+  "elements": {
+    "特性分组": {
+      "count": 1,
+      "samples": [
+        "背景推荐\n巧匠\n工具熟练Tool Proficiency。你从快速制作表中自选三"
+      ]
+    },
+    "专长卡片": {
+      "count": 1,
+      "samples": [
+        "巧匠\n工具熟练Tool Proficiency。你从快速制作表中自选三项不同的工"
+      ]
+    },
+    "已选专长": {
+      "count": 1,
+      "samples": [
+        "巧匠\n工具熟练Tool Proficiency。你从快速制作表中自选三项不同的工"
+      ]
+    },
+    "下一步按钮": {
+      "count": 1,
+      "samples": [
+        "下一步 →"
+      ]
+    }
+  },
+  "character_data": {},
+  "selected_items": [
+    "巧匠"
+  ],
+  "json_verify": {
+    "passed": true,
+    "errors": []
+  }
+}
