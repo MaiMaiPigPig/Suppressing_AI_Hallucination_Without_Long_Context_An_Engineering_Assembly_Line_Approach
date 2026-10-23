@@ -1,0 +1,412 @@
+/* ============================================================
+   交互调试台 样式
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0ebe3;
+    color: #3d3229;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== 顶栏 ===== */
+.test-header {
+    background: linear-gradient(135deg, #4a3728, #6b4c3b);
+    color: #f5ede4;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 12px;
+}
+
+.test-header h1 {
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.badge {
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge-idle    { background: #8a7a6a; color: #f0ebe3; }
+.badge-loading { background: #d4a84b; color: #3d3229; }
+.badge-ready   { background: #5a8a5a; color: #f0ebe3; }
+.badge-error   { background: #b34a4a; color: #f0ebe3; }
+
+/* ===== 按钮 ===== */
+.btn {
+    padding: 5px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.btn:hover { opacity: 0.85; }
+.btn:active { transform: scale(0.97); }
+
+.btn-load       { background: #6b7a8a; color: #fff; }
+.btn-clear-console { background: #7a5a4a; color: #f5ede4; }
+.btn-execute    { background: #2d7a3a; color: #fff; padding: 8px 28px; font-size: 14px; font-weight: 600; }
+
+/* ===== 主体 ===== */
+.test-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ===== 左侧边栏 ===== */
+.test-sidebar {
+    width: 240px;
+    background: #e8e0d6;
+    border-right: 1px solid #d4c8b8;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.sidebar-section {
+    padding: 10px;
+}
+
+.sidebar-section h3 {
+    font-size: 12px;
+    color: #6b5a4a;
+    margin-bottom: 6px;
+}
+
+/* ===== API 树 ===== */
+.api-tree {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+.api-tree .api-group {
+    margin-bottom: 6px;
+}
+
+.api-tree .api-group-title {
+    font-weight: 600;
+    color: #5a4a3a;
+    padding: 4px 0;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    border-bottom: 1px solid #d4c8b8;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.api-tree .api-group-title:hover { color: #3d3229; }
+
+.api-tree .api-group-title .arrow {
+    display: inline-block;
+    transition: transform 0.15s;
+    font-size: 10px;
+}
+.api-tree .api-group-title.collapsed .arrow {
+    transform: rotate(-90deg);
+}
+
+.api-tree .api-group-body {
+    overflow: hidden;
+}
+
+.api-tree .api-item {
+    padding: 5px 8px 5px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #5a4a3a;
+    transition: background 0.1s;
+    font-size: 12px;
+    margin: 1px 0;
+    word-break: break-all;
+}
+
+.api-tree .api-item:hover {
+    background: #d4c8b8;
+}
+
+.api-tree .api-item .fn-name {
+    font-family: "Consolas", monospace;
+    color: #4a3728;
+    font-weight: 500;
+}
+
+.api-tree .api-item .fn-desc {
+    color: #8a7a6a;
+    font-size: 11px;
+}
+
+/* ===== 加载日志 ===== */
+.load-log-section {
+    border-top: 1px solid #d4c8b8;
+    flex-shrink: 0;
+    max-height: 140px;
+    display: flex;
+    flex-direction: column;
+}
+
+.load-log {
+    overflow-y: auto;
+    font-size: 11px;
+    color: #6b5a4a;
+    background: #f5ede4;
+    border-radius: 4px;
+    padding: 4px 8px;
+    flex: 1;
+    max-height: 100px;
+}
+
+.load-log .log-entry {
+    padding: 2px 0;
+    border-bottom: 1px solid #e8e0d6;
+}
+.load-log .log-entry:last-child { border-bottom: none; }
+.load-log .log-ok  { color: #3a7a3a; }
+.load-log .log-warn { color: #b08030; }
+.load-log .log-err { color: #b34a4a; }
+
+/* ===== 右侧主区域 ===== */
+.test-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== 配置区 ===== */
+.test-config {
+    padding: 12px 16px;
+    background: #f5ede4;
+    border-bottom: 1px solid #d4c8b8;
+    flex-shrink: 0;
+}
+
+.config-row {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.config-row label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #5a4a3a;
+    min-width: 70px;
+    padding-top: 6px;
+    flex-shrink: 0;
+}
+
+.config-row select {
+    flex: 1;
+    padding: 5px 8px;
+    border: 1px solid #d4c8b8;
+    border-radius: 4px;
+    background: #faf5ef;
+    font-size: 12px;
+    color: #3d3229;
+    max-width: 600px;
+}
+
+.config-actions {
+    margin-bottom: 0;
+    padding-top: 4px;
+}
+
+/* ===== 参数输入区 ===== */
+.param-group {
+    margin-bottom: 6px;
+}
+
+.param-group .param-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6b5a4a;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.param-group .param-hint {
+    font-size: 10px;
+    color: #8a7a6a;
+    margin-left: 6px;
+    font-weight: normal;
+}
+
+.param-group textarea,
+.param-group input[type="text"] {
+    width: 100%;
+    padding: 5px 8px;
+    border: 1px solid #d4c8b8;
+    border-radius: 4px;
+    background: #faf5ef;
+    font-family: "Consolas", "Source Code Pro", monospace;
+    font-size: 12px;
+    color: #3d3229;
+    resize: vertical;
+}
+
+.param-group textarea { min-height: 40px; }
+
+.param-group textarea.code-param { min-height: 36px; }
+
+.param-group .param-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.param-group .param-row textarea,
+.param-group .param-row input {
+    flex: 1;
+}
+
+/* ===== 输出区 ===== */
+.test-output {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.output-header {
+    padding: 8px 16px;
+    background: #ece4da;
+    border-bottom: 1px solid #d4c8b8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.output-header h3 {
+    font-size: 13px;
+    color: #4a3728;
+}
+
+.output-meta {
+    font-size: 11px;
+    color: #8a7a6a;
+}
+
+.output-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+    background: #2d2d2d;
+}
+
+.placeholder {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6a6a6a;
+    font-size: 13px;
+}
+
+/* ===== JSON 输出 ===== */
+.json-output {
+    padding: 12px 16px;
+    font-family: "Consolas", "Source Code Pro", monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: #c4b4a4;
+}
+
+.json-output .json-key   { color: #7cbf7c; }
+.json-output .json-string { color: #d4a84b; }
+.json-output .json-number { color: #6ab0d4; }
+.json-output .json-bool   { color: #d48a6a; }
+.json-output .json-null   { color: #8a7a6a; }
+.json-output .json-bracket { color: #c4b4a4; }
+
+.json-output .error-line {
+    color: #d46a5a;
+    padding: 8px 0;
+}
+
+.json-output .summary-line {
+    color: #8a9a7a;
+    padding: 4px 0;
+    font-size: 11px;
+    border-bottom: 1px solid #3d3d3d;
+    margin-bottom: 8px;
+}
+
+/* ===== 输入条件摘要 ===== */
+.input-summary-title {
+    color: #8ab4d4;
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #4a4a4a;
+}
+
+.input-summary-row {
+    display: flex;
+    gap: 8px;
+    padding: 3px 0;
+    align-items: flex-start;
+}
+
+.input-summary-key {
+    color: #7cbf7c;
+    font-weight: 600;
+    min-width: 70px;
+    flex-shrink: 0;
+    font-size: 11px;
+    padding-top: 1px;
+}
+
+.input-summary-key::before {
+    content: '· ';
+    color: #5a5a5a;
+}
+
+.input-summary-val {
+    color: #c4b4a4;
+    font-size: 11px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    font-family: "Consolas", monospace;
+}
+
+/* ===== 输出分割线 ===== */
+.output-hr {
+    border: none;
+    border-top: 1px solid #4a4a4a;
+    margin: 10px 0 6px 0;
+}
+
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c4b8a8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a89888; }

@@ -1,0 +1,964 @@
+/* ===== 角色卡完成（步骤13）- v1 + v2 扁平化布局 ===== */
+
+.sheet-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+    color: #f0e6d3;
+}
+
+/* ===== v1 角色卡 ===== */
+.sheet-header {
+    text-align: center;
+    padding: 20px 24px 16px;
+    background: linear-gradient(180deg, rgba(201,168,76,0.08) 0%, transparent 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 16px;
+}
+.sheet-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+.sheet-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(201,168,76,0.3);
+}
+.sheet-level {
+    font-size: 1.1rem;
+    color: #c9a84c;
+    background: rgba(201,168,76,0.15);
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid rgba(201,168,76,0.3);
+}
+.sheet-subtitle {
+    color: #a89b8c;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+.sheet-player {
+    color: #6a5e4e;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+.sheet-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0 16px 16px;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+.sheet-body-row {
+    display: flex;
+    gap: 16px;
+    flex: none;
+    min-height: 0;
+}
+.sheet-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+.sheet-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-width: 0;
+}
+.sheet-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+.sheet-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a84c;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+.sheet-section-title-feat {
+    color: #b07cd8;
+    border-bottom-color: rgba(176,124,216,0.2);
+}
+.sheet-abilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.sheet-ability-card {
+    text-align: center;
+    padding: 8px 4px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.2s;
+}
+.sheet-ability-card:hover {
+    border-color: rgba(201,168,76,0.3);
+}
+.sheet-ability-name {
+    font-size: 0.75rem;
+    color: #a89b8c;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.sheet-ability-mod {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    margin: 2px 0;
+}
+.sheet-ability-score {
+    font-size: 0.85rem;
+    color: #c9a84c;
+}
+.sheet-ability-save {
+    font-size: 0.65rem;
+    color: #7ec8a0;
+    font-weight: 600;
+    margin-top: 1px;
+}
+.sheet-ability-bonus {
+    font-size: 0.65rem;
+    color: #6a5e4e;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+.sheet-combat {
+    display: flex;
+    gap: 12px;
+}
+.sheet-combat-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 6px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 6px;
+}
+.sheet-combat-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #6a5e4e;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+.sheet-combat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+}
+.sheet-skills {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.sheet-skill-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+.sheet-skill-row:hover {
+    background: rgba(255,255,255,0.03);
+}
+.sheet-skill-dot {
+    color: #c9a84c;
+    font-size: 0.6rem;
+}
+.sheet-skill-name {
+    flex: 1;
+    font-size: 0.85rem;
+    color: #f0e6d3;
+}
+.sheet-skill-ability {
+    font-size: 0.7rem;
+    color: #6a5e4e;
+}
+.sheet-skill-mod {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #c9a84c;
+    min-width: 28px;
+    text-align: right;
+}
+.sheet-line {
+    color: #a89b8c;
+    font-size: 0.85rem;
+    padding: 2px 0;
+}
+
+/* 特性条目（Stat Block 格式） */
+.stat-feature {
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.stat-feature:last-child {
+    border-bottom: none;
+}
+.stat-feature-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f0e6d3;
+    margin-bottom: 2px;
+}
+.stat-feature-desc {
+    font-size: 0.78rem;
+    color: #a89b8c;
+    line-height: 1.5;
+}
+
+/* 装备 */
+.sheet-equipment-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+.sheet-equip-item {
+    font-size: 0.82rem;
+    color: #a89b8c;
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.sheet-equip-qty {
+    color: #6a5e4e;
+    margin-right: 2px;
+}
+.sheet-equip-name {
+    color: #f0e6d3;
+}
+.sheet-currency {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.sheet-coin {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.sheet-coin-pp { color: #b0c4de; background: rgba(176,196,222,0.1); border-color: rgba(176,196,222,0.2); }
+.sheet-coin-gp { color: #c9a84c; background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.2); }
+.sheet-coin-ep { color: #d4c5a9; background: rgba(212,197,169,0.1); border-color: rgba(212,197,169,0.2); }
+.sheet-coin-sp { color: #a8a8a8; background: rgba(168,168,168,0.1); border-color: rgba(168,168,168,0.2); }
+.sheet-coin-cp { color: #b87333; background: rgba(184,115,51,0.1); border-color: rgba(184,115,51,0.2); }
+.sheet-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 0 16px;
+}
+.sheet-detail-section {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+.sheet-detail-lg {
+    min-height: 60px;
+}
+.sheet-detail-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a84c;
+    margin-bottom: 4px;
+}
+.sheet-detail-text {
+    font-size: 0.85rem;
+    color: #a89b8c;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+
+/* 法术位信息 */
+.sheet-spell-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sheet-spell-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 6px;
+}
+.sheet-spell-label {
+    font-size: 0.85rem;
+    color: #a89b8c;
+}
+.sheet-spell-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+}
+
+/* ============================================================
+   ===== v2 扁平化角色卡布局
+   ============================================================ */
+
+/* ---- 扁平区域容器 ---- */
+.fl-section {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 10px 0;
+}
+.fl-section:last-child {
+    border-bottom: none;
+}
+.fl-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a84c;
+    margin-bottom: 8px;
+}
+.fl-empty {
+    color: #6a5e4e;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* ---- 角色详情 ---- */
+.detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.detail-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+.detail-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a84c;
+    margin-bottom: 4px;
+}
+.detail-text {
+    font-size: 0.85rem;
+    color: #a89b8c;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* ---- 战斗条（全部格子同一行） ---- */
+.combat-bar {
+    display: flex;
+    gap: 2px;
+}
+.cb-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 6px 2px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 4px;
+    min-width: 0;
+}
+.cb-item-hp {
+    background: rgba(76,175,80,0.08);
+}
+.cb-label {
+    font-size: 0.6rem;
+    color: #6a5e4e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.cb-value {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    line-height: 1.3;
+}
+.cb-item-hp .cb-value {
+    color: #4caf50;
+}
+.cb-item-wide {
+    flex: 2;
+}
+/* HP 计算明细 */
+.cb-hp-detail {
+    font-size: 0.55rem;
+    color: #8a7e6e;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    cursor: help;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 2px;
+    margin-top: 2px;
+}
+.cb-value-sm {
+    font-size: 0.7rem;
+    color: #a89b8c;
+}
+.cb-ac-hint {
+    font-size: 0.55rem;
+    color: #c9a84c;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+/* ---- 熟练·语言 列表 ---- */
+.prof-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 12px;
+    padding: 6px 8px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.prof-item {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.prof-label {
+    font-size: 0.7rem;
+    color: #6a5e4e;
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 60px;
+}
+.prof-value {
+    font-size: 0.75rem;
+    color: #a89b8c;
+    line-height: 1.5;
+}
+
+/* ---- 属性×技能 6列网格 ---- */
+.ability-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3px;
+}
+.ag-col {
+    background: rgba(0,0,0,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    min-width: 0;
+}
+.ag-col-hd {
+    text-align: center;
+    padding: 4px 1px 2px;
+    background: rgba(0,0,0,0.15);
+}
+.ag-name {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #a89b8c;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.ag-val {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    line-height: 1.2;
+}
+.ag-mod {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #c9a84c;
+}
+.ag-bonus {
+    font-size: 0.5rem;
+    color: #6a5e4e;
+    line-height: 1.1;
+    margin-top: 1px;
+}
+.ag-col-bd {
+    padding: 1px 3px 3px;
+}
+.ag-row {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 1px 2px;
+    border-radius: 2px;
+    font-size: 0.58rem;
+    line-height: 1.35;
+}
+.ag-dot {
+    font-size: 0.45rem;
+    width: 9px;
+    text-align: center;
+    flex-shrink: 0;
+    color: #6a5e4e;
+}
+.ag-row.on .ag-dot {
+    color: #c9a84c;
+}
+.ag-rl {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #8a7a6a;
+}
+.ag-row.on .ag-rl {
+    color: #f0e6d3;
+    font-weight: 500;
+}
+.ag-rv {
+    font-weight: 600;
+    color: #6a5e4e;
+    flex-shrink: 0;
+    min-width: 16px;
+    text-align: right;
+    font-size: 0.56rem;
+}
+.ag-row.on .ag-rv {
+    color: #c9a84c;
+}
+/* 专精行：星号金色高亮，数值双倍颜色 */
+.ag-row.exp .ag-dot {
+    color: #ff6b35;
+    font-size: 0.55rem;
+}
+.ag-row.exp .ag-rv {
+    color: #ff6b35;
+    font-weight: 700;
+}
+
+/* ---- 武器表格 ---- */
+.wp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+.wp-table th {
+    text-align: left;
+    padding: 4px 8px;
+    color: #6a5e4e;
+    font-weight: 600;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.wp-table td {
+    padding: 3px 8px;
+    color: #a89b8c;
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.wp-n { color: #f0e6d3; font-weight: 500; }
+.wp-a { color: #4caf50; font-weight: 600; font-family: 'Consolas', monospace; }
+.wp-d { color: #c9a84c; font-weight: 600; font-family: 'Consolas', monospace; }
+.wp-t { color: #a89b8c; }
+.wp-e { color: #8a7a6a; font-size: 0.75rem; }
+
+/* ---- 法术施法能力条 ---- */
+.spell-cast-bar {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+.scb-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 10px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 4px;
+    min-width: 0;
+}
+.scb-label {
+    font-size: 0.6rem;
+    color: #6a5e4e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.scb-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #f0e6d3;
+}
+.scb-note {
+    font-size: 0.65rem;
+    color: #8a7a6a;
+    font-style: italic;
+    padding: 2px 8px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* ---- 法术列表 ---- */
+.spell-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.sl-cat {
+    border: none;
+}
+.sl-cat-hd {
+    padding: 4px 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #c9a84c;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+.sl-cat-c {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 6px;
+    background: rgba(201,168,76,0.12);
+    border-radius: 8px;
+    font-size: 0.65rem;
+    color: #c9a84c;
+}
+.sl-item {
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+.sl-item:last-child {
+    border-bottom: none;
+}
+.sl-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+.sl-row:hover {
+    background: rgba(255,255,255,0.02);
+    border-radius: 3px;
+}
+.sl-prep {
+    cursor: pointer;
+    color: #6a5e4e;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    user-select: none;
+    transition: color 0.15s;
+}
+.sl-prep:hover {
+    color: #c9a84c;
+}
+.sl-prep.checked {
+    color: #4caf50;
+}
+.sl-name {
+    color: #f0e6d3;
+    font-weight: 500;
+    min-width: 70px;
+}
+.sl-comp {
+    color: #6a5e4e;
+    font-size: 0.65rem;
+    min-width: 26px;
+    font-family: 'Consolas', monospace;
+}
+.sl-time {
+    color: #8a7a6a;
+    font-size: 0.65rem;
+    min-width: 36px;
+}
+.sl-tag {
+    font-size: 0.55rem;
+    padding: 0 5px;
+    border-radius: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.4;
+}
+.sl-tag-c {
+    color: #ff9800;
+    background: rgba(255,152,0,0.08);
+    border: 1px solid rgba(255,152,0,0.15);
+}
+.sl-tag-r {
+    color: #6496ff;
+    background: rgba(100,150,255,0.08);
+    border: 1px solid rgba(100,150,255,0.15);
+}
+.sl-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #6a5e4e;
+    font-size: 0.65rem;
+    cursor: pointer;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: inherit;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+.sl-btn:hover {
+    color: #c9a84c;
+    background: rgba(201,168,76,0.08);
+}
+.sl-detail {
+    display: none;
+}
+.sl-detail-inner {
+    padding: 6px 8px 8px 24px;
+    font-size: 0.75rem;
+    color: #a89b8c;
+    line-height: 1.5;
+    background: rgba(0,0,0,0.05);
+    border-radius: 3px;
+    margin: 0 8px 4px;
+}
+
+/* ---- 物品·货币 ---- */
+.inv-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.inv-equip {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+.inv-tag {
+    font-size: 0.78rem;
+    color: #a89b8c;
+    padding: 2px 8px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+.inv-q {
+    color: #6a5e4e;
+    font-weight: 600;
+}
+.inv-coin {
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: flex-end;
+}
+.coin-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.08);
+}
+.coin-pp { color: #b0c4de; }
+.coin-gp { color: #c9a84c; }
+.coin-ep { color: #d4c5a9; }
+.coin-sp { color: #a8a8a8; }
+.coin-cp { color: #b87333; }
+
+/* ---- 特性·专长 ---- */
+.feat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.feat-item {
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.feat-item:last-child {
+    border-bottom: none;
+}
+.feat-n {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #f0e6d3;
+    margin-bottom: 1px;
+}
+.feat-n::before {
+    content: '◆ ';
+    color: #c9a84c;
+    font-size: 0.55rem;
+}
+.feat-src {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: #6a5e4e;
+    background: rgba(255,255,255,0.04);
+    padding: 0 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.feat-d {
+    font-size: 0.75rem;
+    color: #a89b8c;
+    line-height: 1.5;
+    padding-left: 12px;
+}
+.feat-d table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 0.8rem;
+}
+.feat-d table th,
+.feat-d table td {
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 4px 10px;
+    text-align: left;
+}
+.feat-d table th {
+    background: rgba(201,168,76,0.1);
+    color: #f0e6d3;
+    font-weight: 600;
+}
+.feat-prof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-left: 12px;
+    margin-top: 4px;
+}
+.feat-prof-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: #c9a84c;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ---- 法术详情卡片（角色卡内） ---- */
+.sd-card {
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 6px;
+    margin: 4px 0;
+}
+.sd-header {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sd-header-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    margin-bottom: 2px;
+}
+.sd-header-en {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: #6a5e4e;
+}
+.sd-header-level {
+    font-size: 0.7rem;
+    color: #c9a84c;
+    letter-spacing: 0.5px;
+}
+.sd-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 12px;
+    margin-bottom: 10px;
+    padding: 6px 8px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.sd-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0;
+}
+.sd-meta-label {
+    font-size: 0.6rem;
+    color: #6a5e4e;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+.sd-meta-value {
+    font-size: 0.7rem;
+    color: #f0e6d3;
+    font-weight: 500;
+    text-align: right;
+}
+.sd-mat-desc {
+    color: #8a7a6a;
+    font-weight: 400;
+}
+.sd-desc {
+    font-size: 0.75rem;
+    color: #a89b8c;
+    line-height: 1.7;
+}
+
+/* ---- 角色卡导出按钮 ---- */
+.sheet-export {
+    text-align: center;
+    padding: 20px 0 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 20px;
+}
+.sheet-export-btn {
+    background: #c9a84c;
+    color: #1a1a1a;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.sheet-export-btn:hover {
+    background: #dbbf5a;
+}
+.sheet-export-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.75rem;
+    color: #6a5e4e;
+}

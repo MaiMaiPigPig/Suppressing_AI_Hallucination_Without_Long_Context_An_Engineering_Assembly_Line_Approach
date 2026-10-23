@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "full_level",
+    "label": "施法属性调整值 + 职业等级",
+    "template": "{ability}调整值 + {class}等级"
+  },
+  {
+    "id": 2,
+    "name": "half_level",
+    "label": "施法属性调整值 + 职业等级的一半",
+    "template": "{ability}调整值 + {class}等级的一半"
+  }
+]

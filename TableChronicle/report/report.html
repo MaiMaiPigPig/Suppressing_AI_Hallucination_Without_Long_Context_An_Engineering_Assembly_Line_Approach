@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纠错反馈 · 故事助手</title>
+    <link rel="stylesheet" href="report/report.css">
+    <script src="report/report.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部装饰线 -->
+        <div class="top-ornament"></div>
+
+        <!-- 标题区 -->
+        <header class="header">
+            <a href="/" class="back-home-btn" aria-label="返回首页">
+                <span class="arrow-icon">←</span>
+            </a>
+            <div class="logo-icon">📝</div>
+            <h1>纠错反馈</h1>
+            <p class="tagline">告诉我们哪里出了问题，我们会尽快修复</p>
+        </header>
+
+        <!-- 主卡片 -->
+        <main class="main-card">
+            <!-- 错误内容输入区 -->
+            <div class="error-input-area">
+                <label for="errorInput" class="input-label">错误描述</label>
+                <textarea id="errorInput" class="error-textarea" placeholder="请详细描述你遇到的问题… 比如：掷骰结果不准确、页面卡顿、文字错误等"></textarea>
+            </div>
+
+            <!-- 规则版本（固定为 dnd5r） -->
+            <div class="rule-selector">
+                <label for="ruleSelect">📖 规则版本</label>
+                <select id="ruleSelect" class="rule-dropdown" disabled>
+                    <option value="dnd5r" selected>D&D 5R</option>
+                </select>
+            </div>
+
+            <!-- 确定按钮（占位，无功能） -->
+            <button id="submitBtn" class="btn btn-submit">
+                <span class="btn-icon">✅</span>
+                提交反馈
+            </button>
+
+            <!-- 装饰性提示 -->
+            <div class="hint">
+                <span>📌 感谢你的反馈，我们会认真对待每一条建议</span>
+            </div>
+        </main>
+
+        <!-- 我的反馈列表 -->
+        <section class="report-list-section">
+            <div class="report-list-header">
+                <h3>📋 我的反馈记录</h3>
+                <span class="report-count" id="reportCount">0 条</span>
+            </div>
+            <div class="report-list" id="reportList">
+                <!-- 由 JS 动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer class="footer">
+            <p>© 2026 故事助手 · 你的反馈让工具更好用</p>
+            <p><a href="/" class="back-link">← 返回首页</a></p>
+        </footer>
+
+        <!-- 底部装饰线 -->
+        <div class="bottom-ornament"></div>
+    </div>
+</body>
+</html>

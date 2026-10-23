@@ -1,0 +1,404 @@
+/* ===== 基础属性（步骤7） ===== */
+
+.ability-step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+
+.ability-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-shrink: 0;
+}
+.ability-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ability-header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ability-header h2 {
+    color: #f0e6d3;
+    font-size: 1.3rem;
+}
+.ability-body {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.ability-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.ability-tab {
+    padding: 8px 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    color: #a89b8c;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+.ability-tab:hover {
+    background: rgba(255,255,255,0.1);
+    color: #f0e6d3;
+}
+.ability-tab.active {
+    background: #c9a84c;
+    color: #1a1a1a;
+    border-color: #c9a84c;
+}
+
+.ability-controls {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.ability-control-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.ability-control-row label {
+    color: #a89b8c;
+    font-size: 0.9rem;
+}
+
+.ability-input-num {
+    width: 70px;
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: #f0e6d3;
+    font-size: 0.9rem;
+    text-align: center;
+    font-family: inherit;
+}
+.ability-input-num:focus {
+    outline: none;
+    border-color: #c9a84c;
+}
+
+.ability-sets {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.ability-set {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: all 0.3s;
+}
+.ability-set.selected {
+    border-color: #4caf50;
+    background: rgba(76,175,80,0.1);
+}
+.ability-set-label {
+    color: #c9a84c;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 60px;
+}
+.ability-set-values {
+    color: #f0e6d3;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1rem;
+    flex: 1;
+}
+.ability-set-check {
+    color: #4caf50;
+    font-size: 0.9rem;
+}
+
+.ability-divider {
+    height: 1px;
+    background: rgba(201,168,76,0.2);
+    margin: 16px 0;
+}
+
+.ability-pool {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+.ability-pool-label {
+    color: #a89b8c;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+.ability-pool-numbers {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.ability-pool-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 2px solid rgba(201,168,76,0.3);
+    color: #f0e6d3;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+.ability-pool-num:hover {
+    background: rgba(201,168,76,0.25);
+    border-color: #c9a84c;
+    transform: translateY(-2px);
+}
+.ability-pool-num.selected {
+    background: #c9a84c;
+    color: #1a1a1a;
+    border-color: #c9a84c;
+    box-shadow: 0 0 16px rgba(201,168,76,0.4);
+}
+.ability-pool-num.used {
+    opacity: 0.2;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.ability-assignments {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ability-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+
+.ability-label {
+    color: #f0e6d3;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-width: 60px;
+}
+
+.ability-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 44px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 2px dashed rgba(255,255,255,0.15);
+    color: #666;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+.ability-slot:hover {
+    border-color: rgba(201,168,76,0.5);
+    background: rgba(201,168,76,0.1);
+}
+.ability-slot.filled {
+    border-style: solid;
+    border-color: #c9a84c;
+    background: rgba(201,168,76,0.15);
+    color: #f0e6d3;
+}
+
+.ability-mod {
+    min-width: 36px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+.ability-mod.positive { color: #4caf50; }
+.ability-mod.negative { color: #f44336; }
+
+.ability-race-bonus {
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    color: #a89b8c;
+    font-size: 0.85rem;
+}
+
+/* ===== 购点模式 ===== */
+.ability-points-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.ability-points-remaining {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #a89b8c;
+    padding: 12px 20px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    flex: 1;
+}
+.ability-points-remaining span {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #f0e6d3;
+}
+.ability-points-remaining span.over { color: #f44336; }
+.ability-points-remaining span.zero { color: #4caf50; }
+
+.ability-point-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ability-point-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(255,255,255,0.05);
+    color: #f0e6d3;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.ability-point-btn:hover:not(:disabled) {
+    background: rgba(201,168,76,0.2);
+    border-color: #c9a84c;
+}
+.ability-point-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.ability-point-value {
+    min-width: 32px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+.ability-point-cost {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+.ability-cost-table {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 16px;
+}
+.ability-cost-title {
+    color: #c9a84c;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.ability-cost-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.ability-cost-row {
+    display: grid;
+    grid-template-columns: 50px repeat(8, 1fr);
+    gap: 4px;
+}
+.ability-cost-row span {
+    text-align: center;
+    padding: 4px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+}
+.ability-cost-row:first-child span {
+    color: #f0e6d3;
+    font-weight: 600;
+}
+.ability-cost-row:last-child span {
+    color: #a89b8c;
+}
+.ability-cost-row span:first-child {
+    color: #c9a84c;
+    font-weight: 600;
+}
+
+/* ===== 解绑开关 ===== */
+.unbind-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.85rem;
+    color: #a89b8c;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.3s;
+    font-family: inherit;
+}
+.unbind-toggle:hover {
+    background: rgba(255,255,255,0.1);
+    color: #f0e6d3;
+}
+.unbind-toggle.active {
+    background: rgba(201,168,76,0.15);
+    border-color: #c9a84c;
+    color: #c9a84c;
+}
+.unbind-icon {
+    font-size: 0.9rem;
+}
+.unbind-hint {
+    font-size: 0.75rem;
+    color: #8a7a6a;
+    font-style: italic;
+    margin-left: 8px;
+}
+.skill-unbind {
+    margin-bottom: 10px;
+}

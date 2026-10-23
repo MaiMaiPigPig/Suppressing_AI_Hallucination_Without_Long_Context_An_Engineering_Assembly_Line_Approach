@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DND 5R · 升级系统</title>
+    <base href="/character/dnd_5r/upgrade/">
+    <!-- 共享车卡的样式 -->
+    <link rel="stylesheet" href="../creation/styles/base.css">
+    <link rel="stylesheet" href="../creation/styles/race.css">
+    <link rel="stylesheet" href="../creation/styles/ability.css">
+    <link rel="stylesheet" href="../creation/styles/skill.css">
+    <link rel="stylesheet" href="../creation/styles/bonus.css">
+    <link rel="stylesheet" href="../creation/styles/feat.css">
+    <link rel="stylesheet" href="../creation/styles/shop.css">
+    <link rel="stylesheet" href="../creation/styles/details.css">
+    <link rel="stylesheet" href="../creation/styles/spell.css">
+    <link rel="stylesheet" href="../creation/styles/sheet.css">
+    <!-- 升级专用样式 -->
+    <link rel="stylesheet" href="upgrade.css">
+    <style>
+        .upgrade-progress .step-label { font-size: 0.75rem; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <!-- 升级模块入口（ES Module） -->
+    <!-- handlers/ 模块由 level-select.js import 链自动加载，无需显式 script 标签 -->
+    <script type="module" src="upgrade.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== 顶部导航 ===== -->
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <a id="backToCharBtn" class="nav-back" href="javascript:void(0)" onclick="goBackToCharacter()">← 返回角色</a>
+                <a href="/character" class="nav-back" style="margin-left:12px;">← 返回规则选择</a>
+            </div>
+            <span class="nav-title">DND 5R · 升级系统</span>
+            <div class="nav-actions">
+                <button id="resetBtn" class="btn btn-secondary">↺ 重置</button>
+            </div>
+        </nav>
+
+        <!-- ===== 升级进度条 ===== -->
+        <div class="step-progress upgrade-progress" id="stepProgress">
+            <div class="step-item active" data-step="0" data-default-label="导入角色" onclick="goToStep(0)">
+                <span class="step-num">1</span>
+                <span class="step-label">导入角色</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="1" data-default-label="升级概览" onclick="goToStep(1)">
+                <span class="step-num">2</span>
+                <span class="step-label">升级概览</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="2" data-default-label="子职选择" onclick="goToStep(2)">
+                <span class="step-num">3</span>
+                <span class="step-label">子职选择</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="3" data-default-label="新增特性" onclick="goToStep(3)">
+                <span class="step-num">4</span>
+                <span class="step-label">新增特性</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="4" data-default-label="选择确认" onclick="goToStep(4)">
+                <span class="step-num">5</span>
+                <span class="step-label">选择确认</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="5" data-default-label="角色详情" onclick="goToStep(5)">
+                <span class="step-num">6</span>
+                <span class="step-label">角色详情</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="6" data-default-label="保存导出" onclick="goToStep(6)">
+                <span class="step-num">7</span>
+                <span class="step-label">保存导出</span>
+            </div>
+        </div>
+
+        <!-- ===== 步骤内容容器 ===== -->
+        <div class="step-content" id="stepContent">
+            <!-- 由 JS 动态渲染 -->
+        </div>
+
+        <!-- ===== 底部按钮 ===== -->
+        <div class="step-footer">
+            <button id="prevBtn" class="btn btn-secondary" onclick="prevStep()" style="visibility: hidden;">← 上一步</button>
+            <div class="step-footer-center">
+                <span id="stepIndicator" class="step-indicator">第 1 步，共 7 步</span>
+            </div>
+            <button id="nextBtn" class="btn btn-primary" onclick="nextStep()">下一步 →</button>
+        </div>
+    </div>
+
+    <!-- ===== 选择弹窗模态框 ===== -->
+    <div class="selection-modal-overlay" id="selectionModalOverlay" onclick="closeSelectionModal()" style="display:none;">
+        <div class="selection-modal" onclick="event.stopPropagation()">
+            <div class="selection-modal-header">
+                <h3 class="selection-modal-title" id="selectionModalTitle">请选择</h3>
+                <button class="selection-modal-close" onclick="closeSelectionModal()">✕</button>
+            </div>
+            <div class="selection-modal-body" id="selectionModalBody">
+                <!-- 由JS动态填充 -->
+            </div>
+            <div class="selection-modal-footer">
+                <div class="selection-modal-hint" id="selectionModalHint">已选：0 / 0</div>
+                <button class="btn btn-secondary" onclick="closeSelectionModal()">取消</button>
+                <button class="btn btn-primary" onclick="confirmSelectionModal()" id="selectionModalConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

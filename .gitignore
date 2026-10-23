@@ -20,8 +20,5 @@ Desktop.ini
 *.tmp
 node_modules
 
-# 仓库1（应用工程独立仓库，不进仓库2）
-TableChronicle/
-
 # 旧仓库（卡C 将删除，不进仓库2）
 .git_old/

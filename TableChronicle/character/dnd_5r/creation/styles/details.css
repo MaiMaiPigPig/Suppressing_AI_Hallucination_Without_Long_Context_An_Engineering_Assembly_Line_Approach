@@ -1,0 +1,144 @@
+/* ===== 角色详情（步骤12） ===== */
+
+.details-step {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+.details-desc {
+    color: #a89b8c;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.details-row {
+    display: flex;
+    gap: 16px;
+}
+.details-row .details-field {
+    flex: 1;
+}
+.details-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.details-field-full {
+    margin-top: 0;
+}
+.details-label {
+    color: #a89b8c;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.details-required {
+    color: #e74c3c;
+}
+.details-input {
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #f0e6d3;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.details-input:focus {
+    border-color: #c9a84c;
+    background: rgba(255,255,255,0.08);
+}
+.details-input::placeholder {
+    color: #555;
+}
+.details-input option {
+    background: #2a2a2a;
+    color: #f0e6d3;
+}
+.details-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: rgba(255,255,255,0.02);
+}
+.details-textarea {
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    color: #f0e6d3;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.5;
+    transition: border-color 0.2s;
+}
+.details-textarea:focus {
+    border-color: #c9a84c;
+    background: rgba(255,255,255,0.08);
+}
+.details-textarea::placeholder {
+    color: #555;
+}
+.details-textarea-lg {
+    min-height: 120px;
+}
+
+/* ===== 语言学者标签选择 ===== */
+.details-hint {
+    color: #888;
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin-left: 6px;
+}
+.language-tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+.language-tag {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    color: #c0b8a8;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+.language-tag:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.25);
+    color: #f0e6d3;
+}
+.language-tag.selected {
+    background: rgba(201,168,76,0.2);
+    border-color: #c9a84c;
+    color: #f0e6d3;
+}
+.language-tag.granted {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.06);
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.language-tag.granted:hover {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.06);
+    color: #666;
+}
+.language-counter {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}

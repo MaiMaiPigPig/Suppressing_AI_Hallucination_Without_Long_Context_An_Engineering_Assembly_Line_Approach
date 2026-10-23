@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📖 JS 学习沙盒 · 故事助手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'PingFang SC', system-ui, sans-serif;
+            background: #faf8f6;
+            color: #3b2a1f;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .study-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            background: #3b2a1f;
+            color: #f0ece4;
+            flex-shrink: 0;
+        }
+        .study-header h1 { font-size: 20px; font-weight: 600; }
+        .study-header h1 span { font-size: 24px; margin-right: 8px; }
+        .header-info { display: flex; gap: 12px; align-items: center; }
+        .btn {
+            padding: 6px 18px; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.08);
+            color: #d4c5b5; font-size: 13px;
+            cursor: pointer; transition: all 0.2s; font-family: inherit;
+        }
+        .btn:hover { background: rgba(255,255,255,0.18); color: #fff; }
+        .btn-run { background: #4a7a4a; color: #fff; border-color: #5a9a5a; }
+        .btn-run:hover { background: #5a9a5a; }
+        .btn-clear { background: rgba(180,80,80,0.3); color: #e0b0b0; border-color: rgba(180,80,80,0.3); }
+        .btn-clear:hover { background: rgba(180,80,80,0.5); }
+        .study-body { display: flex; height: calc(100vh - 56px); gap: 0; }
+        .study-sidebar {
+            width: 280px; min-width: 280px;
+            background: #fff; border-right: 2px solid #e8ddd0;
+            padding: 16px; overflow-y: auto;
+        }
+        .sidebar-section { margin-bottom: 20px; }
+        .sidebar-section h3 {
+            font-size: 14px; font-weight: 700; color: #3b2a1f;
+            margin-bottom: 10px; padding-bottom: 6px;
+            border-bottom: 2px solid #f0ece4;
+        }
+        .sidebar-section h3 .icon { margin-right: 6px; }
+        .ref-card {
+            background: #f8f5f0; border-radius: 8px; padding: 12px;
+            margin-bottom: 8px; border-left: 3px solid #c9a84c;
+            font-size: 13px; line-height: 1.6;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .ref-card:hover {
+            background: #f0ece4; transform: translateX(2px);
+        }
+        .ref-card .title { font-weight: 600; color: #3b2a1f; }
+        .ref-card .desc { color: #7a6a5a; font-size: 12px; margin-top: 4px; }
+        .ref-card .code {
+            display: block; background: #3b2a1f; color: #e8ddd0;
+            padding: 6px 10px; border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px; margin-top: 6px;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        .study-main { flex: 1; display: flex; flex-direction: column; padding: 16px 20px; overflow: hidden; }
+        .editor-section { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+        .editor-section .label-bar {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 8px;
+        }
+        .editor-section .label-bar label { font-weight: 600; font-size: 14px; color: #3b2a1f; }
+        .editor-section .label-bar .hint { font-size: 12px; color: #9a8a7a; }
+        #codeEditor {
+            flex: 1; width: 100%; padding: 14px 16px;
+            border: 2px solid #e8ddd0; border-radius: 10px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px; line-height: 1.7;
+            resize: none; outline: none;
+            background: #1e1e1e; color: #d4d4d4; tab-size: 4;
+        }
+        #codeEditor:focus { border-color: #c9a84c; box-shadow: 0 0 0 3px rgba(201,168,76,0.15); }
+        .output-section {
+            height: 160px; min-height: 120px; margin-top: 12px;
+            border: 2px solid #e8ddd0; border-radius: 10px;
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        .output-header {
+            display: flex; justify-content: space-between;
+            align-items: center; padding: 6px 14px;
+            background: #f5f0eb; border-bottom: 1px solid #e8ddd0;
+            font-size: 13px; font-weight: 600; color: #5a4a3a;
+        }
+        #outputArea {
+            flex: 1; padding: 10px 14px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px; line-height: 1.6;
+            overflow-y: auto; background: #fff;
+            white-space: pre-wrap; word-break: break-all;
+        }
+        #outputArea .log-item { padding: 2px 0; }
+        #outputArea .log-item.error { color: #c04040; }
+        #outputArea .log-item.success { color: #3a7a3a; }
+        #outputArea .log-item.info { color: #3a6a8a; }
+        .example-select {
+            padding: 6px 12px; border: 1px solid #e8ddd0;
+            border-radius: 8px; font-size: 13px; font-family: inherit;
+            background: #fff; color: #3b2a1f; outline: none; cursor: pointer;
+        }
+        .example-select:focus { border-color: #c9a84c; }
+
+        /* ===== 引用表查询工具 ===== */
+        .ref-query-panel {
+            margin-bottom: 10px;
+            border: 2px solid #e8ddd0;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+        }
+        .ref-query-panel summary {
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #3b2a1f;
+            cursor: pointer;
+            background: #f8f5f0;
+            user-select: none;
+        }
+        .ref-query-panel summary:hover { background: #f0ece4; }
+        .ref-query-panel[open] summary { border-bottom: 1px solid #e8ddd0; }
+        .ref-query-body {
+            padding: 12px 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .ref-query-body .input-group {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .ref-query-body .input-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #5a4a3a;
+        }
+        .ref-query-body .input-group input {
+            width: 100px;
+            padding: 5px 10px;
+            border: 2px solid #e8ddd0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Consolas', monospace;
+            outline: none;
+        }
+        .ref-query-body .input-group input:focus { border-color: #c9a84c; }
+        .ref-query-body .btn-query {
+            padding: 5px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #c9a84c;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .ref-query-body .btn-query:hover { background: #b8973c; }
+        .ref-query-body .hint-text {
+            font-size: 12px;
+            color: #9a8a7a;
+            line-height: 1.4;
+        }
+        #refQueryResults {
+            width: 100%;
+            padding: 10px 12px;
+            background: #f8f5f0;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+        #refQueryResults .entry-card {
+            background: #fff;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #c9a84c;
+        }
+        #refQueryResults .entry-card .label { color: #7a6a5a; }
+        #refQueryResults .entry-card .val { color: #3b2a1f; font-weight: 600; }
+        #refQueryResults .entry-card .json-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 8px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+        #refQueryResults .entry-card .parse-result {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #e8ddd0;
+        }
+        #refQueryResults .entry-card .parse-result .label { color: #4a7a4a; }
+        #refQueryResults .no-result { color: #9a8a7a; font-style: italic; }
+        #refQueryResults .error-result { color: #c04040; }
+
+        /* ===== 引用表模拟表单 ===== */
+        .ref-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .ref-form .field-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .ref-form .field-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #5a4a3a;
+            white-space: nowrap;
+        }
+        .ref-form .field-group input,
+        .ref-form .field-group select {
+            padding: 4px 8px;
+            border: 2px solid #e8ddd0;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: 'Consolas', monospace;
+            outline: none;
+            background: #fff;
+        }
+        .ref-form .field-group input:focus,
+        .ref-form .field-group select:focus {
+            border-color: #c9a84c;
+        }
+        .ref-form .field-group input[type=number] { width: 60px; }
+        .ref-form .field-group input.small { width: 70px; }
+        .ref-form .field-group input.medium { width: 120px; }
+        .ref-form .field-group input.large { width: 200px; }
+        .ref-form .field-group select { width: 90px; }
+        .ref-form .btn-test {
+            padding: 4px 14px;
+            border: none;
+            border-radius: 5px;
+            background: #4a7a4a;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .ref-form .btn-test:hover { background: #5a9a5a; }
+        .ref-form .btn-load {
+            padding: 4px 10px;
+            border: 1px solid #e8ddd0;
+            border-radius: 5px;
+            background: #f8f5f0;
+            color: #5a4a3a;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .ref-form .btn-load:hover { background: #f0ece4; }
+        #simulateResults {
+            width: 100%;
+            margin-top: 6px;
+            padding: 8px 10px;
+            background: #f8f5f0;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+        }
+        #simulateResults .row { padding: 2px 0; }
+        #simulateResults .label { color: #7a6a5a; }
+        #simulateResults .val { color: #3b2a1f; font-weight: 600; }
+        #simulateResults .json-block {
+            background: #1e1e1e; color: #d4d4d4;
+            padding: 6px 8px; border-radius: 4px;
+            font-size: 12px; margin-top: 4px; white-space: pre-wrap;
+        }
+        #simulateResults .good { color: #3a7a3a; font-weight: 600; }
+        #simulateResults .bad { color: #c04040; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 顶栏 ===== -->
+    <header class="study-header">
+        <h1><span>📖</span>JS 学习沙盒</h1>
+        <div class="header-info">
+            <select class="example-select" id="exampleSelect">
+                <option value="">— 选择示例 —</option>
+                <optgroup label="📘 JS 基础语法">
+                    <option value="hello">变量与输出</option>
+                    <option value="function">函数是什么</option>
+                    <option value="array">数组与循环</option>
+                    <option value="object">对象（JSON）</option>
+                    <option value="ifelse">条件判断</option>
+                </optgroup>
+                <optgroup label="&#9881;&#65039; Handlers 解析引擎">
+                    <option value="parseRule">parseRule() 解析规则</option>
+                    <option value="filterRule">filter 过滤规则</option>
+                    <option value="linkRule">表达式解析</option>
+                    <option value="chooseRule">choose 选择规则</option>
+                </optgroup>
+                <optgroup label="&#128194; 项目数据探索">
+                    <option value="dataCache">查看 dataCache 数据</option>
+                    <option value="character">查看 character 对象</option>
+                </optgroup>
+            </select>
+            <button class="btn btn-run" id="runBtn">&#9654; 运行</button>
+            <button class="btn btn-clear" id="clearBtn">&#128465; 清空</button>
+        </div>
+    </header>
+
+    <!-- ===== 主体 ===== -->
+    <div class="study-body">
+
+        <!-- ===== 左侧：参考卡片 ===== -->
+        <aside class="study-sidebar">
+            <div class="sidebar-section">
+                <h3><span class="icon">&#128218;</span>JS 速查表</h3>
+
+                <div class="ref-card" data-snippet-id="var">
+                    <div class="title">&#128204; 变量声明</div>
+                    <div class="desc"><code>let</code> = 可变值，<code>const</code> = 不可变值</div>
+                    <code class="code">let name = "法师";<br>const LEVEL = 5;</code>
+                </div>
+
+                <div class="ref-card" data-snippet-id="func">
+                    <div class="title">&#128204; 函数</div>
+                    <div class="desc"><code>function</code> 或 <code>=&gt;</code> 箭头函数</div>
+                    <code class="code">function add(a, b) { return a + b; }<br>const add2 = (a,b) =&gt; a + b;</code>
+                </div>
+
+                <div class="ref-card" data-snippet-id="arr">
+                    <div class="title">&#128204; 数组</div>
+                    <div class="desc"><code>push</code>、<code>forEach</code>、<code>map</code>、<code>filter</code></div>
+                    <code class="code">let items = ["剑","盾","法杖"];<br>items.push("弓");<br>items.forEach(i =&gt; console.log(i));</code>
+                </div>
+
+                <div class="ref-card" data-snippet-id="obj">
+                    <div class="title">&#128204; 对象</div>
+                    <div class="desc"><code>{ key: value }</code> 就像数据库里的一条记录</div>
+                    <code class="code">let spell = { name:"火球术", level:3 };<br>console.log(spell.name);</code>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><span class="icon">&#128279;</span>Handlers 快速参考</h3>
+
+                <div class="ref-card" data-snippet-id="parseRuleRef">
+                    <div class="title">parseRule()</div>
+                    <div class="desc">入口函数，解析规则字符串</div>
+                    <code class="code">handlers.parseRule("skill+2")</code>
+                </div>
+
+                <div class="ref-card" data-snippet-id="processRef">
+                    <div class="title">processItemRules()</div>
+                    <div class="desc">自动扫描数据项的所有字段</div>
+                    <code class="code">handlers.processItemRules(item, char)</code>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><span class="icon">&#128161;</span>怎么看懂代码？</h3>
+
+                <div class="ref-card" style="border-left-color:#5a8ab5;">
+                    <div class="title">&#128269; 读懂一段代码的步骤</div>
+                    <div class="desc">
+                        1. 先看<strong>函数名</strong> -- 猜它干嘛的<br>
+                        2. 看<strong>参数</strong> -- 它需要什么数据<br>
+                        3. 看<strong>return</strong> -- 它返回什么<br>
+                        4. 看<strong>核心逻辑</strong> -- 中间做了什么<br>
+                        5. <strong>console.log()</strong> -- 把变量打印出来看
+                    </div>
+                </div>
+
+                <div class="ref-card" style="border-left-color:#5a8ab5;">
+                    <div class="title">&#10067; 遇到看不懂的写法</div>
+                    <div class="desc">
+                        - 把那段代码复制到<strong>右侧编辑器</strong><br>
+                        - 加几个 <code>console.log()</code><br>
+                        - 点"运行"看结果<br>
+                        - 动手改一改，看结果怎么变
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== 右侧：编辑器 ===== -->
+        <main class="study-main">
+            <div class="editor-section">
+                <div class="label-bar">
+                    <label>&#9998;&#65039; 在这里写 JS 代码</label>
+                    <span class="hint">按 <strong>Ctrl+Enter</strong> 运行</span>
+                </div>
+
+                <!-- ===== 引用表模拟工具 ===== -->
+                <details class="ref-query-panel" id="refQueryPanel">
+                    <summary>&#128279; 引用表模拟 &mdash; 填字段，模拟 link.parse() 解析</summary>
+                    <div class="ref-query-body">
+                        <div class="ref-form">
+                            <div class="field-group">
+                                <label>mode</label>
+                                <select id="simMode">
+                                    <option value="normal">normal</option>
+                                    <option value="filter">filter</option>
+                                    <option value="choose">choose</option>
+                                    <option value="special">special</option>
+                                </select>
+                            </div>
+                            <div class="field-group" id="simTypeGroup">
+                                <label>type</label>
+                                <input class="small" id="simType" value="id" placeholder="字段名">
+                            </div>
+                            <div class="field-group" id="simTargetGroup">
+                                <label>target_id</label>
+                                <input type="number" id="simTargetId" value="17">
+                            </div>
+                            <div class="field-group">
+                                <label>source_table</label>
+                                <input class="medium" id="simSourceTable" value="skills">
+                            </div>
+                            <div class="field-group">
+                                <label>count</label>
+                                <input type="number" id="simCount" value="1">
+                            </div>
+                            <div class="field-group">
+                                <label>complex_logic</label>
+                                <input class="large" id="simComplexLogic" placeholder="filter/choose/special 用">
+                            </div>
+                            <div class="field-group">
+                                <label>desc</label>
+                                <input class="large" id="simDesc" placeholder="描述">
+                            </div>
+                            <div class="field-group">
+                                <button class="btn-test" id="simulateBtn">&#9654; 测试解析</button>
+                            </div>
+                            <div class="field-group">
+                                <button class="btn-load" id="loadExampleBtn">&#128196; 示例</button>
+                            </div>
+                        </div>
+                        <div id="simulateResults"></div>
+                    </div>
+                </details>
+
+                <!-- ===== 专长测试面板 ===== -->
+                <details class="ref-query-panel" id="featTestPanel">
+                    <summary>&#9876;&#65039; 专长测试 &mdash; 选择专长，查看规则解析</summary>
+                    <div class="ref-query-body">
+                        <div class="ref-form">
+                            <div class="field-group" style="flex:1;min-width:200px;">
+                                <label>选择专长</label>
+                                <select id="featSelect" style="width:100%;padding:5px 8px;border:2px solid #e8ddd0;border-radius:5px;font-size:13px;font-family:inherit;outline:none;">
+                                    <option value="">— 请选择 —</option>
+                                </select>
+                            </div>
+                            <div class="field-group">
+                                <button class="btn-test" id="featTestBtn">&#9654; 测试解析</button>
+                            </div>
+                            <div class="field-group">
+                                <button class="btn-load" id="featLoadAllBtn">&#128196; 加载所有专长</button>
+                            </div>
+                        </div>
+                        <div class="hint-text" style="margin-top:4px;">选择一个专长，查看其 <code>code</code> 规则如何被解析器逐条解析</div>
+                        <div id="featTestResults" style="width:100%;display:none;">
+                            <div id="featTestHeader" style="margin-bottom:6px;"></div>
+                            <div id="featTestRules" style="margin-bottom:6px;"></div>
+                            <div id="featTestData" style="margin-top:4px;"></div>
+                        </div>
+                    </div>
+                </details>
+
+                <textarea id="codeEditor" spellcheck="false"></textarea>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <span>&#128228; 输出</span>
+                </div>
+                <div id="outputArea"></div>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+    // ============================================================
+    // JS 学习沙盒 - 核心逻辑
+    // ============================================================
+
+    // ----- 获取元素 -----
+    var editor = document.getElementById('codeEditor');
+    var outputArea = document.getElementById('outputArea');
+    var runBtn = document.getElementById('runBtn');
+    var clearBtn = document.getElementById('clearBtn');
+    var exampleSelect = document.getElementById('exampleSelect');
+
+    // ============================================================
+    // 代码片段数据（供左侧卡片点击插入用）
+    // 用数组 join 的方式，避免引号嵌套问题
+    // ============================================================
+    var SNIPPETS = {
+        // 变量声明
+        var: [
+            '// 变量',
+            'let name = "法师";',
+            'const LEVEL = 5;',
+            'var 旧写法 = "不建议用";'
+        ].join('\n'),
+
+        // 函数
+        func: [
+            '// 函数',
+            'function 函数名(参数) {',
+            '    return 参数 + 1;',
+            '}',
+            '',
+            '// 箭头函数（更简洁）',
+            'const 函数名2 = (参数) => 参数 + 1;'
+        ].join('\n'),
+
+        // 数组
+        arr: [
+            '// 数组',
+            'let arr = [1, 2, 3];',
+            'arr.push(4);       // 追加',
+            'arr.length;        // 长度',
+            'arr[0];            // 取第一个',
+            'arr.forEach(i => console.log(i));'
+        ].join('\n'),
+
+        // 对象
+        obj: [
+            '// 对象（JSON）',
+            'let obj = {',
+            '    name: "火球术",',
+            '    level: 3,',
+            '    damage: "8d6"',
+            '};',
+            'console.log(obj.name);   // 取属性',
+            'console.log(obj["level"]); // 另一种取法'
+        ].join('\n'),
+
+        // parseRule 参考
+        parseRuleRef: [
+            '// 解析规则字符串',
+            '// 格式: "技能ID+数量"',
+            'var result = handlers.parseRule("skill+2");',
+            'console.log("解析结果:", result);'
+        ].join('\n'),
+
+        // processItemRules 参考
+        processRef: [
+            '// processItemRules 自动扫描数据项',
+            '// 传入一个数据对象，自动找所有字段里的规则',
+            'var item = dataCache.races[0];',
+            'var results = handlers.processItemRules(item, character);',
+            'console.log("扫描结果:", results);'
+        ].join('\n')
+    };
+
+    // ============================================================
+    // 示例代码数据（供下拉菜单加载用）
+    // ============================================================
+    var EXAMPLES = {
+        // ---- 基础语法 ----
+        hello: [
+            '// ===== 变量与输出 =====',
+            '// let = 变量（值可以改）',
+            'let name = "灰鹰";',
+            'let level = 5;',
+            '',
+            '// const = 常量（值不能改）',
+            'const RACE = "精灵";',
+            '',
+            'console.log("角色名:", name);',
+            'console.log("等级:", level);',
+            'console.log("种族:", RACE);',
+            '',
+            '// 字符串拼接',
+            'console.log(name + " 是 " + RACE + "，等级 " + level);'
+        ].join('\n'),
+
+        function: [
+            '// ===== 函数 =====',
+            '// 函数 = 把一段代码包起来，取个名字，反复用',
+            '',
+            '// 传统函数',
+            'function 掷骰子(面数) {',
+            '    return Math.floor(Math.random() * 面数) + 1;',
+            '}',
+            '',
+            '// 箭头函数（更简洁）',
+            'const 掷多次 = (次数, 面数) => {',
+            '    let 结果 = [];',
+            '    for (let i = 0; i < 次数; i++) {',
+            '        结果.push(掷骰子(面数));',
+            '    }',
+            '    return 结果;',
+            '};',
+            '',
+            'console.log("掷一次 d20:", 掷骰子(20));',
+            'console.log("掷 4 次 d6:", 掷多次(4, 6));'
+        ].join('\n'),
+
+        array: [
+            '// ===== 数组与循环 =====',
+            '// 数组 = 一串数据排排队',
+            '',
+            'let 背包 = ["长剑", "木盾", "治疗药水", "火把"];',
+            '',
+            '// 取数据',
+            'console.log("第一个物品:", 背包[0]);   // 下标从 0 开始',
+            'console.log("背包容量:", 背包.length);',
+            '',
+            '// forEach 循环（逐个处理）',
+            'console.log("--- 背包物品 ---");',
+            '背包.forEach(function(item, index) {',
+            '    console.log("槽位", index + 1 + ":", item);',
+            '});',
+            '',
+            '// 箭头函数写法',
+            'console.log("--- 简写 ---");',
+            '背包.forEach((item, i) => console.log(i + 1 + "." + item));',
+            '',
+            '// map = 把每个元素"映射"成新值',
+            'let 大写 = 背包.map(item => item.toUpperCase());',
+            'console.log("大写版:", 大写);',
+            '',
+            '// filter = 过滤',
+            'let 带剑的 = 背包.filter(item => item.includes("剑"));',
+            'console.log("带剑的:", 带剑的);'
+        ].join('\n'),
+
+        object: [
+            '// ===== 对象（JSON） =====',
+            '// 对象 = 把相关的数据捆在一起，用名字取',
+            '',
+            'let 火球术 = {',
+            '    name: "火球术",',
+            '    level: 3,',
+            '    school: "塑能",',
+            '    damage: "8d6"',
+            '};',
+            '',
+            '// 取属性',
+            'console.log("法术名:", 火球术.name);',
+            'console.log("环级:", 火球术.level);',
+            'console.log("伤害:", 火球术.damage);',
+            '',
+            '// 改属性',
+            '火球术.level = 4;',
+            'console.log("升环后:", 火球术.level);',
+            '',
+            '// 对象数组（数据表常见形式）',
+            'let 法术列表 = [',
+            '    { name: "魔法飞弹", level: 1, school: "塑能" },',
+            '    { name: "燃烧之手", level: 1, school: "塑能" },',
+            '    { name: "护盾术",   level: 1, school: "防护" }',
+            '];',
+            '',
+            '// 用 forEach 遍历',
+            'console.log("--- 一环法术 ---");',
+            '法术列表.forEach(s => console.log(s.name, s.school));',
+            '',
+            '// 用 filter 查找',
+            'let 防护法术 = 法术列表.filter(s => s.school === "防护");',
+            'console.log("防护法术:", 防护法术);'
+        ].join('\n'),
+
+        ifelse: [
+            '// ===== 条件判断 =====',
+            '// if = "如果...就..."',
+            '',
+            'let 等级 = 5;',
+            'let 职业 = "法师";',
+            '',
+            '// 基础判断',
+            'if (等级 >= 5) {',
+            '    console.log(职业, "已达到 5 级，可以学 3 环法术了");',
+            '} else {',
+            '    console.log(职业, "等级还不够");',
+            '}',
+            '',
+            '// 多重判断',
+            'if (等级 >= 17) {',
+            '    console.log("9环 -- 传奇法术！");',
+            '} else if (等级 >= 9) {',
+            '    console.log("5环法术，强力的中坚力量");',
+            '} else if (等级 >= 5) {',
+            '    console.log("3环法术，开始有威力了");',
+            '} else if (等级 >= 1) {',
+            '    console.log("1-2环，初出茅庐");',
+            '}',
+            '',
+            '// === 和 == 的区别',
+            'console.log("5 等于 5?", 5 == "5");    // true（宽松比较）',
+            'console.log("5 严格等于 5?", 5 === "5"); // false（严格比较）',
+            '// 永远用 ==='
+        ].join('\n'),
+
+        // ---- Handlers ----
+        parseRule: [
+            '// ===== parseRule() 解析规则 =====',
+            '// 这是 handlers 系统的入口函数',
+            '// 给一段规则字符串，它告诉你这是什么类型的规则',
+            '',
+            '// 先确保 handlers 已定义',
+            'if (typeof handlers !== "undefined" && handlers.parseRule) {',
+            '',
+            '    // 规则例子：技能+数量',
+            '    var r1 = handlers.parseRule("skill+2");',
+            '    console.log("规则 skill+2:");',
+            '    console.log("  类型:", r1.type);',
+            '    console.log("  成功:", r1.success);',
+            '    console.log("  需要用户选择:", r1.needUserSelect);',
+            '    console.log("  详情:", r1);',
+            '',
+            '    // 规则例子：带过滤条件的',
+            '    var r2 = handlers.parseRule("spell(lv=3)+1");',
+            '    console.log("规则 spell(lv=3)+1:");',
+            '    console.log("  类型:", r2.type);',
+            '    console.log("  详情:", r2);',
+            '',
+            '    // 规则例子：link 引用',
+            '    var r3 = handlers.parseRule("link(289)");',
+            '    console.log("规则 link(289):");',
+            '    console.log("  类型:", r3.type);',
+            '    console.log("  详情:", r3);',
+            '',
+            '} else {',
+            '    console.log("handlers 未加载，需要先打开车卡页面");',
+            '}'
+        ].join('\n'),
+
+        filterRule: [
+            '// ===== filter 过滤规则 =====',
+            '// filter 处理带过滤条件的规则',
+            '// 格式: "表名(条件1=值1,条件2=值2)+数量"',
+            '',
+            'if (typeof handlers !== "undefined" && handlers.filter) {',
+            '',
+            '    // 从职业中选法术：职业=4（法师），环级=0（戏法）',
+            '    var r1 = handlers.filter.parse("spell(class=4,lv=0)+2");',
+            '    console.log("戏法过滤结果:");',
+            '    console.log("  表达式:", r1.expression);',
+            '    console.log("  表名:", r1.table);',
+            '    console.log("  条件:", r1.filters);',
+            '    console.log("  数量:", r1.count);',
+            '',
+            '    // 从工具中选特定类型',
+            '    var r2 = handlers.filter.parse("tool(type=66)+3");',
+            '    console.log("工具过滤结果:");',
+            '    console.log("  表达式:", r2.expression);',
+            '    console.log("  表名:", r2.table);',
+            '    console.log("  条件:", r2.filters);',
+            '    console.log("  数量:", r2.count);',
+            '',
+            '} else {',
+            '    console.log("handlers.filter 未加载");',
+            '}'
+        ].join('\n'),
+
+        linkRule: [
+            '// ===== 自描述表达式解析 =====',
+            '// 不再使用 link(id) 引用表，规则直接以表达式形式写在数据中',
+            '// 例如: spells(class=12,school=7)+2 表示选2个防护学派法术',
+            '',
+            'if (typeof handlers !== "undefined" && handlers.parseRule) {',
+            '',
+            '    var rules = [',
+            '        "spell(class=12,school=7)+2",',
+            '        "skill+1",',
+            '        "tool+1"',
+            '    ];',
+            '',
+            '    rules.forEach(function(rule) {',
+            '        var result = handlers.parseRule(rule);',
+            '        console.log("表达式:", rule);',
+            '        console.log("  成功:", result.success);',
+            '        if (result.success) {',
+            '            console.log("  类型:", result.type);',
+            '            console.log("  数量:", result.count);',
+            '            console.log("  详情:", result.detail);',
+            '        } else {',
+            '            console.log("  信息:", result.message);',
+            '        }',
+            '    });',
+            '',
+            '} else {',
+            '    console.log("handlers.parseRule 未加载");',
+            '}'
+        ].join('\n'),
+
+        chooseRule: [
+            '// ===== choose 选择规则 =====',
+            '// choose(A,B)+N 表示从多个类别中选 N 个',
+            '',
+            'if (typeof handlers !== "undefined" && handlers.choose) {',
+            '',
+            '    // 从"技能"和"工具（类型66）"中选3个',
+            '    var r1 = handlers.choose.parse("choose(skill,tool(type=66))+3");',
+            '    console.log("choose 解析结果:");',
+            '    console.log("  原始规则:", r1.expression);',
+            '    console.log("  选项列表:", r1.choices);',
+            '    console.log("  可选数量:", r1.count);',
+            '',
+            '} else {',
+            '    console.log("handlers.choose 未加载");',
+            '}'
+        ].join('\n'),
+
+        // ---- 数据探索 ----
+        dataCache: [
+            '// ===== 查看 dataCache 数据 =====',
+            '// dataCache 存了所有JSON数据，是车卡的"数据库"',
+            '',
+            'if (typeof dataCache !== "undefined") {',
+            '',
+            '    console.log("=== dataCache 概览 ===");',
+            '',
+            '    // 遍历所有数据表，看各有多少条',
+            '    Object.keys(dataCache).forEach(function(key) {',
+            '        var data = dataCache[key];',
+            '        if (Array.isArray(data)) {',
+            '            console.log(key + ":", data.length, "条");',
+            '            if (data.length > 0) {',
+            '                console.log("  第一条:", JSON.stringify(data[0]).slice(0, 100));',
+            '            }',
+            '        } else {',
+            '            console.log(key + ": 非数组类型");',
+            '        }',
+            '    });',
+            '',
+            '} else {',
+            '    console.log("dataCache 未加载，需要先打开车卡页面");',
+            '}'
+        ].join('\n'),
+
+        character: [
+            '// ===== 查看 character 对象 =====',
+            '// character = 当前正在创建的角色数据',
+            '',
+            'if (typeof character !== "undefined") {',
+            '',
+            '    console.log("=== 当前角色 ===");',
+            '    console.log("角色名:", character.name || "(未设置)");',
+            '    console.log("等级:", character.level);',
+            '    console.log("种族:", character.race ? character.race.name : "(未选)");',
+            '    console.log("职业:", character.class ? character.class.name : "(未选)");',
+            '    console.log("背景:", character.background ? character.background.name : "(未选)");',
+            '',
+            '    // 查看全部属性',
+            '    console.log("--- 完整数据 ---");',
+            '    Object.keys(character).forEach(function(key) {',
+            '        var val = character[key];',
+            '        if (typeof val === "object" && val !== null) {',
+            '            console.log(key + ":", JSON.stringify(val).slice(0, 120));',
+            '        } else {',
+            '            console.log(key + ":", val);',
+            '        }',
+            '    });',
+            '',
+            '} else {',
+            '    console.log("character 未加载，需要先打开车卡页面");',
+            '}'
+        ].join('\n')
+    };
+
+    // ============================================================
+    // 初始化：显示默认代码
+    // ============================================================
+    editor.value = [
+        '// ============================================',
+        '// JS 学习沙盒',
+        '// ============================================',
+        '// 在下面写 JavaScript 代码，点击"运行"看结果',
+        '// 用 console.log() 在右侧输出区显示结果',
+        '// 左侧有速查卡和示例，点一下就能插入代码',
+        '// ============================================',
+        '',
+        '// 试试这段代码：',
+        'let message = "你好，跑团人！";',
+        'console.log(message);',
+        '',
+        '// 试试数组：',
+        'let 法术列表 = ["火球术", "魔法飞弹", "护盾术"];',
+        'console.log("法术数量:", 法术列表.length);',
+        'console.log("第一个法术:", 法术列表[0]);',
+        '',
+        '// 试试对象：',
+        'let 角色 = {',
+        '    name: "灰鹰",',
+        '    level: 5,',
+        '    cls: "法师"',
+        '};',
+        'console.log("角色信息:", 角色);'
+    ].join('\n');
+
+    // ============================================================
+    // 事件绑定（用 addEventListener 代替 onclick 属性）
+    // ============================================================
+
+    // 运行按钮
+    runBtn.addEventListener('click', runCode);
+
+    // 清空按钮
+    clearBtn.addEventListener('click', clearOutput);
+
+    // Ctrl+Enter
+    editor.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+            e.preventDefault();
+            runCode();
+        }
+    });
+
+    // 下拉菜单选示例
+    exampleSelect.addEventListener('change', function() {
+        var value = this.value;
+        if (!value) return;
+
+        var code = EXAMPLES[value];
+        if (code) {
+            editor.value = code;
+            // 自动运行
+            setTimeout(runCode, 100);
+        }
+
+        // 重置下拉框
+        this.value = '';
+    });
+
+    // 左侧卡片点击（事件委托）
+    document.querySelector('.study-sidebar').addEventListener('click', function(e) {
+        // 找被点击的卡片
+        var card = e.target.closest('.ref-card');
+        if (!card) return;
+
+        var snippetId = card.getAttribute('data-snippet-id');
+        if (!snippetId) return;
+
+        var code = SNIPPETS[snippetId];
+        if (code) {
+            insertSnippet(code);
+        }
+    });
+
+    // ============================================================
+    // 运行代码
+    // ============================================================
+    function runCode() {
+        var code = editor.value;
+        clearOutput();
+
+        // 捕获 console.log 的输出
+        var logs = [];
+        var originalLog = console.log;
+        var originalWarn = console.warn;
+        var originalError = console.error;
+
+        console.log = function() {
+            var args = Array.prototype.slice.call(arguments);
+            var text = args.map(formatValue).join(' ');
+            logs.push({ type: 'info', text: text });
+            originalLog.apply(console, args);
+        };
+        console.warn = function() {
+            var args = Array.prototype.slice.call(arguments);
+            var text = args.map(formatValue).join(' ');
+            logs.push({ type: 'warn', text: text });
+            originalWarn.apply(console, args);
+        };
+        console.error = function() {
+            var args = Array.prototype.slice.call(arguments);
+            var text = args.map(formatValue).join(' ');
+            logs.push({ type: 'error', text: text });
+            originalError.apply(console, args);
+        };
+
+        try {
+            var fn = new Function(code);
+            var result = fn();
+
+            if (result !== undefined && logs.length === 0) {
+                logs.push({ type: 'info', text: '-> ' + formatValue(result) });
+            }
+
+            if (logs.length === 0) {
+                logs.push({ type: 'info', text: '执行完毕（无输出，试试加 console.log()）' });
+            }
+        } catch (err) {
+            logs.push({ type: 'error', text: '错误: ' + err.message });
+            var stack = err.stack || '';
+            var lines = stack.split('\n');
+            if (lines.length > 1) {
+                logs.push({ type: 'error', text: '  at: ' + lines[1].trim() });
+            }
+        } finally {
+            console.log = originalLog;
+            console.warn = originalWarn;
+            console.error = originalError;
+        }
+
+        // 渲染输出
+        if (logs.length === 0) {
+            outputArea.innerHTML = '<div class="log-item info">执行完毕</div>';
+        } else {
+            var html = '';
+            for (var i = 0; i < logs.length; i++) {
+                var log = logs[i];
+                var cls = 'log-item';
+                if (log.type === 'error') cls += ' error';
+                else if (log.type === 'warn') cls += ' warn';
+                else cls += ' info';
+                html += '<div class="' + cls + '">' + escapeHtml(log.text) + '</div>';
+            }
+            outputArea.innerHTML = html;
+        }
+    }
+
+    // ============================================================
+    // 工具函数
+    // ============================================================
+
+    function formatValue(val) {
+        if (val === null) return 'null';
+        if (val === undefined) return 'undefined';
+        if (typeof val === 'string') return val;
+        if (typeof val === 'number' || typeof val === 'boolean') return String(val);
+        if (Array.isArray(val)) {
+            var items = [];
+            for (var i = 0; i < val.length; i++) {
+                items.push(formatValue(val[i]));
+            }
+            return '[' + items.join(', ') + ']';
+        }
+        if (typeof val === 'object') {
+            try { return JSON.stringify(val, null, 2); }
+            catch(e) { return String(val); }
+        }
+        return String(val);
+    }
+
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function clearOutput() {
+        outputArea.innerHTML = '';
+    }
+
+    function insertSnippet(code) {
+        var start = editor.selectionStart;
+        var end = editor.selectionEnd;
+        var before = editor.value.substring(0, start);
+        var after = editor.value.substring(end);
+        editor.value = before + code + after;
+        var newPos = start + code.length;
+        editor.setSelectionRange(newPos, newPos);
+        editor.focus();
+    }
+
+    // ============================================================
+    // 数据加载工具（读取 JSON 并查询实际数据）
+    // ============================================================
+    window._studyDataCache = window._studyDataCache || {};
+
+    function loadTableData(tableName) {
+        return new Promise(function(resolve, reject) {
+            if (window._studyDataCache[tableName]) {
+                resolve(window._studyDataCache[tableName]);
+                return;
+            }
+            var xhr = new XMLHttpRequest();
+            var url = '../../data/json/' + tableName + '.json';
+            xhr.open('GET', url, true);
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    try {
+                        var data = JSON.parse(xhr.responseText);
+                        window._studyDataCache[tableName] = data;
+                        resolve(data);
+                    } catch(e) {
+                        reject('JSON parse error: ' + e.message);
+                    }
+                } else {
+                    reject('cannot load ' + url + ' (status: ' + xhr.status + ')');
+                }
+            };
+            xhr.onerror = function() {
+                reject('network error: ' + url);
+            };
+            xhr.send();
+        });
+    }
+
+    function queryData(data, parseResult) {
+        var results = [];
+        if (parseResult.type === 'tableRef' && !parseResult.needUserSelect) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].id === parseResult.targetId) {
+                    results.push(data[i]);
+                    break;
+                }
+            }
+        } else if (parseResult.type === 'filter') {
+            var filters = parseFilters(parseResult.condition || '');
+            for (var i = 0; i < data.length; i++) {
+                if (matchFilters(data[i], filters)) {
+                    results.push(data[i]);
+                }
+            }
+        } else if (parseResult.type === 'choose') {
+            var ids = parseResult.targetIds || [];
+            for (var i = 0; i < data.length; i++) {
+                if (ids.indexOf(data[i].id) >= 0) {
+                    results.push(data[i]);
+                }
+            }
+        }
+        return results;
+    }
+
+    function parseFilters(s) {
+        var f = [];
+        if (!s) return f;
+        s.split(',').forEach(function(part) {
+            var kv = part.split('=');
+            if (kv.length === 2) {
+                var v = kv[1].trim();
+                f.push({ key: kv[0].trim(), value: isNaN(Number(v)) ? v : Number(v) });
+            }
+        });
+        return f;
+    }
+
+    function matchFilters(entry, filters) {
+        for (var i = 0; i < filters.length; i++) {
+            var f = filters[i];
+            var val = entry[f.key];
+            if (val === undefined || val === null) return false;
+            if (val != f.value) return false;
+        }
+        return true;
+    }
+
+    // ============================================================
+    // 引用表模拟工具
+    // ============================================================
+    var simMode = document.getElementById('simMode');
+    var simType = document.getElementById('simType');
+    var simTargetId = document.getElementById('simTargetId');
+    var simSourceTable = document.getElementById('simSourceTable');
+    var simCount = document.getElementById('simCount');
+    var simComplexLogic = document.getElementById('simComplexLogic');
+    var simDesc = document.getElementById('simDesc');
+    var simTypeGroup = document.getElementById('simTypeGroup');
+    var simTargetGroup = document.getElementById('simTargetGroup');
+    var simulateBtn = document.getElementById('simulateBtn');
+    var loadExampleBtn = document.getElementById('loadExampleBtn');
+    var simulateResults = document.getElementById('simulateResults');
+
+    // mode 切换：normal 才显示 type 和 target_id
+    simMode.addEventListener('change', function() {
+        var isNormal = this.value === 'normal';
+        simTypeGroup.style.display = isNormal ? '' : 'none';
+        simTargetGroup.style.display = isNormal ? '' : 'none';
+    });
+    simMode.dispatchEvent(new Event('change'));
+
+    // 测试解析
+    simulateBtn.addEventListener('click', simulateRefEntry);
+
+    // 示例按钮
+    loadExampleBtn.addEventListener('click', function() {
+        // 轮换不同的示例
+        var examples = [
+            { mode: 'normal', type: 'id',       target_id: 17,  source_table: 'skills', count: 1, complex_logic: '',            desc: '宗教（直接引用）' },
+            { mode: 'normal', type: 'type',     target_id: 66,  source_table: 'tools',  count: 1, complex_logic: '',            desc: '工匠工具（按类型）' },
+            { mode: 'filter', type: 'id',       target_id: 0,   source_table: 'spells', count: 2, complex_logic: 'class=3,lv=0', desc: '牧师戏法(选2个)' },
+            { mode: 'choose', type: 'id',       target_id: 0,   source_table: 'skills', count: 1, complex_logic: '21,22',       desc: '从洞悉/医药中选1个' },
+            { mode: 'special',type: 'id',       target_id: 0,   source_table: 'skills', count: 3, complex_logic: 'choose(skill,tool(type=66))', desc: '从技能和工匠工具中选3个' }
+        ];
+        var idx = parseInt(loadExampleBtn.getAttribute('data-example-idx') || '0', 10);
+        var ex = examples[idx % examples.length];
+        idx = (idx + 1) % examples.length;
+        loadExampleBtn.setAttribute('data-example-idx', String(idx));
+        loadExampleBtn.textContent = '\uD83D\uDCC4 示例' + (idx + 1) + '/' + examples.length;
+
+        simMode.value = ex.mode;
+        simMode.dispatchEvent(new Event('change'));
+        simType.value = ex.type;
+        simTargetId.value = ex.target_id;
+        simSourceTable.value = ex.source_table;
+        simCount.value = ex.count;
+        simComplexLogic.value = ex.complex_logic;
+        simDesc.value = ex.desc;
+
+        simulateRefEntry();
+    });
+    // 初始化示例按钮索引
+    loadExampleBtn.setAttribute('data-example-idx', '0');
+
+    function simulateRefEntry() {
+        var mode = simMode.value;
+        var type = simType.value;
+        var targetId = parseInt(simTargetId.value, 10) || 0;
+        var sourceTable = simSourceTable.value.trim();
+        var count = parseInt(simCount.value, 10) || 1;
+        var complexLogic = simComplexLogic.value.trim();
+        var desc = simDesc.value.trim();
+
+        // 构建一个模拟的引用表条目
+        var fakeEntry = { id: -1, source_table: sourceTable, mode: mode, target_id: targetId, count: count, complex_logic: complexLogic, desc: desc };
+        if (mode === 'normal') {
+            fakeEntry.type = type;
+        }
+
+        var html = '';
+
+        // 1. 显示输入摘要
+        html += '<div class="row"><span class="label">模拟条目：</span></div>';
+        html += '<div class="json-block">' + escapeHtml(JSON.stringify(fakeEntry, null, 2)) + '</div>';
+
+        // 2. 独立解析逻辑（不依赖 handlers）
+        var tableName = sourceTable.replace(/s$/, '');
+        if (sourceTable === 'spells') tableName = 'spell';
+        var filterTableName = tableName;
+
+        var parseResult = null;
+
+        // normal + type=id → 直接引用某条数据
+        if (mode === 'normal' && type === 'id') {
+            parseResult = {
+                type: 'tableRef',
+                tableName: tableName,
+                tableRealName: sourceTable,
+                targetId: targetId,
+                count: count,
+                success: true,
+                needUserSelect: false,
+                expression: tableName + '=' + targetId,
+                description: desc || '从 ' + sourceTable + ' 中引用 id=' + targetId + ' 的数据'
+            };
+        }
+
+        // normal + type=type → 按分类筛选
+        else if (mode === 'normal' && type === 'type') {
+            var typeRule = filterTableName + '(type=' + targetId + ')' + (count > 0 ? '+' + count : '');
+            parseResult = {
+                type: 'filter',
+                tableName: filterTableName,
+                condition: 'type=' + targetId,
+                count: count,
+                success: true,
+                needUserSelect: true,
+                expression: typeRule,
+                description: desc || '从 ' + sourceTable + ' 中选 type=' + targetId + ' 的项（选' + count + '个）'
+            };
+        }
+
+        // filter → 复杂条件筛选
+        else if (mode === 'filter') {
+            var filterRule = filterTableName + '(' + complexLogic + ')' + (count > 0 ? '+' + count : '');
+            parseResult = {
+                type: 'filter',
+                tableName: filterTableName,
+                condition: complexLogic,
+                count: count,
+                success: true,
+                needUserSelect: true,
+                expression: filterRule,
+                description: desc || '从 ' + sourceTable + ' 中筛选 ' + complexLogic + '（选' + count + '个）'
+            };
+        }
+
+        // choose → 从指定 ID 列表选
+        else if (mode === 'choose') {
+            var ids = complexLogic.split(',').map(function(s) { return parseInt(s.trim(), 10); }).filter(function(n) { return !isNaN(n); });
+            parseResult = {
+                type: 'choose',
+                tableName: tableName,
+                targetIds: ids,
+                count: count,
+                success: true,
+                needUserSelect: true,
+                expression: 'link(-1)',
+                description: desc || '从 ' + sourceTable + ' 的 [' + ids.join(',') + '] 中选' + count + '个'
+            };
+        }
+
+        // special → 特殊操作
+        else if (mode === 'special') {
+            var cl = complexLogic;
+            var specialDesc = '';
+            if (!cl) {
+                parseResult = { type: 'special', success: true, needUserSelect: false, message: 'complex_logic 为空，需要输入特殊指令', description: desc };
+            } else if (cl === 'all') {
+                parseResult = { type: 'special', action: 'all', success: true, needUserSelect: false, description: desc || '所有项熟练' };
+            } else if (cl.indexOf('choose(') === 0) {
+                parseResult = { type: 'choose', rule: cl + (count > 0 ? '+' + count : ''), success: true, needUserSelect: true, count: count, description: desc || '从多类中组合选择' };
+            } else if (cl === 'proficiency>pure') {
+                parseResult = { type: 'proficiency', success: true, needUserSelect: false, description: desc || '已有熟练升级为专精' };
+            } else if (cl === 'half-prof') {
+                parseResult = { type: 'half-prof', success: true, needUserSelect: false, halfProficiency: true, description: desc || '未熟练项获得一半熟练加值' };
+            } else if (cl === 'spell-level') {
+                parseResult = { type: 'spell-level', success: true, needUserSelect: true, linkId: -1, sourceTable: sourceTable || 'spells', filter: '', count: count, description: desc || '按法术位环阶选择法术' };
+            } else {
+                parseResult = { type: 'special', success: false, needUserSelect: false, message: '未识别的特殊类型: ' + cl, description: desc };
+            }
+        }
+
+        // 3. 显示结果
+        html += '<div class="row" style="margin-top:6px;"><span class="label">▶ 模拟解析结果：</span></div>';
+
+        if (parseResult) {
+            var isSuccess = parseResult.success;
+            html += '<div class="row"><span class="label">状态：</span><span class="' + (isSuccess ? 'good' : 'bad') + '">' + (isSuccess ? '✔ 成功' : '✘ 失败') + '</span></div>';
+            if (parseResult.description) {
+                html += '<div class="row"><span class="label">说明：</span>' + escapeHtml(parseResult.description) + '</div>';
+            }
+            if (parseResult.message) {
+                html += '<div class="row"><span class="label">消息：</span>' + escapeHtml(parseResult.message) + '</div>';
+            }
+            html += '<div class="json-block" style="border-left-color:' + (isSuccess ? '#3a7a3a' : '#c04040') + ';">' + escapeHtml(JSON.stringify(parseResult, null, 2)) + '</div>';
+        }
+
+        simulateResults.style.display = 'block';
+        simulateResults.innerHTML = html;
+        document.getElementById('refQueryPanel').open = true;
+
+        // 4. 加载实际数据（异步）
+        var shouldLoad = parseResult && parseResult.success && sourceTable &&
+            (parseResult.type === 'tableRef' || parseResult.type === 'filter' || parseResult.type === 'choose');
+
+        if (shouldLoad) {
+            var dataSectionId = 'ds-' + Date.now();
+            simulateResults.innerHTML += '<div class="data-section" id="' + dataSectionId + '"><div class="row"><span class="label">.. 正在加载 ' + sourceTable + '.json ...</span></div></div>';
+
+            loadTableData(sourceTable).then(function(data) {
+                var matched = queryData(data, parseResult);
+                var dh = '<div class="row" style="margin-top:6px;"><span class="label">.. 从 <strong>' + sourceTable + '.json</strong> 中查到 <strong>' + matched.length + '</strong> 条数据：</span></div>';
+                if (matched.length === 0) {
+                    dh += '<div class="no-result" style="padding:4px 0;">没有匹配的数据</div>';
+                } else {
+                    for (var i = 0; i < matched.length; i++) {
+                        dh += '<div class="data-entry"><div class="json-block" style="border-left-color:#5a8ab5;">' + escapeHtml(JSON.stringify(matched[i], null, 2)) + '</div></div>';
+                    }
+                }
+                var sec = document.getElementById(dataSectionId);
+                if (sec) sec.innerHTML = dh;
+            }, function(err) {
+                var sec = document.getElementById(dataSectionId);
+                if (sec) sec.innerHTML = '<div class="row"><span class="bad">.. 错误: ' + escapeHtml(err) + '</span></div>';
+            });
+        }
+    }
+
+    // ============================================================
+    // 专长测试面板
+    // ============================================================
+    var featSelect = document.getElementById('featSelect');
+    var featTestBtn = document.getElementById('featTestBtn');
+    var featLoadAllBtn = document.getElementById('featLoadAllBtn');
+    var featTestResults = document.getElementById('featTestResults');
+    var featTestHeader = document.getElementById('featTestHeader');
+    var featTestRules = document.getElementById('featTestRules');
+    var featTestData = document.getElementById('featTestData');
+    var _featDataCache = null; // 缓存已加载的专长数据
+    var featTestPanel = document.getElementById('featTestPanel');
+
+    // 加载所有专长填充下拉框
+    featLoadAllBtn.addEventListener('click', function() {
+        featLoadAllBtn.textContent = '⏳ 加载中...';
+        loadTableData('feats').then(function(feats) {
+            _featDataCache = feats;
+            featSelect.innerHTML = '<option value="">— 请选择 —</option>';
+            feats.forEach(function(f) {
+                var opt = document.createElement('option');
+                opt.value = f.id;
+                opt.textContent = '[' + f.id + '] ' + (f.name || '(无名称)');
+                featSelect.appendChild(opt);
+            });
+            featLoadAllBtn.textContent = '✅ 已加载 ' + feats.length + ' 个专长';
+            featTestPanel.open = true;
+        }, function(err) {
+            featLoadAllBtn.textContent = '❌ 加载失败';
+            appendFeatOutput('featTestData', '<div class="bad">加载 feats.json 失败: ' + escapeHtml(err) + '</div>');
+        });
+    });
+
+    // 测试当前选中的专长
+    featTestBtn.addEventListener('click', testFeat);
+    featSelect.addEventListener('change', function() {
+        if (this.value) testFeat();
+    });
+
+    function testFeat() {
+        var featId = parseInt(featSelect.value, 10);
+        if (!featId || !_featDataCache) {
+            appendFeatOutput('featTestHeader', '<div class="no-result">请先点击「加载所有专长」</div>');
+            featTestResults.style.display = 'block';
+            return;
+        }
+
+        var feat = null;
+        for (var i = 0; i < _featDataCache.length; i++) {
+            if (_featDataCache[i].id === featId) { feat = _featDataCache[i]; break; }
+        }
+        if (!feat) {
+            appendFeatOutput('featTestHeader', '<div class="bad">未找到专长 id=' + featId + '</div>');
+            featTestResults.style.display = 'block';
+            return;
+        }
+
+        featTestResults.style.display = 'block';
+        document.getElementById('featTestPanel').open = true;
+
+        // === 头部：专长基本信息 ===
+        var headerHtml = '';
+        headerHtml += '<div class="entry-card" style="margin-bottom:8px;">';
+        headerHtml += '<div><span class="label">名称：</span><span class="val">' + escapeHtml(feat.name || '(未命名)') + '</span></div>';
+        if (feat.desc) headerHtml += '<div style="margin-top:4px;color:#5a4a3a;font-size:13px;">' + escapeHtml(feat.desc) + '</div>';
+        headerHtml += '<div class="json-block" style="margin-top:6px;">' + escapeHtml(JSON.stringify(feat, null, 2)) + '</div>';
+        headerHtml += '</div>';
+        featTestHeader.innerHTML = headerHtml;
+
+        // === 规则解析 ===
+        var rulesHtml = '<div class="entry-card"><div class="label" style="margin-bottom:6px;">▶ code 字段解析</div>';
+
+        // 检查所有包含规则的字段
+        var ruleFields = [];
+        if (feat.code && String(feat.code).trim() !== '') {
+            ruleFields.push({ field: 'code', value: String(feat.code).trim() });
+        }
+        if (feat.rules && String(feat.rules).trim() !== '') {
+            ruleFields.push({ field: 'rules', value: String(feat.rules).trim() });
+        }
+        if (feat.attr && String(feat.attr).trim() !== '') {
+            ruleFields.push({ field: 'attr', value: String(feat.attr).trim() });
+        }
+        if (feat.prerequisite && String(feat.prerequisite).trim() !== '') {
+            ruleFields.push({ field: 'prerequisite', value: String(feat.prerequisite).trim() });
+        }
+
+        if (ruleFields.length === 0) {
+            rulesHtml += '<div class="no-result">此专长没有 code / rules / attr 规则字段</div>';
+            rulesHtml += '</div>';
+            featTestRules.innerHTML = rulesHtml;
+            featTestData.innerHTML = '';
+            return;
+        }
+
+        // 逐字段解析
+        var allRuleParts = [];
+        ruleFields.forEach(function(rf) {
+            var rawVal = rf.value;
+            rulesHtml += '<div style="margin-bottom:6px;padding:6px 10px;background:#3b2a1f;color:#e8ddd0;border-radius:4px;font-family:Consolas,monospace;font-size:14px;"><span style="color:#c9a84c;">' + escapeHtml(rf.field) + '</span> = ' + escapeHtml(rawVal) + '</div>';
+
+            // 按逗号（中英文逗号）拆分
+            var parts = rawVal.split(/[,，]+/).map(function(s) { return s.trim(); }).filter(function(s) { return s.length > 0; });
+            rulesHtml += '<div style="font-size:12px;color:#7a6a5a;margin-bottom:6px;">拆分出 ' + parts.length + ' 条规则：</div>';
+
+            // 解析每条规则
+            for (var ri = 0; ri < parts.length; ri++) {
+                var rule = parts[ri];
+                var parsed = parseFeatRule(rule);
+                allRuleParts.push(rule);
+                var borderColor = parsed.success ? '#4a7a4a' : '#c04040';
+                var statusIcon = parsed.success ? '✔' : '✘';
+                rulesHtml += '<div class="entry-card" style="border-left-color:' + borderColor + ';margin-bottom:6px;">';
+                rulesHtml += '<div style="font-weight:600;font-family:Consolas,monospace;font-size:14px;">' + statusIcon + ' ' + escapeHtml(rule) + '</div>';
+                rulesHtml += '<div style="margin-top:4px;font-size:13px;">';
+                if (parsed.success) {
+                    rulesHtml += '<div><span class="label">类型：</span><span class="val">' + escapeHtml(parsed.displayType || parsed.type) + '</span></div>';
+                    if (parsed.description) rulesHtml += '<div><span class="label">说明：</span>' + escapeHtml(parsed.description) + '</div>';
+                    if (parsed.needUserSelect) rulesHtml += '<div><span class="label">需要选择：</span><span class="good">是</span></div>';
+                    else rulesHtml += '<div><span class="label">需要选择：</span>否（自动应用）</div>';
+                    if (parsed.count) rulesHtml += '<div><span class="label">数量：</span>' + parsed.count + '</div>';
+                    if (parsed.table) rulesHtml += '<div><span class="label">数据表：</span>' + escapeHtml(parsed.table) + '</div>';
+                    if (parsed.filters && parsed.filters.length > 0) {
+                        rulesHtml += '<div><span class="label">过滤条件：</span>' + parsed.filters.map(function(f) { return f.key + '=' + f.value; }).join(', ') + '</div>';
+                    }
+                } else {
+                    rulesHtml += '<div class="bad">' + escapeHtml(parsed.message || '解析失败') + '</div>';
+                }
+                rulesHtml += '</div>'; // details
+                rulesHtml += '<div class="json-block" style="margin-top:4px;font-size:11px;">' + escapeHtml(JSON.stringify(parsed, null, 2)) + '</div>';
+                rulesHtml += '</div>'; // card
+            }
+        });
+
+        rulesHtml += '</div>'; // entry-card
+        featTestRules.innerHTML = rulesHtml;
+
+        // === 异步加载相关数据 ===
+        loadFeatRelatedData(feat, allRuleParts);
+    }
+
+    // ============================================================
+    // 专长规则解析器（不依赖 handlers，纯本地推理）
+    // ============================================================
+    function parseFeatRule(rule) {
+        if (!rule) return { success: false, message: '空规则' };
+
+        var result = { success: false, message: '未识别的规则格式', rawRule: rule };
+
+        // ---- skill+N / skill 熟练 ----
+        var skillMatch = rule.match(/^skill(?:\+(\d+))?$/i);
+        if (skillMatch) {
+            return {
+                success: true, type: 'skill', displayType: '技能熟练',
+                needUserSelect: true, count: parseInt(skillMatch[1], 10) || 1,
+                description: '获得 ' + (parseInt(skillMatch[1], 10) || 1) + ' 项自选技能熟练',
+                table: 'skills'
+            };
+        }
+
+        // ---- tool+N / tool(type=X)+N ----
+        var toolMatch = rule.match(/^tool(?:\(type=(\d+)\))?(?:\+(\d+))?$/i);
+        if (toolMatch) {
+            return {
+                success: true, type: 'filter', displayType: '工具熟练',
+                needUserSelect: true, count: parseInt(toolMatch[2], 10) || 1,
+                filters: toolMatch[1] ? [{ key: 'type', value: parseInt(toolMatch[1], 10) }] : [],
+                description: '获得 ' + (parseInt(toolMatch[2], 10) || 1) + ' 项工具熟练' + (toolMatch[1] ? '（类型=' + toolMatch[1] + '）' : ''),
+                table: 'tools'
+            };
+        }
+
+        // ---- weapon+N ----
+        var wpMatch = rule.match(/^weapon(?:\+(\d+))?$/i);
+        if (wpMatch) {
+            return {
+                success: true, type: 'weapon', displayType: '武器熟练',
+                needUserSelect: true, count: parseInt(wpMatch[1], 10) || 1,
+                description: '获得 ' + (parseInt(wpMatch[1], 10) || 1) + ' 项武器熟练',
+                table: 'weapons'
+            };
+        }
+
+        // ---- language+N ----
+        var langMatch = rule.match(/^language(?:\+(\d+))?$/i);
+        if (langMatch) {
+            return {
+                success: true, type: 'language', displayType: '语言',
+                needUserSelect: true, count: parseInt(langMatch[1], 10) || 1,
+                description: '获得 ' + (parseInt(langMatch[1], 10) || 1) + ' 项语言',
+                table: 'languages'
+            };
+        }
+
+        // ---- armor / shield ----
+        if (/^armor$/i.test(rule)) {
+            return { success: true, type: 'armor', displayType: '护甲熟练', needUserSelect: false, description: '获得所有护甲熟练' };
+        }
+        if (/^shield$/i.test(rule)) {
+            return { success: true, type: 'shield', displayType: '盾牌熟练', needUserSelect: false, description: '获得盾牌熟练' };
+        }
+
+        // ---- Character(...)+N（资源规则） ----
+        var charMatch = rule.match(/^character\s*\(\s*([^)]+)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (charMatch) {
+            return {
+                success: true, type: 'resource', displayType: '角色资源',
+                needUserSelect: false,
+                resourceName: charMatch[1].trim(),
+                count: parseInt(charMatch[2], 10) || 0,
+                description: '角色资源「' + charMatch[1].trim() + '」' + (charMatch[2] ? ' +' + charMatch[2] : '')
+            };
+        }
+
+        // ---- Proficiency>pure（技能专精） ----
+        if (/^proficiency\s*>\s*pure$/i.test(rule)) {
+            return { success: true, type: 'proficiency', displayType: '技能专精', needUserSelect: false, description: '将已有熟练升级为专精' };
+        }
+
+        // ---- spell(条件)+N（法术过滤） ----
+        var spellMatch = rule.match(/^spell\s*\(\s*(.+?)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (spellMatch) {
+            var condStr = spellMatch[1];
+            var conds = condStr.split(',').map(function(s) { return s.trim(); });
+            var filters = [];
+            conds.forEach(function(c) {
+                var kv = c.split('=');
+                if (kv.length === 2) {
+                    var v = kv[1].trim();
+                    filters.push({ key: kv[0].trim(), value: isNaN(Number(v)) ? v : Number(v) });
+                }
+            });
+            var descParts = conds.map(function(c) {
+                if (/^class=/i.test(c)) return '职业=' + c.substring(6);
+                if (/^lv=/i.test(c)) return '环级=' + c.substring(3);
+                return c;
+            });
+            return {
+                success: true, type: 'filter', displayType: '法术过滤',
+                needUserSelect: true, count: parseInt(spellMatch[2], 10) || 1,
+                table: 'spells',
+                filters: filters,
+                description: '从法术表中筛选（' + descParts.join(', ') + '）选 ' + (parseInt(spellMatch[2], 10) || 1) + ' 个'
+            };
+        }
+
+        // ---- feat(filter)+N 或 feat(type=X)+N ----
+        var featMatch = rule.match(/^feat\s*\(\s*(.+?)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (featMatch) {
+            return {
+                success: true, type: 'filter', displayType: '专长过滤',
+                needUserSelect: true, count: parseInt(featMatch[2], 10) || 1,
+                table: 'feats',
+                condition: featMatch[1],
+                description: '从专长表中筛选（' + featMatch[1] + '）选 ' + (parseInt(featMatch[2], 10) || 1) + ' 个'
+            };
+        }
+
+        // ---- tool(type=X)+N ----
+        var toolFilterMatch = rule.match(/^tool\s*\(\s*type\s*=\s*(\d+)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (toolFilterMatch) {
+            return {
+                success: true, type: 'filter', displayType: '工具过滤',
+                needUserSelect: true, count: parseInt(toolFilterMatch[2], 10) || 1,
+                table: 'tools',
+                filters: [{ key: 'type', value: parseInt(toolFilterMatch[1], 10) }],
+                description: '从工具表中筛选 type=' + toolFilterMatch[1] + ' 选 ' + (parseInt(toolFilterMatch[2], 10) || 1) + ' 个'
+            };
+        }
+
+        // ---- link(N) — 引用表 ----
+        var linkMatch = rule.match(/^link\s*\(\s*(\d+)\s*\)\s*$/i);
+        if (linkMatch) {
+            return {
+                success: true, type: 'link', displayType: '引用表',
+                needUserSelect: true,
+                linkId: parseInt(linkMatch[1], 10),
+                description: '引用 lookup_table 中 id=' + linkMatch[1] + ' 的规则'
+            };
+        }
+
+        // ---- ability(N)+M — 属性值提升 ----
+        var abiMatch = rule.match(/^ability\s*\(\s*(\d+)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (abiMatch) {
+            var abiId = parseInt(abiMatch[1], 10);
+            var abiNames = { 1:'力量',4:'敏捷',11:'体质',18:'智力',25:'感知',9:'魅力' };
+            var abiName = abiNames[abiId] || 'ability(' + abiId + ')';
+            return {
+                success: true, type: 'ability', displayType: '属性值提升',
+                needUserSelect: false,
+                abilityId: abiId,
+                count: parseInt(abiMatch[2], 10) || 1,
+                description: abiName + ' +' + (parseInt(abiMatch[2], 10) || 1)
+            };
+        }
+
+        // ---- lv>=N — 等级先决条件 ----
+        var lvMatch = rule.match(/^lv\s*(>=?|<=?|==?)\s*(\d+)$/i);
+        if (lvMatch) {
+            return {
+                success: true, type: 'prerequisite', displayType: '等级先决条件',
+                needUserSelect: false,
+                description: '要求等级 ' + lvMatch[1] + ' ' + lvMatch[2]
+            };
+        }
+
+        // ---- feature(...) — 特性先决条件 ----
+        var featPrereqMatch = rule.match(/^feature\s*\(\s*([^)]+)\s*\)\s*$/i);
+        if (featPrereqMatch) {
+            return {
+                success: true, type: 'prerequisite', displayType: '特性先决条件',
+                needUserSelect: false,
+                featureName: featPrereqMatch[1].trim(),
+                description: '需要拥有特性「' + featPrereqMatch[1].trim() + '」'
+            };
+        }
+
+        // ---- ability(N)>=M — 属性先决条件 ----
+        var abiPrereqMatch = rule.match(/^ability\s*\(\s*(\d+)\s*\)\s*(>=?|<=?)\s*(\d+)$/i);
+        if (abiPrereqMatch) {
+            var abiId = parseInt(abiPrereqMatch[1], 10);
+            var abiNames = { 1:'力量',4:'敏捷',11:'体质',18:'智力',25:'感知',9:'魅力' };
+            var abiName = abiNames[abiId] || 'ability(' + abiId + ')';
+            return {
+                success: true, type: 'prerequisite', displayType: '属性先决条件',
+                needUserSelect: false,
+                description: '要求 ' + abiName + ' ' + abiPrereqMatch[2] + ' ' + abiPrereqMatch[3]
+            };
+        }
+
+        // ---- unarmed ----
+        if (/^unarmed$/i.test(rule)) {
+            return { success: true, type: 'unarmed', displayType: '徒手攻击', needUserSelect: false, description: '获得徒手攻击能力' };
+        }
+
+        // ---- 特殊：skill(all) — 所有技能 ----
+        if (/^skill\s*\(\s*all\s*\)\s*$/i.test(rule)) {
+            return { success: true, type: 'skill-all', displayType: '全技能熟练', needUserSelect: false, description: '获得所有技能的熟练' };
+        }
+
+        // ---- 特殊：half-prof — 半熟练 ----
+        if (/^half-prof/i.test(rule)) {
+            return { success: true, type: 'half-prof', displayType: '半熟练', needUserSelect: false, description: '未熟练的技能获得一半熟练加值' };
+        }
+
+        // ---- 特殊：choose(…) — 组合选择 ----
+        var chooseMatch = rule.match(/^choose\s*\(\s*(.+?)\s*\)\s*(?:\+\s*(\d+))?\s*$/i);
+        if (chooseMatch) {
+            return {
+                success: true, type: 'choose', displayType: '组合选择',
+                needUserSelect: true, count: parseInt(chooseMatch[2], 10) || 1,
+                choices: chooseMatch[1].split(',').map(function(s) { return s.trim(); }),
+                description: '从 [ ' + chooseMatch[1] + ' ] 中选 ' + (parseInt(chooseMatch[2], 10) || 1) + ' 项'
+            };
+        }
+
+        // ---- 其他纯文本（可能是专长名或特殊标识） ----
+        return result;
+    }
+
+    // ============================================================
+    // 加载专长相关的关联数据
+    // ============================================================
+    function loadFeatRelatedData(feat, ruleParts) {
+        var dataHtml = '<div class="entry-card">';
+        dataHtml += '<div class="label" style="margin-bottom:6px;">▶ 关联数据查询</div>';
+
+        // 检查是否有 link 规则
+        var hasLink = false;
+        var linkIds = [];
+        ruleParts.forEach(function(rule) {
+            var m = rule.match(/link\s*\(\s*(\d+)\s*\)/i);
+            if (m) { hasLink = true; linkIds.push(parseInt(m[1], 10)); }
+        });
+
+        if (!hasLink) {
+            dataHtml += '<div class="no-result">此专长没有 link 引用，无需查询关联数据</div>';
+            dataHtml += '</div>';
+            featTestData.innerHTML = dataHtml;
+            return;
+        }
+
+        dataHtml += '<div style="font-size:12px;color:#7a6a5a;margin-bottom:6px;">检测到 link 引用，正在加载 lookup_table.json ...</div>';
+        var dataSectionId = 'feat-data-' + Date.now();
+        dataHtml += '<div class="data-section" id="' + dataSectionId + '"></div>';
+        dataHtml += '</div>';
+        featTestData.innerHTML = dataHtml;
+
+        // 异步加载 lookup_table
+        loadTableData('lookup_table').then(function(lookup) {
+            var dh = '';
+            linkIds.forEach(function(lid) {
+                var entry = null;
+                for (var i = 0; i < lookup.length; i++) {
+                    if (lookup[i].id === lid) { entry = lookup[i]; break; }
+                }
+                if (!entry) {
+                    dh += '<div class="entry-card" style="border-left-color:#c04040;">';
+                    dh += '<div><span class="label">link(' + lid + ')</span> — <span class="bad">未在 lookup_table.json 中找到</span></div>';
+                    dh += '</div>';
+                    return;
+                }
+
+                dh += '<div class="entry-card" style="border-left-color:#5a8ab5;">';
+                dh += '<div style="font-weight:600;">link(' + lid + ') = ' + escapeHtml(entry.desc || '') + '</div>';
+                dh += '<div class="json-block">' + escapeHtml(JSON.stringify(entry, null, 2)) + '</div>';
+
+                // 进一步解析引用条目
+                var sourceTable = entry.source_table || '';
+                var detailId = 'link-detail-' + lid + '-' + Date.now();
+                dh += '<div class="data-section" id="' + detailId + '"><div style="font-size:12px;color:#7a6a5a;">正在加载 ' + sourceTable + '.json ...</div></div>';
+                dh += '</div>';
+
+                // 异步加载来源表
+                if (sourceTable) {
+                    loadTableData(sourceTable).then(function(data) {
+                        var subHtml = '';
+                        if (entry.type === 'filter' && entry.complex_logic) {
+                            // filter 模式
+                            var conds = parseFilters(entry.complex_logic);
+                            var matched = data.filter(function(item) {
+                                for (var ci = 0; ci < conds.length; ci++) {
+                                    var c = conds[ci];
+                                    if (item[c.key] == undefined || item[c.key] != c.value) return false;
+                                }
+                                return true;
+                            });
+                            var limit = entry.count || matched.length;
+                            var shown = matched.slice(0, limit);
+                            subHtml += '<div style="font-size:12px;color:#3a7a3a;margin-top:4px;">从 <strong>' + sourceTable + '.json</strong> 中筛选出 ' + matched.length + ' 条（取前 ' + limit + ' 条）：</div>';
+                            shown.forEach(function(item) {
+                                subHtml += '<div class="json-block" style="border-left-color:#4a7a4a;font-size:11px;">' + escapeHtml(JSON.stringify(item, null, 2)) + '</div>';
+                            });
+                        } else if (entry.type === 'id' && entry.target_id) {
+                            // 直接引用
+                            var found = null;
+                            for (var di = 0; di < data.length; di++) {
+                                if (data[di].id === entry.target_id) { found = data[di]; break; }
+                            }
+                            if (found) {
+                                subHtml += '<div style="font-size:12px;color:#3a7a3a;margin-top:4px;">从 <strong>' + sourceTable + '.json</strong> 中引用 id=' + entry.target_id + '：</div>';
+                                subHtml += '<div class="json-block" style="border-left-color:#4a7a4a;font-size:11px;">' + escapeHtml(JSON.stringify(found, null, 2)) + '</div>';
+                            } else {
+                                subHtml += '<div style="font-size:12px;color:#c04040;margin-top:4px;">在 ' + sourceTable + '.json 中未找到 id=' + entry.target_id + '</div>';
+                            }
+                        } else if (entry.type === 'choose') {
+                            var ids = (entry.complex_logic || '').split(',').map(function(s) { return parseInt(s.trim(), 10); }).filter(function(n) { return !isNaN(n); });
+                            var foundItems = data.filter(function(item) { return ids.indexOf(item.id) >= 0; });
+                            subHtml += '<div style="font-size:12px;color:#3a7a3a;margin-top:4px;">从 <strong>' + sourceTable + '.json</strong> 的 ID 列表 [' + ids.join(',') + '] 中查到 ' + foundItems.length + ' 条：</div>';
+                            foundItems.forEach(function(item) {
+                                subHtml += '<div class="json-block" style="border-left-color:#4a7a4a;font-size:11px;">' + escapeHtml(JSON.stringify(item, null, 2)) + '</div>';
+                            });
+                        } else {
+                            subHtml += '<div style="font-size:12px;color:#7a6a5a;margin-top:4px;">表 ' + sourceTable + '.json 已加载（' + data.length + ' 条），类型 type=' + entry.type + ' 暂未做特定查询</div>';
+                        }
+                        var sec = document.getElementById(detailId);
+                        if (sec) sec.innerHTML = subHtml;
+                    }, function(err) {
+                        var sec = document.getElementById(detailId);
+                        if (sec) sec.innerHTML = '<div style="font-size:12px;color:#c04040;margin-top:4px;">加载 ' + sourceTable + '.json 失败: ' + escapeHtml(err) + '</div>';
+                    });
+                }
+
+            });
+            var sec = document.getElementById(dataSectionId);
+            if (sec) sec.innerHTML = dh;
+        }, function(err) {
+            var sec = document.getElementById(dataSectionId);
+            if (sec) sec.innerHTML = '<div class="bad">加载 lookup_table.json 失败: ' + escapeHtml(err) + '</div>';
+        });
+    }
+
+    // ============================================================
+    // 工具：追加输出到指定容器
+    // ============================================================
+    function appendFeatOutput(containerId, html) {
+        var el = document.getElementById(containerId);
+        if (el) { el.innerHTML = html; }
+    }
+    </script>
+</body>
+</html>

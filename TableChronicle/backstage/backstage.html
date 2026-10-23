@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台主页 · 故事助手</title>
+
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="/backstage/backstage.css">
+    <link rel="stylesheet" href="/backstage/data_maintenance/data_maintenance.css">
+    <!-- ===== Layui CSS（用于表格、弹窗等） ===== -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/layui@2.9.8/dist/css/layui.css">
+    
+
+</head>
+<body>
+
+    <!-- ============================================================
+    整体布局（flex 列）
+    ============================================================ -->
+    <div class="admin-layout">
+
+        <!-- ==========================================================
+        顶部导航栏
+        ========================================================== -->
+        <header class="admin-header">
+            <div class="header-brand">
+                <span class="brand-icon">📖</span>
+                <span class="brand-name">故事助手后台</span>
+            </div>
+            <div class="header-user">
+                <span class="user-name">管理员</span>
+                <button class="btn-logout" id="logoutBtn">🚪 退出登录</button>
+            </div>
+        </header>
+
+        <!-- ==========================================================
+        主体区（flex 行）
+        ========================================================== -->
+        <div class="admin-body">
+
+            <!-- ==========================================================
+            左侧菜单（固定宽度）
+            ========================================================== -->
+            <aside class="admin-sidebar">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li class="menu-item" data-menu="study">
+                            <span class="menu-icon">📖</span>
+                            <span class="menu-label">学习 JS</span>
+                        </li>
+                        <li class="menu-item" data-menu="test">
+                            <span class="menu-icon">🧪</span>
+                            <span class="menu-label">单元测试</span>
+                        </li>
+                        <li class="menu-item" data-menu="feedback">
+                            <span class="menu-icon">🐛</span>
+                            <span class="menu-label">纠错反馈</span>
+                        </li>
+                        <li class="menu-item" data-menu="wish">
+                            <span class="menu-icon">🌟</span>
+                            <span class="menu-label">许愿池</span>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- ==========================================================
+            右侧内容区（flex:1）
+            ========================================================== -->
+            <main class="admin-content" id="contentArea">
+                <!--
+                默认加载 data_maintenance/data_maintenance.html
+                由 backstage.js 负责加载
+                -->
+            </main>
+
+        </div>
+
+        <!-- ==========================================================
+        底部
+        ========================================================== -->
+        <footer class="admin-footer">
+            <p>© 2026 故事助手 · 数据管理后台</p>
+        </footer>
+
+    </div>
+
+    <!-- ============================================================
+    JS 引入
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/layui@2.9.8/dist/layui.js"></script>
+    <script src="/backstage/backstage.js"></script>
+
+</body>
+</html>

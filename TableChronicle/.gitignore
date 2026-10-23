@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# pytest
+.pytest_cache/
+
+# 编辑器
+.vscode/
+
+# 系统
+Thumbs.db
+Desktop.ini
+
+# 临时
+*.log
+*.tmp

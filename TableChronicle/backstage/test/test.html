@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交互调试台 · 故事助手</title>
+    <link rel="stylesheet" href="test.css">
+<style>
+.calc-panel { max-height:50vh; overflow-y:auto; overflow-x:hidden; }
+</style>
+</head>
+<body>
+    <!-- ===== 顶栏 ===== -->
+    <header class="test-header">
+        <h1>🧪 交互调试台</h1>
+        <div class="header-info">
+            <span id="statusBadge" class="badge badge-idle">未加载</span>
+            <button class="btn btn-load" onclick="loadCharacterScripts()">🔄 加载脚本</button>
+            <button class="btn btn-clear-console" onclick="clearConsole()">🗑 清输出</button>
+        </div>
+    </header>
+
+    <!-- ===== 主体：左右分栏 ===== -->
+    <div class="test-body">
+
+        <!-- ===== 左侧：API 浏览器 ===== -->
+        <aside class="test-sidebar">
+            <div class="sidebar-section">
+                <h3>📦 API 列表</h3>
+                <div class="api-tree" id="apiTree">
+                    <!-- 由 JS 动态渲染 -->
+                </div>
+            </div>
+            <div class="sidebar-section load-log-section">
+                <h3>📋 加载日志</h3>
+                <div class="load-log" id="loadLog"></div>
+            </div>
+        </aside>
+
+        <!-- ===== 右侧：调试操作区 ===== -->
+        <main class="test-main">
+
+            <!-- ===== 测试模式选择 + 参数输入 ===== -->
+            <div class="test-config">
+                <div class="config-row">
+                    <label>测试目标：</label>
+                    <select id="targetSelect" onchange="onTargetChange()">
+                        <optgroup label="CodeHandlers（code 列处理）">
+                            <option value="CodeHandlers.execute">CodeHandlers.execute(code, rowData, context)</option>
+                            <option value="CodeHandlers.list">CodeHandlers.list() — 列出已注册 handler</option>
+                            <option value="CodeHandlers.has">CodeHandlers.has(code) — 检查注册</option>
+                        </optgroup>
+                        <optgroup label="handlers.parseRule（规则解析入口）">
+                            <option value="handlers.parseRule">handlers.parseRule(rule)</option>
+                        </optgroup>
+                        <optgroup label="handlers.processItemRules（条目规则扫描）">
+                            <option value="handlers.processItemRules">handlers.processItemRules(item, character)</option>
+                        </optgroup>
+                        <optgroup label="handlers.xxx.parse（各子处理器）">
+                            <option value="handlers.filter.parse">handlers.filter.parse(rule)</option>
+                            <option value="handlers.basic.parse">handlers.basic.parse(rule)</option>
+                            <option value="handlers.attribute.parse">handlers.attribute.parse(rule)</option>
+                            <option value="handlers.level.parse">handlers.level.parse(rule)</option>
+                            <option value="handlers.operation.parse">handlers.operation.parse(rule)</option>
+                            <option value="handlers.proficiency.parse">handlers.proficiency.parse(rule)</option>
+                            <option value="handlers.chain.parse">handlers.chain.parse(rule)</option>
+                            <option value="handlers.selection.parse">handlers.selection.parse(rule)</option>
+                            <option value="handlers.resource.parse">handlers.resource.parse(rule)</option>
+                            <option value="handlers.special.parse">handlers.special.parse(rule)</option>
+                            <option value="handlers.tableMap.parse">handlers.tableMap.parse(rule)</option>
+                            <option value="handlers.featRequire.parse">handlers.featRequire.parse(rule)</option>
+                            <option value="handlers.tableRef.parse">handlers.tableRef.parse(rule)</option>
+                            <option value="handlers.choose.parse">handlers.choose.parse(rule)</option>
+                        </optgroup>
+                        <optgroup label="自由输入">
+                            <option value="__free__">✏️ 自由输入表达式</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                <!-- ===== 参数区 ===== -->
+                <div id="paramArea">
+                    <!-- 由 onTargetChange 动态渲染 -->
+                </div>
+
+                <div class="config-row config-actions">
+                    <button class="btn btn-execute" onclick="executeTest()">▶ 执行</button>
+                </div>
+            </div>
+
+            <!-- ===== 输出区 ===== -->
+            <div class="test-output">
+                <div class="output-header">
+                    <h3>📤 输出</h3>
+                    <span class="output-meta" id="outputMeta"></span>
+                </div>
+                <div class="output-body" id="outputBody">
+                    <div class="placeholder">
+                        <p>选择一个目标，填写参数，点击「执行」</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ===== 公式计算器切换按钮 ===== -->
+    <div style="text-align:right; margin-top:8px;">
+        <button class="btn btn-load" onclick="toggleCalcPanel()">🧮 公式计算器</button>
+    </div>
+
+    <!-- ===== 公式计算器面板 ===== -->
+    <div class="calc-panel" id="calcPanel" style="display:none; margin-top:16px; border-top:2px solid #d4a84b; padding-top:16px;">
+        <div class="section-card">
+            <h3 style="color:#d4a84b; margin-bottom:12px;">🧮 公式计算器 <span style="font-size:12px;color:#8a7a6a;font-weight:normal;">设定属性值 → 写公式 → 看实际计算结果</span></h3>
+
+            <!-- ===== 角色基本数据 ===== -->
+            <div style="margin-bottom:12px;">
+                <div style="color:#8ab4d4; font-size:12px; margin-bottom:6px;">角色数据 <span style="color:#8a7a6a;font-weight:normal;">等级 · HP · 熟练 · 专精</span></div>
+                <div style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">等级 LV <input type="number" id="calc_level" value="3" class="ability-input" min="1" max="20" onchange="onCharChange()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">HP <input type="number" id="calc_hp" value="24" class="ability-input" min="1" max="999" onchange="onCharChange()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">熟练加值 <span id="calc_prof_display" style="color:#6aaa7a;font-weight:600;font-size:14px;min-width:28px;">+2</span></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">熟练技能数 <input type="number" id="calc_skill_count" value="4" class="ability-input" min="0" max="18" onchange="onCharChange()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">专精技能数 <input type="number" id="calc_expert_count" value="0" class="ability-input" min="0" max="18" onchange="onCharChange()"></label>
+                </div>
+            </div>
+
+            <!-- ===== 属性值 ===== -->
+            <div style="margin-bottom:12px;">
+                <div style="color:#8ab4d4; font-size:12px; margin-bottom:6px;">属性值</div>
+                <div class="ability-grid" style="display:flex; flex-wrap:wrap; gap:6px;">
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">力量 STR <input type="number" id="calc_str" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">敏捷 DEX <input type="number" id="calc_dex" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">体质 CON <input type="number" id="calc_con" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">智力 INT <input type="number" id="calc_int" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">感知 WIS <input type="number" id="calc_wis" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                    <label style="background:#2a2a2a; padding:6px 10px; border-radius:4px; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:#b4a490; cursor:pointer;">魅力 CHA <input type="number" id="calc_cha" value="10" class="ability-input" min="1" max="30" onchange="autoCalc()"></label>
+                </div>
+            </div>
+            <div style="margin-bottom:10px;">
+                <div style="color:#8ab4d4; font-size:12px; margin-bottom:4px;">公式 <span style="color:#8a7a6a;">支持函数: AbilityModifiers(id) / ProficiencyBonus(level)</span></div>
+                <div style="display:flex; gap:6px;">
+                    <input type="text" id="calcFormula" value="10+AbilityModifiers(9)" class="calc-formula-input" style="flex:1; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:8px 12px; border-radius:4px; font-size:14px; font-family:Consolas,monospace;">
+                    <button class="btn btn-execute" onclick="calcEvaluate()" style="padding:6px 16px;">= 计算</button>
+                </div>
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px;">
+                <button class="sample-btn" onclick="loadSample('10+AbilityModifiers(9)')" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">AC=10+魅调</button>
+                <button class="sample-btn" onclick="loadSample('8+ProficiencyBonus(3)+AbilityModifiers(4)')" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">熟练=8+熟练+智调</button>
+                <button class="sample-btn" onclick="loadSample('AbilityModifiers(5)+ProficiencyBonus(5)')" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">感知豁免</button>
+                <button class="sample-btn" onclick="loadSample('(AbilityModifiers(4)+5)*2')" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">法术准备×2</button>
+            </div>
+            <div class="calc-result-box" id="calcResult" style="background:#111; border:1px solid #3a3a3a; border-radius:4px; padding:12px; min-height:40px; margin-bottom:8px; font-size:13px;">
+                <span style="color:#5a5a5a; font-style:italic;">填入公式，点击「计算」</span>
+            </div>
+            <div class="calc-history-box" id="calcHistory" style="background:#111; border:1px solid #3a3a3a; border-radius:4px; padding:6px; min-height:30px; max-height:150px; overflow-y:auto; font-size:11px;"></div>
+
+            <!-- ===== 分隔线 ===== -->
+            <hr style="border:none;border-top:1px solid #3a3a3a;margin:20px 0 12px;">
+
+            <!-- ===== 特性输入 ===== -->
+            <div style="margin-bottom:16px;">
+                <div style="color:#8ab4d4; font-size:12px; margin-bottom:6px;">特性输入 <span style="color:#8a7a6a;font-weight:normal;">职业特性 · 种族特性 · 专长等 JSON 数据</span></div>
+                <div style="display:flex; gap:6px; align-items:flex-start;">
+                    <textarea id="calc_features" rows="3" spellcheck="false" style="flex:1; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:6px 10px; border-radius:4px; font-size:11px; font-family:Consolas,monospace; resize:vertical; min-height:50px;">[
+  { "name": "施法关键属性", "ability": 4 },
+  { "name": "已知法术数", "count": 4 },
+  { "name": " invocation_count", "count": 2 }
+]</textarea>
+                    <button class="btn btn-load" onclick="loadFeaturesFromTextarea()" style="white-space:nowrap;padding:6px 10px;font-size:11px;">📥 载入特性</button>
+                </div>
+                <div style="color:#8a7a6a; font-size:10px; margin-top:2px;">公式中可用 <code style="background:#2a2a2a;color:#d4a84b;padding:1px 4px;border-radius:2px;">FeatureValue("已知法术数")</code> 获取特性值</div>
+            </div>
+
+            <!-- ===== 物品输入 ===== -->
+            <div style="margin-bottom:16px;">
+                <div style="color:#8ab4d4; font-size:12px; margin-bottom:6px;">物品输入 <span style="color:#8a7a6a;font-weight:normal;">武器 · 防具 · 魔法物品等 JSON 数据</span></div>
+                <div style="display:flex; gap:6px; align-items:flex-start;">
+                    <textarea id="calc_items" rows="3" spellcheck="false" style="flex:1; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:6px 10px; border-radius:4px; font-size:11px; font-family:Consolas,monospace; resize:vertical; min-height:50px;">[
+  { "name": "魔法护甲", "ac_bonus": 1, "type": "armor" },
+  { "name": "防御戒指", "ac_bonus": 1, "type": "ring" }
+]</textarea>
+                    <button class="btn btn-load" onclick="loadItemsFromTextarea()" style="white-space:nowrap;padding:6px 10px;font-size:11px;">📦 载入物品</button>
+                </div>
+                <div style="color:#8a7a6a; font-size:10px; margin-top:2px;">公式中可用 <code style="background:#2a2a2a;color:#d4a84b;padding:1px 4px;border-radius:2px;">ItemBonus("ac_bonus")</code> 累加物品某属性总和</div>
+            </div>
+
+            <!-- ===== 中间表格式 ===== -->
+            <div style="margin-bottom:8px;">
+                <div style="color:#d4a84b; font-size:13px; font-weight:600; margin-bottom:8px; border-bottom:1px solid #3a3a3a; padding-bottom:4px;">📋 中间表格式 <span style="font-size:11px;color:#8a7a6a;font-weight:normal;">表 · 类型 · ID · 熟练 · 复杂公式 → 计算结果</span></div>
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">表 (source_table)</div>
+                        <select id="calc_mt_table" style="background:#1a1a1a; border:1px solid #4a4a4a; color:#d4c4a4; padding:5px 8px; border-radius:3px; font-size:12px;">
+                            <option value="spells">spells 法术</option>
+                            <option value="feats">feats 专长</option>
+                            <option value="skills">skills 技能</option>
+                            <option value="tool">tool 工具</option>
+                            <option value="procedure">procedure 操作</option>
+                            <option value="class_features">class_features 职业特性</option>
+                            <option value="items">items 物品</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">类型 (type)</div>
+                        <select id="calc_mt_type" style="background:#1a1a1a; border:1px solid #4a4a4a; color:#d4c4a4; padding:5px 8px; border-radius:3px; font-size:12px;">
+                            <option value="filter">filter 条件过滤</option>
+                            <option value="id">id 固定ID</option>
+                            <option value="type">type 类型筛选</option>
+                            <option value="choose">choose 多选一</option>
+                            <option value="special">special 特殊逻辑</option>
+                        </select>
+                    </div>
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">ID (target_id)</div>
+                        <input type="number" id="calc_mt_id" value="0" min="0" style="width:70px; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:4px 8px; border-radius:3px; font-size:12px; text-align:center;">
+                    </div>
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">熟练加值</div>
+                        <input type="number" id="calc_mt_prof" value="2" min="0" max="12" style="width:60px; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:4px 8px; border-radius:3px; font-size:12px; text-align:center;">
+                    </div>
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">数量 (count)</div>
+                        <input type="number" id="calc_mt_count" value="1" min="0" max="99" style="width:60px; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:4px 8px; border-radius:3px; font-size:12px; text-align:center;">
+                    </div>
+                    <div>
+                        <div style="color:#8a7a6a; font-size:11px;">条件 (complex_logic)</div>
+                        <input type="text" id="calc_mt_logic" value="class=12,school=11" placeholder="class=12,school=7" style="width:200px; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:4px 8px; border-radius:3px; font-size:12px; font-family:Consolas,monospace;">
+                    </div>
+                </div>
+                <div style="display:flex; gap:6px; align-items:center; margin-bottom:8px;">
+                    <span style="color:#8ab4d4; font-size:11px;">复杂公式</span>
+                    <input type="text" id="calc_mt_formula" value="ProficiencyBonus()" style="flex:1; background:#111; border:1px solid #4a4a4a; color:#d4c4a4; padding:6px 10px; border-radius:4px; font-size:13px; font-family:Consolas,monospace;">
+                    <button class="btn btn-execute" onclick="calcMtEvaluate()" style="padding:6px 16px;font-size:12px;">= 计算</button>
+                </div>
+                <div style="display:flex; gap:4px; margin-bottom:8px; flex-wrap:wrap;">
+                    <button class="sample-btn" onclick="loadMtSample(1)" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">示例1: 防护法术过滤</button>
+                    <button class="sample-btn" onclick="loadMtSample(2)" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">示例2: 专长ID引用</button>
+                    <button class="sample-btn" onclick="loadMtSample(3)" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">示例3: 技能choose</button>
+                    <button class="sample-btn" onclick="loadMtSample(4)" style="background:#2a3a3a; color:#8ab4d4; border:1px solid #3a5a5a; padding:3px 8px; border-radius:3px; cursor:pointer; font-size:11px;">示例4: 半熟练计算</button>
+                </div>
+                <div id="calc_mt_result" style="background:#111; border:1px solid #3a3a3a; border-radius:4px; padding:10px 14px; min-height:40px; font-size:12px; color:#5a5a5a; font-style:italic;">配置中间表参数，点击「计算」</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="test.js"></script>
+    <script>
+    // 【测试控制台】每个测试执行时，自动在输出区显示完整输入参数（JSON + 复制按钮）
+    // 方便遇到问题时截图或复制粘贴给开发者
+    // - 主调试台（左侧API列表）：已通过 renderInputSummary 实现 
+    // - 公式计算器：在 calcEvaluate() 中输出时包含输入副本
+
+    var CALC_HISTORY = [];
+    var CALC_FEATURES = [];
+    var CALC_ITEMS = [];
+
+    function getAbilityScore(id) {
+        var map = { 1:'str',2:'dex',3:'con',4:'int',5:'wis',6:'cha',9:'cha' };
+        var el = document.getElementById('calc_' + map[id]);
+        return el ? parseInt(el.value) || 10 : 10;
+    }
+    function getLevel() {
+        var el = document.getElementById('calc_level');
+        return el ? parseInt(el.value) || 1 : 1;
+    }
+    function getHP() {
+        var el = document.getElementById('calc_hp');
+        return el ? parseInt(el.value) || 0 : 0;
+    }
+
+    function AbilityModifiers(id) {
+        var s = getAbilityScore(parseInt(id));
+        return Math.floor((s - 10) / 2);
+    }
+    function ProficiencyBonus(l) {
+        if (l === undefined) l = getLevel();
+        return Math.ceil(parseInt(l) / 4) + 1;
+    }
+    function CharacterLevel() { return getLevel(); }
+    function CharacterHP() { return getHP(); }
+    function FeatureValue(name) {
+        if (!CALC_FEATURES || !CALC_FEATURES.length) return 0;
+        for (var i = 0; i < CALC_FEATURES.length; i++) {
+            var f = CALC_FEATURES[i];
+            if (f.name && f.name.trim() === name) {
+                if (f.count !== undefined) return f.count;
+                if (f.ability !== undefined) return f.ability;
+                if (f.value !== undefined) return f.value;
+                if (f.bonus !== undefined) return f.bonus;
+                return 0;
+            }
+        }
+        return 0;
+    }
+    function ItemBonus(key) {
+        if (!CALC_ITEMS || !CALC_ITEMS.length) return 0;
+        var total = 0;
+        for (var i = 0; i < CALC_ITEMS.length; i++) {
+            if (CALC_ITEMS[i][key] !== undefined) total += Number(CALC_ITEMS[i][key]) || 0;
+        }
+        return total;
+    }
+    function getFallbackLookupTable() {
+        return [
+            { id: 262, source_table: 'spells', type: 'filter', target_id: 0, count: 2, complex_logic: 'class=12,school=7', desc: 'Protection' },
+            { id: 263, source_table: 'spells', type: 'filter', target_id: 0, count: 2, complex_logic: 'class=12,school=9', desc: 'Divination' },
+            { id: 264, source_table: 'spells', type: 'filter', target_id: 0, count: 2, complex_logic: 'class=12,school=11', desc: 'Evocation' },
+            { id: 265, source_table: 'spells', type: 'id', target_id: 56, count: 0, complex_logic: '', desc: 'Smite' },
+            { id: 266, source_table: 'feats', type: 'type', target_id: 44, count: 1, complex_logic: '', desc: 'Origin feat' },
+            { id: 268, source_table: 'skills', type: 'choose', target_id: 0, count: 2, complex_logic: '11,12,18', desc: 'Skills pick 2' },
+            { id: 272, source_table: 'procedure', type: 'special', target_id: 0, count: 0, complex_logic: 'half-prof', desc: 'Half prof' },
+            { id: 273, source_table: 'spells', type: 'special', target_id: 0, count: 2, complex_logic: 'spell-level', desc: 'Spell level' },
+        ];
+    }
+
+    function toggleCalcPanel() {
+        var p = document.getElementById('calcPanel');
+        p.style.display = p.style.display === 'none' ? 'block' : 'none';
+    }
+    function onCharChange() {
+        var level = getLevel();
+        var prof = Math.ceil(level / 4) + 1;
+        var display = document.getElementById('calc_prof_display');
+        if (display) display.textContent = (prof >= 0 ? '+' : '') + prof;
+        autoCalc();
+    }
+    function loadFeaturesFromTextarea() {
+        var ta = document.getElementById('calc_features');
+        if (!ta) return;
+        try {
+            var data = JSON.parse(ta.value);
+            if (!Array.isArray(data)) throw new Error('Must be array');
+            CALC_FEATURES = data;
+            document.getElementById('calcResult').innerHTML = '<div style="color:#6aaa7a;">Loaded ' + data.length + ' features</div>';
+        } catch(e) {
+            document.getElementById('calcResult').innerHTML = '<span style="color:#c06050;">Error: ' + escHtml(e.message) + '</span>';
+        }
+    }
+    function loadItemsFromTextarea() {
+        var ta = document.getElementById('calc_items');
+        if (!ta) return;
+        try {
+            var data = JSON.parse(ta.value);
+            if (!Array.isArray(data)) throw new Error('Must be array');
+            CALC_ITEMS = data;
+            document.getElementById('calcResult').innerHTML = '<div style="color:#6aaa7a;">Loaded ' + data.length + ' items</div>';
+        } catch(e) {
+            document.getElementById('calcResult').innerHTML = '<span style="color:#c06050;">Error: ' + escHtml(e.message) + '</span>';
+        }
+    }
+
+    function calcEvaluate() {
+        var f = document.getElementById('calcFormula').value.trim();
+        if (!f) { document.getElementById('calcResult').innerHTML = '<span style="color:#c06050;">Enter formula</span>'; return; }
+        var steps = [], r = f;
+
+        r = r.replace(/AbilityModifiers\(\s*(\d+)\s*\)/g, function(m, id) {
+            var s = getAbilityScore(parseInt(id)), mod = Math.floor((s-10)/2);
+            var names = {1:'STR',2:'DEX',3:'CON',4:'INT',5:'WIS',6:'CHA',9:'CHA'};
+            steps.push({ from: m, to: ''+mod, detail: names[parseInt(id)]+'('+s+')'+(mod>=0?'+':'')+mod });
+            return mod;
+        });
+        r = r.replace(/ProficiencyBonus\(\s*\)/g, function(m) {
+            var l = getLevel(), b = Math.ceil(l/4)+1;
+            steps.push({ from: m, to: ''+b, detail: 'lvl'+l+'+'+b });
+            return b;
+        });
+        r = r.replace(/ProficiencyBonus\(\s*(\d+)\s*\)/g, function(m, l) {
+            var b = Math.ceil(parseInt(l)/4)+1;
+            steps.push({ from: m, to: ''+b, detail: 'lvl'+l+'+'+b });
+            return b;
+        });
+        r = r.replace(/CharacterLevel\(\s*\)/g, function(m) {
+            var l = getLevel();
+            steps.push({ from: m, to: ''+l, detail: 'lvl='+l });
+            return l;
+        });
+        r = r.replace(/CharacterHP\(\s*\)/g, function(m) {
+            var hp = getHP();
+            steps.push({ from: m, to: ''+hp, detail: 'HP='+hp });
+            return hp;
+        });
+        r = r.replace(/FeatureValue\(\s*"([^"]+)"\s*\)/g, function(m, name) {
+            var v = 0;
+            for (var i = 0; i < CALC_FEATURES.length; i++) {
+                var f2 = CALC_FEATURES[i];
+                if (f2.name && f2.name.trim() === name) {
+                    v = (f2.count !== undefined ? f2.count : (f2.ability !== undefined ? f2.ability : (f2.value !== undefined ? f2.value : (f2.bonus !== undefined ? f2.bonus : 0))));
+                    break;
+                }
+            }
+            steps.push({ from: m, to: ''+v, detail: 'feat"'+name+'"='+v });
+            return v;
+        });
+        r = r.replace(/ItemBonus\(\s*"([^"]+)"\s*\)/g, function(m, key) {
+            var total = 0;
+            for (var i = 0; i < CALC_ITEMS.length; i++) {
+                if (CALC_ITEMS[i][key] !== undefined) total += Number(CALC_ITEMS[i][key]) || 0;
+            }
+            steps.push({ from: m, to: ''+total, detail: 'item"'+key+'"='+total });
+            return total;
+        });
+
+        try {
+            var result = eval(r);
+            var now = new Date(), ts = now.getHours()+':'+String(now.getMinutes()).padStart(2,'0')+':'+String(now.getSeconds()).padStart(2,'0');
+            var us = [], seen = {};
+            steps.forEach(function(s) { if (!seen[s.from]) { seen[s.from]=true; us.push(s); } });
+            var html = '<div style="color:#6aaa7a;font-size:16px;margin-bottom:4px;">Result: <strong style="font-size:22px;">'+result+'</strong></div>';
+            html += '<div style="color:#8a7a6a;font-size:11px;margin-bottom:4px;">formula: <code style="background:#2a2a2a;padding:1px 5px;border-radius:2px;">'+escHtml(f)+'</code></div>';
+            if (us.length) {
+                html += '<div style="color:#8ab4d4;font-size:11px;margin:4px 0 2px;">steps:</div><div style="background:#1e1e1e;border-radius:3px;padding:6px 10px;font-family:Consolas,monospace;font-size:12px;">';
+                us.forEach(function(s) { html += '<div style="padding:2px 0;color:#b4a490;"><span style="color:#d4a84b;">'+escHtml(s.from)+'</span> -> <span style="color:#6aaa7a;">'+s.to+'</span> <span style="color:#8a7a6a;font-size:10px;">'+escHtml(s.detail)+'</span></div>'; });
+                html += '<div style="border-top:1px solid #3a3a3a;margin-top:4px;padding-top:4px;color:#c4b4a4;">eval: <code style="background:#2a2a2a;padding:1px 4px;border-radius:2px;">'+escHtml(r)+'</code> = <strong style="color:#6aaa7a;">'+result+'</strong></div></div>';
+            }
+            document.getElementById('calcResult').innerHTML = html;
+            CALC_HISTORY.unshift({ formula: f, result: result, time: ts });
+            if (CALC_HISTORY.length > 10) CALC_HISTORY.pop();
+            renderCalcHistory();
+        } catch(e) {
+            document.getElementById('calcResult').innerHTML = '<span style="color:#c06050;">Error: '+escHtml(e.message)+'</span>';
+        }
+    }
+
+    function renderCalcHistory() {
+        var html = '';
+        CALC_HISTORY.forEach(function(h) {
+            html += '<div style="display:flex;gap:8px;align-items:center;padding:3px 6px;font-size:11px;border-bottom:1px solid #2a2a2a;">';
+            html += '<span style="color:#5a5a5a;min-width:50px;">'+h.time+'</span>';
+            html += '<span style="flex:1;"><code style="color:#d4a84b;background:#1a1a1a;padding:1px 4px;border-radius:2px;">'+escHtml(h.formula)+'</code></span>';
+            html += '<span style="min-width:30px;text-align:right;">= <strong style="color:#6aaa7a;font-size:13px;">'+h.result+'</strong></span></div>';
+        });
+        document.getElementById('calcHistory').innerHTML = html || '<span style="color:#5a5a5a;font-style:italic;">History empty</span>';
+    }
+
+    function getMtParams() {
+        return {
+            table: document.getElementById('calc_mt_table') ? document.getElementById('calc_mt_table').value : 'spells',
+            type: document.getElementById('calc_mt_type') ? document.getElementById('calc_mt_type').value : 'filter',
+            id: parseInt(document.getElementById('calc_mt_id') ? document.getElementById('calc_mt_id').value : 0),
+            prof: parseInt(document.getElementById('calc_mt_prof') ? document.getElementById('calc_mt_prof').value : 2),
+            count: parseInt(document.getElementById('calc_mt_count') ? document.getElementById('calc_mt_count').value : 1),
+            logic: document.getElementById('calc_mt_logic') ? document.getElementById('calc_mt_logic').value : '',
+            formula: document.getElementById('calc_mt_formula') ? document.getElementById('calc_mt_formula').value : ''
+        };
+    }
+    function calcMtEvaluate() {
+        var p = getMtParams();
+        if (!p.formula) {
+            document.getElementById('calc_mt_result').innerHTML = '<span style="color:#c06050;">Enter formula</span>';
+            return;
+        }
+        var html = '<div style="color:#8ab4d4;font-size:12px;margin-bottom:6px;">Mid-table params</div>';
+        html += '<table style="font-size:11px;color:#b4a490;border-collapse:collapse;margin-bottom:8px;">';
+        html += '<tr><td style="padding:2px 10px 2px 0;color:#8a7a6a;">table</td><td>'+escHtml(p.table)+'</td><td style="padding:2px 0 2px 20px;color:#8a7a6a;">type</td><td>'+escHtml(p.type)+'</td></tr>';
+        html += '<tr><td style="padding:2px 10px 2px 0;color:#8a7a6a;">ID</td><td>'+p.id+'</td><td style="padding:2px 0 2px 20px;color:#8a7a6a;">prof</td><td>+'+p.prof+'</td></tr>';
+        html += '<tr><td style="padding:2px 10px 2px 0;color:#8a7a6a;">count</td><td>'+p.count+'</td><td style="padding:2px 0 2px 20px;color:#8a7a6a;">logic</td><td><code style="background:#2a2a2a;color:#d4a84b;padding:1px 4px;border-radius:2px;">'+escHtml(p.logic)+'</code></td></tr>';
+        html += '<tr><td style="padding:2px 10px 2px 0;color:#8a7a6a;">formula</td><td colspan="3"><code style="background:#2a2a2a;color:#d4a84b;padding:1px 4px;border-radius:2px;">'+escHtml(p.formula)+'</code></td></tr>';
+        html += '</table>';
+        var steps = [], rr = p.formula;
+        rr = rr.replace(/MT_table/g, function() { steps.push({ from: 'MT_table', to: '"'+p.table+'"', detail: 'table' }); return '"'+p.table+'"'; });
+        rr = rr.replace(/MT_type/g, function() { steps.push({ from: 'MT_type', to: '"'+p.type+'"', detail: 'type' }); return '"'+p.type+'"'; });
+        rr = rr.replace(/MT_id/g, function() { steps.push({ from: 'MT_id', to: ''+p.id, detail: 'ID' }); return p.id; });
+        rr = rr.replace(/MT_prof/g, function() { steps.push({ from: 'MT_prof', to: ''+p.prof, detail: 'prof' }); return p.prof; });
+        rr = rr.replace(/MT_count/g, function() { steps.push({ from: 'MT_count', to: ''+p.count, detail: 'count' }); return p.count; });
+        rr = runStandardReplacements(rr, steps);
+        try {
+            var result = eval(rr);
+            html += '<div style="border-top:1px solid #3a3a3a;padding-top:8px;color:#6aaa7a;font-size:14px;">Result: <strong style="font-size:20px;">'+result+'</strong></div>';
+            if (steps.length) {
+                html += '<div style="color:#8ab4d4;font-size:11px;margin:4px 0 2px;">steps:</div><div style="background:#1e1e1e;border-radius:3px;padding:6px 10px;font-family:Consolas,monospace;font-size:11px;">';
+                steps.forEach(function(s) { html += '<div style="padding:2px 0;color:#b4a490;"><span style="color:#d4a84b;">'+escHtml(s.from)+'</span> -> <span style="color:#6aaa7a;">'+s.to+'</span> <span style="color:#8a7a6a;font-size:10px;">'+escHtml(s.detail)+'</span></div>'; });
+            }
+        } catch(e) {
+            html += '<div style="border-top:1px solid #3a3a3a;padding-top:6px;color:#c06050;">Error: ' + escHtml(e.message) + '</div>';
+        }
+        document.getElementById('calc_mt_result').innerHTML = html;
+    }
+    function loadMtSample(n) {
+        var samples = [
+            { table: 'spells', type: 'filter', id: 0, prof: 2, count: 2, logic: 'class=12,school=7', formula: 'ProficiencyBonus() + 2 + AbilityModifiers(4)' },
+            { table: 'feats', type: 'id', id: 41, prof: 3, count: 1, logic: '', formula: 'MT_prof * 2 + AbilityModifiers(4)' },
+            { table: 'skills', type: 'choose', id: 0, prof: 2, count: 2, logic: '11,12,18', formula: 'MT_count + ProficiencyBonus()' },
+            { table: 'procedure', type: 'special', id: 0, prof: 2, count: 0, logic: 'half-prof', formula: 'CharacterLevel() + MT_prof' }
+        ];
+        var s = samples[n - 1];
+        if (!s) return;
+        var els = ['calc_mt_table','calc_mt_type','calc_mt_id','calc_mt_prof','calc_mt_count','calc_mt_logic','calc_mt_formula'];
+        var vals = [s.table, s.type, s.id, s.prof, s.count, s.logic, s.formula];
+        for (var i = 0; i < els.length; i++) { var el = document.getElementById(els[i]); if (el) el.value = vals[i]; }
+        calcMtEvaluate();
+    }
+
+    function runStandardReplacements(str, steps) {
+        var r = str;
+        r = r.replace(/AbilityModifiers\(\s*(\d+)\s*\)/g, function(m, id) {
+            var s = getAbilityScore(parseInt(id)), mod = Math.floor((s-10)/2);
+            steps.push({ from: m, to: ''+mod, detail: 'abl('+id+')='+mod });
+            return mod;
+        });
+        r = r.replace(/ProficiencyBonus\(\s*\)/g, function(m) {
+            var l = getLevel(), b = Math.ceil(l/4)+1;
+            steps.push({ from: m, to: ''+b, detail: 'prof()='+b });
+            return b;
+        });
+        r = r.replace(/ProficiencyBonus\(\s*(\d+)\s*\)/g, function(m, l) {
+            var b = Math.ceil(parseInt(l)/4)+1;
+            steps.push({ from: m, to: ''+b, detail: 'prof('+l+')='+b });
+            return b;
+        });
+        r = r.replace(/CharacterLevel\(\s*\)/g, function(m) {
+            var lv = getLevel();
+            steps.push({ from: m, to: ''+lv, detail: 'lvl='+lv });
+            return lv;
+        });
+        r = r.replace(/CharacterHP\(\s*\)/g, function(m) {
+            var hp = getHP();
+            steps.push({ from: m, to: ''+hp, detail: 'hp='+hp });
+            return hp;
+        });
+        return r;
+    }
+
+    function loadSample(f) { document.getElementById('calcFormula').value = f; calcEvaluate(); }
+    function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function autoCalc() { calcEvaluate(); }
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('calcFormula').addEventListener('keydown', function(e) { if (e.key === 'Enter') calcEvaluate(); });
+        onCharChange();
+    });
+    </script>
+</body>
+</html>

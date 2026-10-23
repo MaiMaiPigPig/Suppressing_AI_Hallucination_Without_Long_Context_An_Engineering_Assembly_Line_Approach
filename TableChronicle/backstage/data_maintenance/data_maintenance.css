@@ -1,0 +1,114 @@
+/* ============================================================
+   data_maintenance/data_maintenance.css
+   数据管理页面通用样式（许愿池、纠错反馈等）
+   ============================================================ */
+
+/* ----- 页面容器（每个子页面用） ----- */
+.page-container {
+    padding: 8px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----- 页面头部（标题 + 操作栏） ----- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.page-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #3b2a1f;
+    letter-spacing: 0.5px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ----- 搜索框 ----- */
+.search-input {
+    padding: 8px 16px;
+    border: 2px solid #e8ddd0;
+    border-radius: 24px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    width: 200px;
+    background: #fff;
+    transition: border 0.2s;
+    color: #3b2a1f;
+}
+
+.search-input:focus {
+    border-color: #8a7a6a;
+}
+
+.search-input::placeholder {
+    color: #bbaa8a;
+}
+
+/* ----- Layui 表格覆盖（适配毛玻璃风格） ----- */
+.layui-table-box {
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    border: 1px solid #e8ddd0 !important;
+}
+
+.layui-table-header {
+    background: #f5f0eb !important;
+    border-radius: 0 !important;
+}
+
+.layui-table-header .layui-table th {
+    font-weight: 600 !important;
+    color: #3b2a1f !important;
+    border-bottom: 2px solid #e8ddd0 !important;
+}
+
+.layui-table-body .layui-table tr:hover {
+    background: #f5f0eb !important;
+}
+
+.layui-table-page {
+    border-top: 1px solid #e8ddd0 !important;
+    padding: 8px 14px !important;
+    background: #faf8f6 !important;
+}
+
+.layui-table-page .layui-laypage a,
+.layui-table-page .layui-laypage span {
+    border-radius: 6px !important;
+    font-size: 13px !important;
+}
+
+/* ----- 空状态 ----- */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #bbaa8a;
+}
+
+.empty-state .empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.empty-state .empty-text {
+    font-size: 16px;
+}
+
+/* ----- 加载中 ----- */
+.loading-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #9a8a7a;
+    font-size: 15px;
+}

@@ -1,0 +1,596 @@
+[
+  {
+    "id": 1,
+    "source": "item=14",
+    "count": 1,
+    "desc": "书籍（祈祷文）"
+  },
+  {
+    "id": 2,
+    "source": "item=38",
+    "count": 1,
+    "desc": "圣徽"
+  },
+  {
+    "id": 3,
+    "source": "item=56",
+    "count": 10,
+    "desc": "羊皮纸*10张"
+  },
+  {
+    "id": 4,
+    "source": "item=62",
+    "count": 2,
+    "desc": "小包*2"
+  },
+  {
+    "id": 5,
+    "source": "item=67",
+    "count": 1,
+    "desc": "长袍"
+  },
+  {
+    "id": 6,
+    "source": "item=102",
+    "count": 8,
+    "desc": "金币*8"
+  },
+  {
+    "id": 7,
+    "source": "item=26",
+    "count": 1,
+    "desc": "旅行服装"
+  },
+  {
+    "id": 8,
+    "source": "item=102",
+    "count": 32,
+    "desc": "金币*32"
+  },
+  {
+    "id": 9,
+    "source": "item",
+    "count": 1,
+    "desc": "戏服"
+  },
+  {
+    "id": 10,
+    "source": "item",
+    "count": 1,
+    "desc": "高档服装"
+  },
+  {
+    "id": 11,
+    "source": "weapon=2",
+    "count": 2,
+    "desc": "匕首*2"
+  },
+  {
+    "id": 12,
+    "source": "item",
+    "count": 1,
+    "desc": "撬棍"
+  },
+  {
+    "id": 13,
+    "source": "item",
+    "count": 2,
+    "desc": "表演服装*2"
+  },
+  {
+    "id": 14,
+    "source": "item",
+    "count": 1,
+    "desc": "镜子"
+  },
+  {
+    "id": 15,
+    "source": "item",
+    "count": 1,
+    "desc": "香水"
+  },
+  {
+    "id": 16,
+    "source": "weapon",
+    "count": 1,
+    "desc": "镰刀"
+  },
+  {
+    "id": 17,
+    "source": "item",
+    "count": 1,
+    "desc": "医疗包"
+  },
+  {
+    "id": 18,
+    "source": "item",
+    "count": 1,
+    "desc": "铁锅"
+  },
+  {
+    "id": 19,
+    "source": "item=102",
+    "count": 50,
+    "desc": "金币*50"
+  },
+  {
+    "id": 20,
+    "source": "item",
+    "count": 0,
+    "desc": "铲子"
+  },
+  {
+    "id": 21,
+    "source": "item=102",
+    "count": 75,
+    "desc": "金币*75"
+  },
+  {
+    "id": 22,
+    "source": "weapon",
+    "count": 1,
+    "desc": "矛"
+  },
+  {
+    "id": 23,
+    "source": "item=102",
+    "count": 90,
+    "desc": "金币*90"
+  },
+  {
+    "id": 24,
+    "source": "weapon",
+    "count": 1,
+    "desc": "轻弩"
+  },
+  {
+    "id": 25,
+    "source": "item",
+    "count": 20,
+    "desc": "弩矢*20"
+  },
+  {
+    "id": 26,
+    "source": "item",
+    "count": 1,
+    "desc": "附盖提灯"
+  },
+  {
+    "id": 27,
+    "source": "item",
+    "count": 1,
+    "desc": "镣铐"
+  },
+  {
+    "id": 28,
+    "source": "item",
+    "count": 1,
+    "desc": "箭袋"
+  },
+  {
+    "id": 29,
+    "source": "weapon",
+    "count": 1,
+    "desc": "短弓"
+  },
+  {
+    "id": 30,
+    "source": "item",
+    "count": 20,
+    "desc": "箭*20"
+  },
+  {
+    "id": 31,
+    "source": "item",
+    "count": 1,
+    "desc": "铺盖"
+  },
+  {
+    "id": 32,
+    "source": "item",
+    "count": 1,
+    "desc": "帐篷"
+  },
+  {
+    "id": 33,
+    "source": "weapon",
+    "count": 1,
+    "desc": "长棍"
+  },
+  {
+    "id": 34,
+    "source": "item",
+    "count": 1,
+    "desc": "书籍（哲学）"
+  },
+  {
+    "id": 35,
+    "source": "item",
+    "count": 1,
+    "desc": "油灯"
+  },
+  {
+    "id": 36,
+    "source": "item",
+    "count": 3,
+    "desc": "燃油*3"
+  },
+  {
+    "id": 37,
+    "source": "weapon",
+    "count": 1,
+    "desc": "长棍"
+  },
+  {
+    "id": 38,
+    "source": "item",
+    "count": 1,
+    "desc": "书籍（历史）"
+  },
+  {
+    "id": 39,
+    "source": "item=56",
+    "count": 8,
+    "desc": "羊皮纸*8"
+  },
+  {
+    "id": 40,
+    "source": "weapon=2",
+    "count": 1,
+    "desc": "匕首"
+  },
+  {
+    "id": 41,
+    "source": "item",
+    "count": 1,
+    "desc": "绳索"
+  },
+  {
+    "id": 42,
+    "source": "item=56",
+    "count": 12,
+    "desc": "羊皮纸*12"
+  },
+  {
+    "id": 43,
+    "source": "tool=20",
+    "count": 1,
+    "desc": "赌具（任意）"
+  },
+  {
+    "id": 44,
+    "source": "weapon",
+    "count": 1,
+    "desc": "巨斧"
+  },
+  {
+    "id": 45,
+    "source": "weapon",
+    "count": 4,
+    "desc": "手斧4"
+  },
+  {
+    "id": 46,
+    "source": "item",
+    "count": 1,
+    "desc": "探索套组"
+  },
+  {
+    "id": 47,
+    "source": "armor",
+    "count": 1,
+    "desc": "皮甲"
+  },
+  {
+    "id": 48,
+    "source": "tool",
+    "count": 1,
+    "desc": "乐器"
+  },
+  {
+    "id": 49,
+    "source": "item",
+    "count": 1,
+    "desc": "艺人套组"
+  },
+  {
+    "id": 50,
+    "source": "armor",
+    "count": 1,
+    "desc": "链甲衫"
+  },
+  {
+    "id": 51,
+    "source": "armor",
+    "count": 1,
+    "desc": "盾牌"
+  },
+  {
+    "id": 52,
+    "source": "weapon",
+    "count": 1,
+    "desc": "硬头锤"
+  },
+  {
+    "id": 53,
+    "source": "item",
+    "count": 1,
+    "desc": "祭司套组"
+  },
+  {
+    "id": 83,
+    "source": "item",
+    "count": 1,
+    "desc": "弹药"
+  },
+  {
+    "id": 84,
+    "source": "item",
+    "count": 1,
+    "desc": "箭矢"
+  },
+  {
+    "id": 85,
+    "source": "item",
+    "count": 1,
+    "desc": "地城套组"
+  },
+  {
+    "id": 86,
+    "source": "item",
+    "count": 1,
+    "desc": "学者套组"
+  },
+  {
+    "id": 87,
+    "source": "item",
+    "count": 1,
+    "desc": "祭司套组"
+  },
+  {
+    "id": 88,
+    "source": "item",
+    "count": 1,
+    "desc": "草药工具"
+  },
+  {
+    "id": 89,
+    "source": "item",
+    "count": 1,
+    "desc": "艺人套组"
+  },
+  {
+    "id": 90,
+    "source": "item",
+    "count": 1,
+    "desc": "警卫套组"
+  },
+  {
+    "id": 91,
+    "source": "item",
+    "count": 1,
+    "desc": "士兵套组"
+  },
+  {
+    "id": 92,
+    "source": "item",
+    "count": 1,
+    "desc": "学者套组"
+  },
+  {
+    "id": 93,
+    "source": "item",
+    "count": 1,
+    "desc": "旅行者套组"
+  },
+  {
+    "id": 94,
+    "source": "item",
+    "count": 1,
+    "desc": "吟游诗人套组"
+  },
+  {
+    "id": 95,
+    "source": "item",
+    "count": 1,
+    "desc": "水手套组"
+  },
+  {
+    "id": 96,
+    "source": "item",
+    "count": 1,
+    "desc": "商人套组"
+  },
+  {
+    "id": 97,
+    "source": "item",
+    "count": 1,
+    "desc": "抄写员套组"
+  },
+  {
+    "id": 98,
+    "source": "item",
+    "count": 1,
+    "desc": "术士套组"
+  },
+  {
+    "id": 99,
+    "source": "item",
+    "count": 1,
+    "desc": "贵族套组"
+  },
+  {
+    "id": 100,
+    "source": "item",
+    "count": 1,
+    "desc": "农民套组"
+  },
+  {
+    "id": 101,
+    "source": "item=102",
+    "count": 55,
+    "desc": "金币*55"
+  },
+  {
+    "id": 102,
+    "source": "item=102",
+    "count": 100,
+    "desc": "金币*100"
+  },
+  {
+    "id": 103,
+    "source": "item=102",
+    "count": 110,
+    "desc": "金币*110"
+  },
+  {
+    "id": 104,
+    "source": "item=102",
+    "count": 150,
+    "desc": "金币*150"
+  },
+  {
+    "id": 105,
+    "source": "item=102",
+    "count": 155,
+    "desc": "金币*155"
+  },
+  {
+    "id": 106,
+    "source": "tool",
+    "count": 1,
+    "desc": "盗贼工具"
+  },
+  {
+    "id": 107,
+    "source": "armor",
+    "count": 1,
+    "desc": "链甲"
+  },
+  {
+    "id": 108,
+    "source": "weapon",
+    "count": 1,
+    "desc": "巨剑"
+  },
+  {
+    "id": 109,
+    "source": "weapon",
+    "count": 1,
+    "desc": "链枷"
+  },
+  {
+    "id": 110,
+    "source": "weapon",
+    "count": 8,
+    "desc": "标枪*8"
+  },
+  {
+    "id": 111,
+    "source": "item",
+    "count": 1,
+    "desc": "地城套组"
+  },
+  {
+    "id": 112,
+    "source": "armor",
+    "count": 1,
+    "desc": "镶钉皮甲"
+  },
+  {
+    "id": 113,
+    "source": "weapon",
+    "count": 1,
+    "desc": "弯刀"
+  },
+  {
+    "id": 114,
+    "source": "weapon",
+    "count": 1,
+    "desc": "短剑"
+  },
+  {
+    "id": 115,
+    "source": "weapon",
+    "count": 1,
+    "desc": "长弓"
+  },
+  {
+    "id": 116,
+    "source": "weapon",
+    "count": 1,
+    "desc": "长剑"
+  },
+  {
+    "id": 117,
+    "source": "item",
+    "count": 1,
+    "desc": "奥术法器（长棍）"
+  },
+  {
+    "id": 118,
+    "source": "item",
+    "count": 1,
+    "desc": "德鲁伊法器（槲寄生枝条）"
+  },
+  {
+    "id": 119,
+    "source": "item",
+    "count": 1,
+    "desc": "奥术法器（水晶）"
+  },
+  {
+    "id": 120,
+    "source": "item",
+    "count": 1,
+    "desc": "奥术法器（法球）"
+  },
+  {
+    "id": 121,
+    "source": "item",
+    "count": 1,
+    "desc": "书（隐秘学识）"
+  },
+  {
+    "id": 122,
+    "source": "item",
+    "count": 1,
+    "desc": "学者套组"
+  },
+  {
+    "id": 123,
+    "source": "item",
+    "count": 1,
+    "desc": "法术书"
+  },
+  {
+    "id": 124,
+    "source": "tool",
+    "count": 1,
+    "desc": "修补工具"
+  },
+  {
+    "id": 125,
+    "source": "item",
+    "count": 1,
+    "desc": "草药工具"
+  },
+  {
+    "id": 126,
+    "source": "item",
+    "count": 1,
+    "desc": "窃贼套组"
+  },
+  {
+    "id": 127,
+    "source": "weapon",
+    "count": 4,
+    "desc": "手斧*4"
+  },
+  {
+    "id": 130,
+    "source": "item",
+    "count": 20,
+    "desc": "箭矢*20"
+  }
+]

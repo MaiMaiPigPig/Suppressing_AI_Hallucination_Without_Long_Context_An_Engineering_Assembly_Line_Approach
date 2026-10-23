@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 · 故事助手</title>
+    <link rel="stylesheet" href="/backstage/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="top-ornament"></div>
+
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-icon">📖</div>
+                <h1>故事助手</h1>
+                <p class="login-subtitle">管理后台</p>
+            </div>
+
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="username">账号</label>
+                    <input type="text" id="username" class="form-input" placeholder="请输入管理员账号">
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" class="form-input" placeholder="请输入密码">
+                </div>
+
+                <button id="loginBtn" class="login-btn">登 录</button>
+
+                <div class="login-footer">
+                    <a href="#" id="forgotPwdLink">🔑 忘记密码？</a>
+                </div>
+
+                <div id="loginMessage" class="login-message"></div>
+            </div>
+        </div>
+
+        <div class="bottom-ornament"></div>
+    </div>
+
+    <!-- 忘记密码弹窗 -->
+    <div id="forgotModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">&times;</div>
+            <div class="modal-icon">📱</div>
+            <h3>联系管理员</h3>
+            <p>请添加微信号联系重置密码：</p>
+            <p class="wechat-id"><strong>story_helper_admin</strong></p>
+            <button id="modalConfirmBtn" class="modal-btn">我知道了</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="/backstage/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,3422 @@
+[
+  {
+    "id": 1,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 5,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔法学徒（牧师）"
+  },
+  {
+    "id": 2,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 21,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "洞悉"
+  },
+  {
+    "id": 3,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 17,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "宗教"
+  },
+  {
+    "id": 4,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "书法工匠"
+  },
+  {
+    "id": 5,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 1,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "侍僧套装"
+  },
+  {
+    "id": 6,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 44,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "背景积蓄"
+  },
+  {
+    "id": 7,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 2,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "巧匠"
+  },
+  {
+    "id": 8,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 15,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "调查"
+  },
+  {
+    "id": 9,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 30,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "游说"
+  },
+  {
+    "id": 10,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 66,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "工匠工具"
+  },
+  {
+    "id": 11,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 2,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "工匠套装"
+  },
+  {
+    "id": 12,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 10,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "熟习"
+  },
+  {
+    "id": 13,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 27,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "欺瞒"
+  },
+  {
+    "id": 14,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 7,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "巧手"
+  },
+  {
+    "id": 15,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 19,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "文书伪造工匠"
+  },
+  {
+    "id": 16,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "骗子套装"
+  },
+  {
+    "id": 17,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 1,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "警戒"
+  },
+  {
+    "id": 18,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 8,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "隐匿"
+  },
+  {
+    "id": 19,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 37,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "盗贼工匠"
+  },
+  {
+    "id": 20,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "罪犯套装"
+  },
+  {
+    "id": 21,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 8,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "音乐家"
+  },
+  {
+    "id": 22,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 6,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "体操"
+  },
+  {
+    "id": 23,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 29,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "表演"
+  },
+  {
+    "id": 24,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 67,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "乐器(选1)"
+  },
+  {
+    "id": 25,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 5,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "艺人套装"
+  },
+  {
+    "id": 26,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 12,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "健壮"
+  },
+  {
+    "id": 27,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 20,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "驯兽"
+  },
+  {
+    "id": 28,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 16,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "自然"
+  },
+  {
+    "id": 29,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "木匠工匠"
+  },
+  {
+    "id": 30,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 6,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "农民套装"
+  },
+  {
+    "id": 31,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "运动"
+  },
+  {
+    "id": 32,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 23,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "察觉"
+  },
+  {
+    "id": 33,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 68,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "赌具(选1)"
+  },
+  {
+    "id": 34,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 7,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "警卫套装"
+  },
+  {
+    "id": 35,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 6,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔法学徒（德鲁伊）"
+  },
+  {
+    "id": 36,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 24,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "求生"
+  },
+  {
+    "id": 37,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 5,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "制图工匠"
+  },
+  {
+    "id": 38,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 8,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "向导套装"
+  },
+  {
+    "id": 39,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "医疗师"
+  },
+  {
+    "id": 40,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 22,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "医药"
+  },
+  {
+    "id": 41,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 24,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "草药工匠"
+  },
+  {
+    "id": 42,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 9,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "隐士套装"
+  },
+  {
+    "id": 43,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "幸运"
+  },
+  {
+    "id": 44,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 35,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "领航工匠"
+  },
+  {
+    "id": 45,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 10,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "商人套装"
+  },
+  {
+    "id": 46,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 14,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "历史"
+  },
+  {
+    "id": 47,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 11,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "贵族套装"
+  },
+  {
+    "id": 48,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 7,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔法学徒（法师）"
+  },
+  {
+    "id": 49,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 13,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "奥秘"
+  },
+  {
+    "id": 50,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 12,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "智者套装"
+  },
+  {
+    "id": 51,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 11,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "酒馆斗殴者"
+  },
+  {
+    "id": 52,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 13,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "水手套装"
+  },
+  {
+    "id": 53,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 14,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "抄写员套装"
+  },
+  {
+    "id": 54,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 9,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "凶蛮打手"
+  },
+  {
+    "id": 55,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 28,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "威吓"
+  },
+  {
+    "id": 56,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 15,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "士兵套装"
+  },
+  {
+    "id": 57,
+    "source_table": "packages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 16,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "流浪者套装"
+  },
+  {
+    "id": 58,
+    "source_table": "weapons",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 63,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "简易武器"
+  },
+  {
+    "id": 59,
+    "source_table": "weapons",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 64,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "军用武器"
+  },
+  {
+    "id": 60,
+    "source_table": "armors",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 2,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "皮甲"
+  },
+  {
+    "id": 61,
+    "source_table": "armors",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "镶钉皮甲"
+  },
+  {
+    "id": 62,
+    "source_table": "armors",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 5,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "链甲衫"
+  },
+  {
+    "id": 63,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 17,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "窃贼套组"
+  },
+  {
+    "id": 64,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 18,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "铁蒺藜"
+  },
+  {
+    "id": 65,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 67,
+    "count": 3,
+    "complex_logic": "choose",
+    "desc": "乐器(选3个)"
+  },
+  {
+    "id": 66,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 19,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "蜡烛"
+  },
+  {
+    "id": 67,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 20,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "弩矢匣"
+  },
+  {
+    "id": 68,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 21,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "地图或卷轴匣"
+  },
+  {
+    "id": 69,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 22,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "链条"
+  },
+  {
+    "id": 70,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 23,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "箱子"
+  },
+  {
+    "id": 71,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 24,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "攀爬工具"
+  },
+  {
+    "id": 72,
+    "source_table": "armors",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "兽皮甲"
+  },
+  {
+    "id": 73,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 25,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "高档服装"
+  },
+  {
+    "id": 74,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 26,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "旅行服装"
+  },
+  {
+    "id": 75,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 27,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "材料包"
+  },
+  {
+    "id": 76,
+    "source_table": "weapons",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "filter(type=4)",
+    "desc": "轻型武器"
+  },
+  {
+    "id": 77,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 28,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "戏服"
+  },
+  {
+    "id": 78,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 29,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "撬棍"
+  },
+  {
+    "id": 79,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 30,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "外交套组"
+  },
+  {
+    "id": 80,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 31,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "德鲁伊法器"
+  },
+  {
+    "id": 81,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 32,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "地城套组"
+  },
+  {
+    "id": 82,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 33,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "艺人套组"
+  },
+  {
+    "id": 83,
+    "source_table": "weapons",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "filter(type=2/4)",
+    "desc": "灵巧/轻型武器"
+  },
+  {
+    "id": 84,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 34,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "探索套组"
+  },
+  {
+    "id": 85,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 35,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "扁瓶"
+  },
+  {
+    "id": 86,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 36,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "爪钩"
+  },
+  {
+    "id": 87,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 37,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "医疗包"
+  },
+  {
+    "id": 88,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 38,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "圣徽"
+  },
+  {
+    "id": 89,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 39,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "圣水"
+  },
+  {
+    "id": 90,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 40,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "捕猎陷阱"
+  },
+  {
+    "id": 91,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 41,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "墨水"
+  },
+  {
+    "id": 92,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 15,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "修补工匠"
+  },
+  {
+    "id": 93,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 42,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "墨水笔"
+  },
+  {
+    "id": 94,
+    "source_table": "items",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 43,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "壶"
+  },
+  {
+    "id": 95,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 1,
+    "count": 1,
+    "complex_logic": 4,
+    "desc": "力量+4"
+  },
+  {
+    "id": 96,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 9,
+    "count": 1,
+    "complex_logic": 4,
+    "desc": "体质+4"
+  },
+  {
+    "id": 97,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 383,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "律令死亡"
+  },
+  {
+    "id": 98,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 382,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "律令医疗"
+  },
+  {
+    "id": 99,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 391,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "祈愿术"
+  },
+  {
+    "id": 100,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 91,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "动物交谈"
+  },
+  {
+    "id": 101,
+    "source_table": "languages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 14,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "德鲁伊语"
+  },
+  {
+    "id": 102,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 63,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "寻获魔宠"
+  },
+  {
+    "id": 103,
+    "source_table": "feats",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 44,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "战斗风格"
+  },
+  {
+    "id": 104,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": 4,
+    "desc": "敏捷+4"
+  },
+  {
+    "id": 105,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 18,
+    "count": 1,
+    "complex_logic": 4,
+    "desc": "感知+4"
+  },
+  {
+    "id": 106,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 56,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "至圣斩"
+  },
+  {
+    "id": 107,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 121,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "寻获坐骑"
+  },
+  {
+    "id": 108,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 73,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "猎人印记"
+  },
+  {
+    "id": 109,
+    "source_table": "languages",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 18,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "盗贼黑话"
+  },
+  {
+    "id": 110,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 267,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "异界探知"
+  },
+  {
+    "id": 111,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 106,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "野兽感官"
+  },
+  {
+    "id": 112,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 42,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魅惑类人"
+  },
+  {
+    "id": 113,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 139,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "镜影术"
+  },
+  {
+    "id": 114,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 45,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "命令术"
+  },
+  {
+    "id": 115,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "type",
+    "target_id": 3,
+    "count": 3,
+    "complex_logic": "choose(3)",
+    "desc": "技能(选3个)"
+  },
+  {
+    "id": 116,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 99,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "援助术"
+  },
+  {
+    "id": 117,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 40,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "祝福术"
+  },
+  {
+    "id": 118,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 49,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "疗伤术"
+  },
+  {
+    "id": 119,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 131,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "次等复原术"
+  },
+  {
+    "id": 120,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 192,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "群体治愈真言"
+  },
+  {
+    "id": 121,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 199,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "回生术"
+  },
+  {
+    "id": 122,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 215,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "生命灵光"
+  },
+  {
+    "id": 123,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 225,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "防死结界"
+  },
+  {
+    "id": 124,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 276,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "高等复原术"
+  },
+  {
+    "id": 125,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 282,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "群体疗伤术"
+  },
+  {
+    "id": 126,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 41,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "燃烧之手"
+  },
+  {
+    "id": 127,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 60,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "妖火"
+  },
+  {
+    "id": 128,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 149,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "灼热射线"
+  },
+  {
+    "id": 129,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 150,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "识破隐形"
+  },
+  {
+    "id": 130,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 175,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "昼明术"
+  },
+  {
+    "id": 131,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 180,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "火球术"
+  },
+  {
+    "id": 132,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 254,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "火墙术"
+  },
+  {
+    "id": 133,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 274,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "焰击术"
+  },
+  {
+    "id": 134,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 290,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "探知术"
+  },
+  {
+    "id": 135,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 53,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "易容术"
+  },
+  {
+    "id": 136,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 129,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "隐形术"
+  },
+  {
+    "id": 137,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 143,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "行动无踪"
+  },
+  {
+    "id": 138,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 186,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "催眠图纹"
+  },
+  {
+    "id": 139,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 194,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "回避侦测"
+  },
+  {
+    "id": 140,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 221,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "困惑术"
+  },
+  {
+    "id": 141,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 226,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "任意门"
+  },
+  {
+    "id": 142,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 272,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "支配类人"
+  },
+  {
+    "id": 143,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 284,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "篡改记忆"
+  },
+  {
+    "id": 144,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 67,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "光导箭"
+  },
+  {
+    "id": 145,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 88,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "虔诚护盾"
+  },
+  {
+    "id": 146,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 136,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔化武器"
+  },
+  {
+    "id": 147,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 156,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "灵体武器"
+  },
+  {
+    "id": 148,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 174,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "十字军披风"
+  },
+  {
+    "id": 149,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 205,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "灵体卫士"
+  },
+  {
+    "id": 150,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 231,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "火焰护盾"
+  },
+  {
+    "id": 151,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 233,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "行动自如"
+  },
+  {
+    "id": 152,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 278,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "定身怪物"
+  },
+  {
+    "id": 153,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 292,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "钢风斩"
+  },
+  {
+    "id": 154,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 8,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "火焰箭"
+  },
+  {
+    "id": 155,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 108,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "朦胧术"
+  },
+  {
+    "id": 156,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 20,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "冷冻射线"
+  },
+  {
+    "id": 157,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 64,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "云雾术"
+  },
+  {
+    "id": 158,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 128,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "定身类人"
+  },
+  {
+    "id": 159,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 24,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "电爪"
+  },
+  {
+    "id": 160,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 90,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "睡眠术"
+  },
+  {
+    "id": 161,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 140,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "迷踪步"
+  },
+  {
+    "id": 162,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 1,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "酸液飞溅"
+  },
+  {
+    "id": 163,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 160,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "蛛网术"
+  },
+  {
+    "id": 164,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 84,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "致病射线"
+  },
+  {
+    "id": 165,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 201,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "雪雨暴"
+  },
+  {
+    "id": 166,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 189,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "闪电束"
+  },
+  {
+    "id": 167,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 206,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "臭云术"
+  },
+  {
+    "id": 168,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 218,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "枯萎术"
+  },
+  {
+    "id": 169,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 239,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "冰风暴"
+  },
+  {
+    "id": 170,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 246,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "变形术"
+  },
+  {
+    "id": 171,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 301,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "石墙术"
+  },
+  {
+    "id": 172,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 264,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "寒冰锥"
+  },
+  {
+    "id": 173,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 299,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "树跃术"
+  },
+  {
+    "id": 174,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 279,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "疫病虫群"
+  },
+  {
+    "id": 175,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 27,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "点点星芒"
+  },
+  {
+    "id": 176,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 141,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "月华之光"
+  },
+  {
+    "id": 177,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 170,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "咒唤兽群"
+  },
+  {
+    "id": 178,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 232,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "月光涌泉"
+  },
+  {
+    "id": 179,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 95,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "雷鸣波"
+  },
+  {
+    "id": 180,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 151,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "粉碎音波"
+  },
+  {
+    "id": 181,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 211,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "水下呼吸"
+  },
+  {
+    "id": 182,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 224,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "操控水体"
+  },
+  {
+    "id": 183,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 259,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "毕格比之手"
+  },
+  {
+    "id": 184,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 265,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "咒唤元素"
+  },
+  {
+    "id": 185,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 10,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "神导术"
+  },
+  {
+    "id": 186,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 297,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "心灵遥控"
+  },
+  {
+    "id": 187,
+    "source_table": "skills",
+    "mode": "choose",
+    "type": "choose",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "21,22",
+    "desc": "从技能[洞悉/医药]中选1个"
+  },
+  {
+    "id": 188,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 114,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "黑暗术"
+  },
+  {
+    "id": 189,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 16,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "次级幻象"
+  },
+  {
+    "id": 190,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 7,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "四象法门"
+  },
+  {
+    "id": 191,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 82,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "防护善恶"
+  },
+  {
+    "id": 192,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 161,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "诚实之域"
+  },
+  {
+    "id": 193,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 164,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "希望信标"
+  },
+  {
+    "id": 194,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 176,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "解除魔法"
+  },
+  {
+    "id": 195,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 237,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "信仰守卫"
+  },
+  {
+    "id": 196,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 262,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "通神术"
+  },
+  {
+    "id": 197,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 71,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "英雄气概"
+  },
+  {
+    "id": 198,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 118,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "强化属性"
+  },
+  {
+    "id": 199,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 184,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "加速术"
+  },
+  {
+    "id": 200,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 197,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "防护能量"
+  },
+  {
+    "id": 201,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 220,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "强迫术"
+  },
+  {
+    "id": 202,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 281,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "通晓传奇"
+  },
+  {
+    "id": 203,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 302,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "悠兰德王者威仪"
+  },
+  {
+    "id": 204,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 57,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "捕获打击"
+  },
+  {
+    "id": 205,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 196,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "植物滋长"
+  },
+  {
+    "id": 206,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 249,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "石肤术"
+  },
+  {
+    "id": 207,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 263,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "问道自然"
+  },
+  {
+    "id": 208,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 39,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "灾祸术"
+  },
+  {
+    "id": 209,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 217,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "放逐术"
+  },
+  {
+    "id": 210,
+    "source_table": "monsters",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 13,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "大地野兽"
+  },
+  {
+    "id": 211,
+    "source_table": "monsters",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 14,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "海洋野兽"
+  },
+  {
+    "id": 212,
+    "source_table": "monsters",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 15,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "天空野兽"
+  },
+  {
+    "id": 213,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 207,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "妖精召唤术"
+  },
+  {
+    "id": 214,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 283,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "假象术"
+  },
+  {
+    "id": 215,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 148,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔绳术"
+  },
+  {
+    "id": 216,
+    "source_table": "skills",
+    "mode": "choose",
+    "type": "choose",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "12,26",
+    "desc": "从技能[智力豁免/魅力豁免]中选1个"
+  },
+  {
+    "id": 217,
+    "source_table": "skills",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 19,
+    "count": 1,
+    "complex_logic": 1,
+    "desc": "感知豁免+1"
+  },
+  {
+    "id": 218,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 178,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "恐惧术"
+  },
+  {
+    "id": 219,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 236,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "高等隐形术"
+  },
+  {
+    "id": 220,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 291,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "伪装术"
+  },
+  {
+    "id": 221,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 12,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "法师之手"
+  },
+  {
+    "id": 222,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 18,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "易容工匠"
+  },
+  {
+    "id": 223,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 36,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "毒药工匠"
+  },
+  {
+    "id": 224,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 15,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "心灵之楔"
+  },
+  {
+    "id": 225,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 38,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "哈达之臂"
+  },
+  {
+    "id": 226,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 54,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "不谐低语"
+  },
+  {
+    "id": 227,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 109,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "安定心神"
+  },
+  {
+    "id": 228,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 116,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "侦测思想"
+  },
+  {
+    "id": 229,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 185,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "哈达之欲"
+  },
+  {
+    "id": 230,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 200,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "短讯术"
+  },
+  {
+    "id": 231,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 229,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "艾伐黑触手"
+  },
+  {
+    "id": 232,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 250,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "异怪召唤术"
+  },
+  {
+    "id": 233,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 288,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "拉瑞心灵联结"
+  },
+  {
+    "id": 234,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 35,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "警报术"
+  },
+  {
+    "id": 235,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 251,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "构装召唤术"
+  },
+  {
+    "id": 236,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 300,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "力场墙"
+  },
+  {
+    "id": 237,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 43,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "繁彩球"
+  },
+  {
+    "id": 238,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 117,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "龙息术"
+  },
+  {
+    "id": 239,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 100,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "变身术"
+  },
+  {
+    "id": 240,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 181,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "飞行术"
+  },
+  {
+    "id": 241,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 214,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "秘法眼"
+  },
+  {
+    "id": 242,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 219,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魅惑怪物"
+  },
+  {
+    "id": 243,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 294,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "龙类召唤术"
+  },
+  {
+    "id": 244,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 104,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "卜筮术"
+  },
+  {
+    "id": 245,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 144,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魅影之力"
+  },
+  {
+    "id": 246,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 228,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "支配野兽"
+  },
+  {
+    "id": 247,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 11,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "光亮术"
+  },
+  {
+    "id": 248,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 22,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "圣火术"
+  },
+  {
+    "id": 249,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 293,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "天界召唤术"
+  },
+  {
+    "id": 250,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 157,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "暗示术"
+  },
+  {
+    "id": 251,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 275,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "指使术"
+  },
+  {
+    "id": 252,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 92,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "塔莎狂笑术"
+  },
+  {
+    "id": 253,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 169,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "鹰眼术"
+  },
+  {
+    "id": 254,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 72,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "脆弱诅咒"
+  },
+  {
+    "id": 255,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 172,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "法术反制"
+  },
+  {
+    "id": 256,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 158,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "野兽召唤术"
+  },
+  {
+    "id": 257,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=3,lv=0",
+    "desc": "牧师戏法(选2个)"
+  },
+  {
+    "id": 258,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=4,lv=0",
+    "desc": "德鲁伊戏法(选2个)"
+  },
+  {
+    "id": 259,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=3,4,12",
+    "desc": "牧师法术(选2个)"
+  },
+  {
+    "id": 260,
+    "source_table": "skills",
+    "mode": "choose",
+    "type": "choose",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "27,29,30",
+    "desc": "从技能[欺瞒/表演/游说]中选1个"
+  },
+  {
+    "id": 261,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 167,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "闪现术"
+  },
+  {
+    "id": 262,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=7",
+    "desc": "防护学派法术(选2个)"
+  },
+  {
+    "id": 263,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=9",
+    "desc": "预言学派法术(选2个)"
+  },
+  {
+    "id": 264,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=11",
+    "desc": "塑能学派法术(选2个)"
+  },
+  {
+    "id": 265,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=12",
+    "desc": "幻术学派法术(选2个)"
+  },
+  {
+    "id": 266,
+    "source_table": "skills",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=2,3,4,12",
+    "desc": "吟游诗人技能(选1个)"
+  },
+  {
+    "id": 267,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=6,class=11",
+    "desc": "邪术师6环法术(选1个)"
+  },
+  {
+    "id": 268,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=7,class=11",
+    "desc": "邪术师7环法术(选1个)"
+  },
+  {
+    "id": 269,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=8,class=11",
+    "desc": "邪术师8环法术(选1个)"
+  },
+  {
+    "id": 270,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=9,class=11",
+    "desc": "邪术师9环法术(选1个)"
+  },
+  {
+    "id": 271,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 3,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "颤栗之触"
+  },
+  {
+    "id": 272,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 4,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "舞光术"
+  },
+  {
+    "id": 273,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 5,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "德鲁伊伎俩"
+  },
+  {
+    "id": 274,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 13,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "修复术"
+  },
+  {
+    "id": 275,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 17,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "毒气喷涌"
+  },
+  {
+    "id": 276,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 18,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "魔法伎俩"
+  },
+  {
+    "id": 277,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 28,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "奇术"
+  },
+  {
+    "id": 278,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 47,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "通晓语言"
+  },
+  {
+    "id": 279,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 50,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "侦测善恶"
+  },
+  {
+    "id": 280,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 51,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "侦测魔法"
+  },
+  {
+    "id": 281,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 61,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "虚假生命"
+  },
+  {
+    "id": 282,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 70,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "炼狱叱喝"
+  },
+  {
+    "id": 283,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 79,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "大步奔行"
+  },
+  {
+    "id": 284,
+    "source_table": "spells",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 147,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "衰弱射线"
+  },
+  {
+    "id": 285,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=12,lv=0",
+    "desc": "法师戏法(选1个)"
+  },
+  {
+    "id": 286,
+    "source_table": "skills",
+    "mode": "choose",
+    "type": "choose",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "21,23,24",
+    "desc": "从技能[洞悉/察觉/求生]中选1个"
+  },
+  {
+    "id": 287,
+    "source_table": "skills",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "type=3",
+    "desc": "技能(选1个)"
+  },
+  {
+    "id": 288,
+    "source_table": "feats",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "type=42",
+    "desc": "专长(选1个)"
+  },
+  {
+    "id": 289,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=3,lv=0",
+    "desc": "牧师戏法(选2个)"
+  },
+  {
+    "id": 290,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=3,lv=1",
+    "desc": "牧师1环法术(选1个)"
+  },
+  {
+    "id": 291,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=4,lv=0",
+    "desc": "德鲁伊戏法(选2个)"
+  },
+  {
+    "id": 292,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,lv=0",
+    "desc": "法师戏法(选2个)"
+  },
+  {
+    "id": 293,
+    "source_table": "tools",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 3,
+    "complex_logic": "type=66",
+    "desc": "工匠工具(选3个)"
+  },
+  {
+    "id": 294,
+    "source_table": "tools",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 3,
+    "complex_logic": "type=67",
+    "desc": "乐器(选3个)"
+  },
+  {
+    "id": 295,
+    "source_table": "skills",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 3,
+    "complex_logic": "type=3",
+    "desc": "从技能中选3个（仅技能，不含属性/豁免）"
+  },
+  {
+    "id": 296,
+    "source_table": "skills",
+    "mode": "special",
+    "type": "special",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "all",
+    "desc": "所有技能熟练"
+  },
+  {
+    "id": 297,
+    "source_table": "skills",
+    "mode": "special",
+    "type": "special",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "proficiency>pure",
+    "desc": "获得1个技能专精"
+  },
+  {
+    "id": 298,
+    "source_table": "skills",
+    "mode": "special",
+    "type": "special",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "half-prof",
+    "desc": "半熟练：所有未熟练技能获得一半熟练加值（向下取整）"
+  },
+  {
+    "id": 299,
+    "source_table": "tools",
+    "mode": "special",
+    "type": "special",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "half-prof",
+    "desc": "半熟练：所有未熟练工具获得一半熟练加值（向下取整）"
+  },
+  {
+    "id": 300,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=8",
+    "desc": "咒法学派法术(选2个)"
+  },
+  {
+    "id": 301,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=10",
+    "desc": "惑控学派法术(选2个)"
+  },
+  {
+    "id": 302,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=13",
+    "desc": "死灵学派法术(选2个)"
+  },
+  {
+    "id": 303,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 2,
+    "complex_logic": "class=12,school=14",
+    "desc": "变化学派法术(选2个)"
+  },
+  {
+    "id": 304,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=4,lv=1",
+    "desc": "德鲁伊1环法术(选1个)"
+  },
+  {
+    "id": 305,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=12,lv=1",
+    "desc": "法师1环法术(选1个)"
+  },
+  {
+    "id": 306,
+    "source_table": "spell_slot",
+    "mode": "spell_slot",
+    "type": "spell_slot",
+    "target_id": 1,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "额外1个1环法术位(魔法学徒)"
+  },
+  {
+    "id": 307,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=1,school=9,10",
+    "desc": "1环预言/惑控法术(选1个·妖精触碰)"
+  },
+  {
+    "id": 308,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "lv=1,school=12,13",
+    "desc": "1环幻术/死灵法术(选1个·影界触碰)"
+  },
+  {
+    "id": 309,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "rule",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "",
+    "desc": "规则模式: hp_per_lv+[N] — 每级+N点生命值（如 hp_per_lv+2 对应健壮专长）"
+  },
+  {
+    "id": 310,
+    "source_table": "tools",
+    "mode": "normal",
+    "type": "special",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "choose(tool(type=66),tool(type=67))",
+    "desc": "工匠工具或乐器(选1)"
+  },
+  {
+    "id": 500,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=11,lv=0,dice=1",
+    "desc": "知晓一道能造成伤害的魔契师戏法"
+  },
+  {
+    "id": 501,
+    "source_table": "spells",
+    "mode": "filter",
+    "type": "filter",
+    "target_id": 0,
+    "count": 1,
+    "complex_logic": "class=11,lv=0,dice=1,attack_roll=1",
+    "desc": "知晓一道通过攻击检定造成伤害的魔契师戏法"
+  },
+  {
+    "id": 502,
+    "source_table": "class_extra",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 33,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "具有刃之魔契祈唤"
+  },
+  {
+    "id": 503,
+    "source_table": "class_extra",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 34,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "具有链之魔契祈唤"
+  },
+  {
+    "id": 504,
+    "source_table": "class_extra",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 35,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "具有书之魔契祈唤"
+  },
+  {
+    "id": 505,
+    "source_table": "class_extra",
+    "mode": "normal",
+    "type": "id",
+    "target_id": 52,
+    "count": 1,
+    "complex_logic": "",
+    "desc": "具有饥渴魔刃祈唤"
+  },
+  {
+    "id": 506,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=2",
+    "desc": "魔契师等级2"
+  },
+  {
+    "id": 507,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=5",
+    "desc": "魔契师等级5"
+  },
+  {
+    "id": 508,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=7",
+    "desc": "魔契师等级7"
+  },
+  {
+    "id": 509,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=9",
+    "desc": "魔契师等级9"
+  },
+  {
+    "id": 510,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=12",
+    "desc": "魔契师等级12"
+  },
+  {
+    "id": 511,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(11)=15",
+    "desc": "魔契师等级15"
+  },
+  {
+    "id": 512,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(5)=3",
+    "desc": "战士等级3"
+  },
+  {
+    "id": 513,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv:class(5)=7",
+    "desc": "战士等级7"
+  },
+  {
+    "id": 514,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "rules",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "Proficiency>pure+2",
+    "desc": "从熟练技能中选择2项获得专精"
+  },
+  {
+    "id": 515,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "rules",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "Proficiency>pure+1,language+2",
+    "desc": "从熟练技能中选择1项获得专精并额外学习2门语言"
+  },
+  {
+    "id": 516,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "rules",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "Proficiency>pure+1",
+    "desc": "从熟练技能中选择1项获得专精"
+  },
+  {
+    "id": 517,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "rules",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "Proficiency>pure(13,14,15,22,16,17)+1",
+    "desc": "从指定技能中选择1项获得专精"
+  },
+  {
+    "id": 518,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv>=4",
+    "desc": "等级≥4"
+  },
+  {
+    "id": 519,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "lv>=19",
+    "desc": "等级≥19"
+  },
+  {
+    "id": 520,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(1)>=13",
+    "desc": "力量≥13"
+  },
+  {
+    "id": 521,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(4)>=13",
+    "desc": "敏捷≥13"
+  },
+  {
+    "id": 522,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(9)>=13",
+    "desc": "体质≥13"
+  },
+  {
+    "id": 523,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(11)>=13",
+    "desc": "智力≥13"
+  },
+  {
+    "id": 524,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(18)>=13",
+    "desc": "感知≥13"
+  },
+  {
+    "id": 525,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "ability(25)>=13",
+    "desc": "魅力≥13"
+  },
+  {
+    "id": 526,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(spellcasting)",
+    "desc": "具有施法特性"
+  },
+  {
+    "id": 527,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(pact_magic)",
+    "desc": "具有魔契魔法特性"
+  },
+  {
+    "id": 528,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(medium_armor_trained)",
+    "desc": "具有中甲熟练"
+  },
+  {
+    "id": 529,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(heavy_armor_trained)",
+    "desc": "具有重甲熟练"
+  },
+  {
+    "id": 530,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(light_armor_trained)",
+    "desc": "具有轻甲熟练"
+  },
+  {
+    "id": 531,
+    "source_table": "basic",
+    "mode": "normal",
+    "type": "prerequisite",
+    "target_id": 0,
+    "count": 0,
+    "complex_logic": "feature(shield_trained)",
+    "desc": "具有盾牌熟练"
+  }
+]

@@ -1,0 +1,562 @@
+[
+  {
+    "id": 1,
+    "name": "临时武器",
+    "name_en": "ImprovisedWeapons",
+    "primary": "",
+    "contains": "",
+    "desc": "使用权宜之物作为武器的规则。"
+  },
+  {
+    "id": 2,
+    "name": "轻甲",
+    "name_en": "LightArmor",
+    "primary": "",
+    "contains": "",
+    "desc": "轻甲类别"
+  },
+  {
+    "id": 3,
+    "name": "中甲",
+    "name_en": "MediumArmor",
+    "primary": "",
+    "contains": "",
+    "desc": "中甲类别"
+  },
+  {
+    "id": 4,
+    "name": "重甲",
+    "name_en": "HeavyArmor",
+    "primary": "",
+    "contains": "",
+    "desc": "重甲类别"
+  },
+  {
+    "id": 5,
+    "name": "盾牌",
+    "name_en": "Shield",
+    "primary": "",
+    "contains": "",
+    "desc": "盾牌"
+  },
+  {
+    "id": 6,
+    "name": "护甲类型",
+    "name_en": "Armor Types",
+    "primary": 1,
+    "contains": "2,3,4,5",
+    "desc": ""
+  },
+  {
+    "id": 7,
+    "name": "防护",
+    "name_en": "Abjuration",
+    "primary": "",
+    "contains": "",
+    "desc": "抵御或逆转有害效应"
+  },
+  {
+    "id": 8,
+    "name": "咒法",
+    "name_en": "Conjuration",
+    "primary": "",
+    "contains": "",
+    "desc": "转移生物或物件"
+  },
+  {
+    "id": 9,
+    "name": "预言",
+    "name_en": "Divination",
+    "primary": "",
+    "contains": "",
+    "desc": "揭露讯息"
+  },
+  {
+    "id": 10,
+    "name": "惑控",
+    "name_en": "Enchantment",
+    "primary": "",
+    "contains": "",
+    "desc": "影响心智"
+  },
+  {
+    "id": 11,
+    "name": "塑能",
+    "name_en": "Evocation",
+    "primary": "",
+    "contains": "",
+    "desc": "引导能量创造效应（通常是破坏性的）"
+  },
+  {
+    "id": 12,
+    "name": "幻术",
+    "name_en": "Illusion",
+    "primary": "",
+    "contains": "",
+    "desc": "欺骗感官与心灵"
+  },
+  {
+    "id": 13,
+    "name": "死灵",
+    "name_en": "Necromancy",
+    "primary": "",
+    "contains": "",
+    "desc": "操纵生与死"
+  },
+  {
+    "id": 14,
+    "name": "变化",
+    "name_en": "Transmutation",
+    "primary": "",
+    "contains": "",
+    "desc": "转变生物或物件"
+  },
+  {
+    "id": 15,
+    "name": "魔法学派",
+    "name_en": "Schools of Magic",
+    "primary": 1,
+    "contains": "7,8,9,10,11,12,13,14,15",
+    "desc": ""
+  },
+  {
+    "id": 16,
+    "name": "异怪",
+    "name_en": "aberration",
+    "primary": "",
+    "contains": "",
+    "desc": "地道的异星存在，例如底栖魔鱼、眼魔、呋噜和夺心魔。"
+  },
+  {
+    "id": 17,
+    "name": "野兽",
+    "name_en": "beast",
+    "primary": "",
+    "contains": "",
+    "desc": "非类人的自然生物，例如马和狼，以及大多数巨动物。"
+  },
+  {
+    "id": 18,
+    "name": "天族",
+    "name_en": "celestial",
+    "primary": "",
+    "contains": "",
+    "desc": "与上层位面有联系的魔法生物，例如天使和天马。"
+  },
+  {
+    "id": 19,
+    "name": "构装",
+    "name_en": "construct",
+    "primary": "",
+    "contains": "",
+    "desc": "魔法创造的生物，例如人工生命体、魔冢和盾卫。"
+  },
+  {
+    "id": 20,
+    "name": "龙类",
+    "name_en": "dragon",
+    "primary": "",
+    "contains": "",
+    "desc": "有着古老起源的有鳞生物，例如红龙和飞龙。"
+  },
+  {
+    "id": 21,
+    "name": "元素",
+    "name_en": "elemental",
+    "primary": "",
+    "contains": "",
+    "desc": "来自元素位面的生物，例如火巨灵和水元素。"
+  },
+  {
+    "id": 22,
+    "name": "妖精",
+    "name_en": "fey",
+    "primary": "",
+    "contains": "",
+    "desc": "与妖精荒野或自然力量有关的生物，例如树精、地精和皮克精。"
+  },
+  {
+    "id": 23,
+    "name": "邪魔",
+    "name_en": "fiend",
+    "primary": "",
+    "contains": "",
+    "desc": "与恐怖的下层位面有关的生物，例如炎魔和地狱犬。"
+  },
+  {
+    "id": 24,
+    "name": "巨人",
+    "name_en": "giant",
+    "primary": "",
+    "contains": "",
+    "desc": "具有人类形状的高大生物，例如独眼巨人、火巨人和巨魔。"
+  },
+  {
+    "id": 25,
+    "name": "类人",
+    "name_en": "humanoid",
+    "primary": "",
+    "contains": "",
+    "desc": "根据其身份和职业定义的人，如魔法师、海盗和武者。"
+  },
+  {
+    "id": 26,
+    "name": "怪兽",
+    "name_en": "monstrosity",
+    "primary": "",
+    "contains": "",
+    "desc": "有怪异起源的非自然生物，例如拟身怪和枭熊。"
+  },
+  {
+    "id": 27,
+    "name": "泥怪",
+    "name_en": "ooze",
+    "primary": "",
+    "contains": "",
+    "desc": "凝胶状生物，包括黑布丁和吞世黏浆。"
+  },
+  {
+    "id": 28,
+    "name": "植物",
+    "name_en": "plant",
+    "primary": "",
+    "contains": "",
+    "desc": "有意识的草木和真菌怪物，例如蕈人、蔓生怪和树人。"
+  },
+  {
+    "id": 29,
+    "name": "亡灵",
+    "name_en": "undead",
+    "primary": "",
+    "contains": "",
+    "desc": "鬼魂和重获“生命”的死者，例如幽魂、吸血鬼和丧尸。"
+  },
+  {
+    "id": 30,
+    "name": "生物类型",
+    "name_en": "Creature Types",
+    "primary": 1,
+    "contains": "17,18,19,20,21,22,23,24,25,26,27,28,29,30",
+    "desc": ""
+  },
+  {
+    "id": 31,
+    "name": "戏法",
+    "name_en": "SpellLevel0",
+    "primary": "",
+    "contains": "",
+    "desc": "0环法术，简便到几乎不经思考就可以施展。"
+  },
+  {
+    "id": 32,
+    "name": "1环",
+    "name_en": "SpellLevel1",
+    "primary": "",
+    "contains": "",
+    "desc": "一环法术"
+  },
+  {
+    "id": 33,
+    "name": "2环",
+    "name_en": "SpellLevel2",
+    "primary": "",
+    "contains": "",
+    "desc": "二环法术"
+  },
+  {
+    "id": 34,
+    "name": "3环",
+    "name_en": "SpellLevel3",
+    "primary": "",
+    "contains": "",
+    "desc": "三环法术"
+  },
+  {
+    "id": 35,
+    "name": "4环",
+    "name_en": "SpellLevel4",
+    "primary": "",
+    "contains": "",
+    "desc": "四环法术"
+  },
+  {
+    "id": 36,
+    "name": "5环",
+    "name_en": "SpellLevel5",
+    "primary": "",
+    "contains": "",
+    "desc": "五环法术"
+  },
+  {
+    "id": 37,
+    "name": "6环",
+    "name_en": "SpellLevel6",
+    "primary": "",
+    "contains": "",
+    "desc": "六环法术"
+  },
+  {
+    "id": 38,
+    "name": "7环",
+    "name_en": "SpellLevel7",
+    "primary": "",
+    "contains": "",
+    "desc": "七环法术"
+  },
+  {
+    "id": 39,
+    "name": "8环",
+    "name_en": "SpellLevel8",
+    "primary": "",
+    "contains": "",
+    "desc": "八环法术"
+  },
+  {
+    "id": 40,
+    "name": "9环",
+    "name_en": "SpellLevel9",
+    "primary": "",
+    "contains": "",
+    "desc": "九环法术"
+  },
+  {
+    "id": 41,
+    "name": "法术环阶",
+    "name_en": "Spell Levels",
+    "primary": "",
+    "contains": "32,33,34,35,36,37,38,39,40,41",
+    "desc": ""
+  },
+  {
+    "id": 42,
+    "name": "起源专长",
+    "name_en": "OriginFeats",
+    "primary": "",
+    "contains": "",
+    "desc": "角色在1级时通过背景获得的专长。"
+  },
+  {
+    "id": 43,
+    "name": "通用专长",
+    "name_en": "GeneralFeats",
+    "primary": "",
+    "contains": "",
+    "desc": "角色在达到特定等级（通常为4、8、12等）时可选择的专长。"
+  },
+  {
+    "id": 44,
+    "name": "战斗风格专长",
+    "name_en": "FightingStyleFeats",
+    "primary": "",
+    "contains": "",
+    "desc": "专精于特定战斗方式的专长（如箭术、防御）。"
+  },
+  {
+    "id": 45,
+    "name": "传奇恩惠专长",
+    "name_en": "EpicBoonFeats",
+    "primary": "",
+    "contains": "",
+    "desc": "角色在19级或20级时可获取的传奇级专长。"
+  },
+  {
+    "id": 46,
+    "name": "专长类型",
+    "name_en": "Feat Types",
+    "primary": "",
+    "contains": "43,44,45,46",
+    "desc": ""
+  },
+  {
+    "id": 47,
+    "name": "强酸",
+    "name_en": "Acid",
+    "primary": "",
+    "contains": "",
+    "desc": "腐蚀性液体，消化酶"
+  },
+  {
+    "id": 48,
+    "name": "钝击",
+    "name_en": "Bludgeoning",
+    "primary": "",
+    "contains": "",
+    "desc": "钝器，压紧，坠落"
+  },
+  {
+    "id": 49,
+    "name": "寒冷",
+    "name_en": "Cold",
+    "primary": "",
+    "contains": "",
+    "desc": "冰水，寒风"
+  },
+  {
+    "id": 50,
+    "name": "火焰",
+    "name_en": "Fire",
+    "primary": "",
+    "contains": "",
+    "desc": "烈焰，难以忍受的高温"
+  },
+  {
+    "id": 51,
+    "name": "力场",
+    "name_en": "Force",
+    "primary": "",
+    "contains": "",
+    "desc": "纯粹的魔法能量"
+  },
+  {
+    "id": 52,
+    "name": "闪电",
+    "name_en": "Lightning",
+    "primary": "",
+    "contains": "",
+    "desc": "高压电"
+  },
+  {
+    "id": 53,
+    "name": "暗蚀",
+    "name_en": "Necrotic",
+    "primary": "",
+    "contains": "",
+    "desc": "窃取生命的能量"
+  },
+  {
+    "id": 54,
+    "name": "穿刺",
+    "name_en": "Piercing",
+    "primary": "",
+    "contains": "",
+    "desc": "獠牙，刺穿"
+  },
+  {
+    "id": 55,
+    "name": "毒素",
+    "name_en": "Poison",
+    "primary": "",
+    "contains": "",
+    "desc": "毒性气体，蛇毒"
+  },
+  {
+    "id": 56,
+    "name": "心灵",
+    "name_en": "Psychic",
+    "primary": "",
+    "contains": "",
+    "desc": "摧毁心灵的能量"
+  },
+  {
+    "id": 57,
+    "name": "光耀",
+    "name_en": "Radiant",
+    "primary": "",
+    "contains": "",
+    "desc": "神圣能量，炽热的辐射"
+  },
+  {
+    "id": 58,
+    "name": "挥砍",
+    "name_en": "Slashing",
+    "primary": "",
+    "contains": "",
+    "desc": "爪子，切割用具"
+  },
+  {
+    "id": 59,
+    "name": "雷鸣",
+    "name_en": "Thunder",
+    "primary": "",
+    "contains": "",
+    "desc": "足以形成冲击波的响声"
+  },
+  {
+    "id": 60,
+    "name": "伤害类型",
+    "name_en": "Damage Types",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 61,
+    "name": "近战武器",
+    "name_en": "Melee",
+    "primary": "",
+    "contains": "",
+    "desc": "近战武器可以用于攻击周围5尺范围内的目标"
+  },
+  {
+    "id": 62,
+    "name": "远程武器",
+    "name_en": "Ranged",
+    "primary": "",
+    "contains": "",
+    "desc": "远程武器可以攻击到更远距离的目标"
+  },
+  {
+    "id": 63,
+    "name": "简易武器",
+    "name_en": "Simple",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 64,
+    "name": "军用武器",
+    "name_en": "Martial",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 65,
+    "name": "武器类型",
+    "name_en": "Weapons Type",
+    "primary": "",
+    "contains": "61,62,63,64,65",
+    "desc": ""
+  },
+  {
+    "id": 66,
+    "name": "工匠",
+    "name_en": "Artisan's Tools",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 67,
+    "name": "乐器",
+    "name_en": "Musical Instrument",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 68,
+    "name": "赌具",
+    "name_en": "Gaming Set",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 69,
+    "name": "其他工具",
+    "name_en": "Other Tools",
+    "primary": "",
+    "contains": "",
+    "desc": ""
+  },
+  {
+    "id": 70,
+    "name": "工具",
+    "name_en": "",
+    "primary": "",
+    "contains": "66,67,68,69",
+    "desc": ""
+  }
+]

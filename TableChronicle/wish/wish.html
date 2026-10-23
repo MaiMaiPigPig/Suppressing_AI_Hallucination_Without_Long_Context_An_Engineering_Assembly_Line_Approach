@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>许愿池 · 故事助手</title>
+    <link rel="stylesheet" href="wish/wish.css">
+    <script src="wish/wish.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部装饰线 -->
+        <div class="top-ornament"></div>
+
+        <!-- 标题区 -->
+        <header class="header">
+            <a href="/" class="back-home-btn" aria-label="返回首页">
+                <span class="arrow-icon">←</span>
+            </a>
+            <div class="logo-icon">🌟</div>
+            <h1>许愿池</h1>
+            <p class="tagline">向骰娘许下你的心愿，她会为你掷出命运</p>
+        </header>
+
+        <!-- 主卡片 -->
+        <main class="main-card">
+            <!-- 许愿池装饰图标 -->
+            <div class="wish-icon">✨</div>
+
+            <!-- 许愿输入区 -->
+            <div class="wish-input-area">
+                <label for="wishInput" class="input-label">你的心愿</label>
+                <textarea id="wishInput" class="wish-textarea" placeholder="写下你的心愿… 比如：希望明天跑团全员到场"></textarea>
+            </div>
+
+            <!-- 类别选择（下拉） -->
+            <div class="category-selector">
+                <label for="categorySelect">📂 心愿类别</label>
+                <select id="categorySelect" class="category-dropdown">
+                    <option value="new_rule">🎲 新增规则</option>
+                    <option value="new_class">🌈 新增职业</option>
+                    <option value="new_feature">🎉 新增功能</option>
+                </select>
+            </div>
+
+            <!-- 提交按钮（占位，无功能） -->
+            <button id="submitBtn" class="btn btn-submit">
+                <span class="btn-icon">🌊</span>
+                投入许愿池
+            </button>
+
+            <!-- 装饰性提示 -->
+            <div class="hint">
+                <span>✨ 每个心愿都会被骰娘听见，掷出 20 时会有奇迹发生</span>
+            </div>
+        </main>
+
+        <!-- 许愿列表 -->
+        <section class="wish-list-section">
+            <div class="wish-list-header">
+                <h3>🌊 许愿池里的心愿</h3>
+                <span class="wish-count" id="wishCount">0 个心愿</span>
+            </div>
+            <div class="wish-list" id="wishList">
+                <!-- 由 JS 动态渲染 -->
+            </div>
+        </section>
+
+        <!-- 底部 -->
+        <footer class="footer">
+            <p>© 2026 故事助手 · 许愿池的水来自骰子湖</p>
+            <p><a href="/" class="back-link">← 返回首页</a></p>
+        </footer>
+
+        <!-- 底部装饰线 -->
+        <div class="bottom-ornament"></div>
+    </div>
+</body>
+</html>

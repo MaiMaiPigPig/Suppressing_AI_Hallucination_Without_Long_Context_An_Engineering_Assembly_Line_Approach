@@ -1,0 +1,248 @@
+/* ===== 法术选择 ===== */
+
+.spell-step {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.ability-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ability-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #f0e6d3;
+}
+.spell-header-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+.spell-note {
+    font-size: 0.8rem;
+    color: #c9a84c;
+    background: rgba(201,168,76,0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+.spell-casting-ability {
+    font-size: 0.85rem;
+    color: #a89b8c;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+.spell-counters {
+    display: flex;
+    gap: 16px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+.spell-counter {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.spell-counter.full {
+    border-color: #c9a84c;
+    background: rgba(201,168,76,0.1);
+}
+.spell-counter-label {
+    font-size: 0.85rem;
+    color: #a89b8c;
+}
+.spell-counter-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0e6d3;
+}
+
+/* 左右分栏 */
+.spell-body {
+    flex: 1;
+    display: flex;
+    gap: 14px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* 左侧：正方形按钮 */
+.spell-left {
+    flex: 1.2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+.spell-left-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #c9a84c;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.spell-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 6px;
+}
+.spell-btn {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #a89b8c;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    word-break: break-all;
+    line-height: 1.2;
+}
+.spell-btn:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(255,255,255,0.06);
+    color: #f0e6d3;
+}
+.spell-btn.selected {
+    background: rgba(100, 150, 255, 0.2);
+    border-color: #6496ff;
+    color: #f0e6d3;
+}
+.spell-btn.preview {
+    border-color: #c9a84c;
+    box-shadow: 0 0 8px rgba(201,168,76,0.2);
+}
+.spell-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.spell-btn.disabled:hover {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: #a89b8c;
+}
+.spell-btn.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: #c9a84c;
+    background: rgba(201, 168, 76, 0.1);
+}
+.spell-btn.locked:hover {
+    border-color: #c9a84c;
+    background: rgba(201, 168, 76, 0.15);
+}
+.spell-btn.replacing {
+    background: rgba(255, 100, 100, 0.25);
+    border-color: #ff6464;
+    color: #ff9999;
+    animation: spell-replace-pulse 1.5s ease-in-out infinite;
+}
+@keyframes spell-replace-pulse {
+    0%, 100% { box-shadow: 0 0 4px rgba(255, 100, 100, 0.2); }
+    50% { box-shadow: 0 0 12px rgba(255, 100, 100, 0.4); }
+}
+
+/* 右侧：详情面板 */
+.spell-right {
+    flex: 1;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 18px 20px;
+}
+.spell-detail-header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.spell-detail-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f0e6d3;
+    margin-bottom: 4px;
+}
+.spell-detail-level {
+    font-size: 0.8rem;
+    color: #c9a84c;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.spell-detail-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+.spell-detail-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+}
+.spell-detail-meta-label {
+    font-size: 0.7rem;
+    color: #6a5e4e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.spell-detail-meta-value {
+    font-size: 0.85rem;
+    color: #f0e6d3;
+    font-weight: 500;
+}
+.spell-detail-desc {
+    font-size: 0.85rem;
+    color: #a89b8c;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+.spell-detail-higher {
+    font-size: 0.85rem;
+    color: #8a7a6a;
+    line-height: 1.7;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.spell-detail-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6a5e4e;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+.spell-empty {
+    text-align: center;
+    padding: 20px;
+    color: #6a5e4e;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+.sheet-empty {
+    color: #6a5e4e;
+    font-size: 0.8rem;
+    font-style: italic;
+}

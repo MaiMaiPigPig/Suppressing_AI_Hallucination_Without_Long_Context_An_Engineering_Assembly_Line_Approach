@@ -1,0 +1,75 @@
+/* ===== 技能选择（步骤8） ===== */
+
+.skill-step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+}
+.skill-section {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 16px;
+}
+.skill-section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #f0e6d3;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.skill-count {
+    font-size: 0.85rem;
+    color: #c9a84c;
+    font-weight: 400;
+}
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+}
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+.skill-item:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(201,168,76,0.5);
+}
+.skill-item.selected {
+    background: rgba(201,168,76,0.2);
+    border-color: #c9a84c;
+}
+.skill-item.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.skill-item .skill-name {
+    font-size: 0.9rem;
+    color: #f0e6d3;
+}
+.skill-item .skill-ability {
+    font-size: 0.75rem;
+    color: #a89b8c;
+}
+.skill-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin: 4px 0;
+}
+.skill-hint {
+    text-align: center;
+    color: #c9a84c;
+    font-size: 0.85rem;
+    padding: 8px;
+}

@@ -1,0 +1,224 @@
+/* ============================================================
+   backstage/backstage.css
+   后台主页样式（邮箱风格布局）
+   ============================================================ */
+
+/* ----- 全局重置 ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+    background: #f0ece4;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ============================================================
+   整体布局（flex 列，撑满全屏）
+   ============================================================ */
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f5f0eb;
+}
+
+/* ============================================================
+   顶部导航栏
+   ============================================================ */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 28px;
+    height: 60px;
+    background: #3b2a1f;
+    color: #f0ece4;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.brand-icon {
+    font-size: 28px;
+}
+
+.brand-name {
+    color: #f0ece4;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 15px;
+}
+
+.user-name {
+    color: #d4c5b5;
+    padding-right: 8px;
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-logout {
+    padding: 6px 18px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #d4c5b5;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================================
+   主体区（flex 行，撑满剩余高度）
+   ============================================================ */
+.admin-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================================
+   左侧菜单
+   ============================================================ */
+.admin-sidebar {
+    width: 200px;
+    min-width: 200px;
+    background: #ffffff;
+    border-right: 2px solid #e8ddd0;
+    padding: 16px 0;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0 12px;
+}
+
+.sidebar-nav .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #5a4a3a;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+}
+
+.sidebar-nav .menu-item:hover {
+    background: #f5f0eb;
+    color: #3b2a1f;
+}
+
+.sidebar-nav .menu-item.active {
+    background: #3b2a1f;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(59, 42, 31, 0.15);
+}
+
+.sidebar-nav .menu-item .menu-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar-nav .menu-item .menu-label {
+    white-space: nowrap;
+}
+
+/* ============================================================
+   右侧内容区
+   ============================================================ */
+.admin-content {
+    flex: 1;
+    background: #faf8f6;
+    padding: 20px 24px 24px 24px;
+    overflow: auto;
+}
+
+/* ============================================================
+   底部
+   ============================================================ */
+.admin-footer {
+    height: 36px;
+    background: #f5f0eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #bbaa8a;
+    flex-shrink: 0;
+    border-top: 1px solid #e8ddd0;
+}
+
+/* ============================================================
+   响应式适配
+   ============================================================ */
+@media (max-width: 768px) {
+    .admin-sidebar {
+        width: 56px;
+        min-width: 56px;
+    }
+
+    .sidebar-nav .menu-item .menu-label {
+        display: none;
+    }
+
+    .sidebar-nav .menu-item {
+        justify-content: center;
+        padding: 14px 0;
+    }
+
+    .admin-header {
+        padding: 0 16px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .admin-content {
+        padding: 12px 14px 14px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-sidebar {
+        width: 48px;
+        min-width: 48px;
+    }
+
+    .header-user .user-name {
+        display: none;
+    }
+
+    .admin-content {
+        padding: 8px 10px 10px 10px;
+    }
+}

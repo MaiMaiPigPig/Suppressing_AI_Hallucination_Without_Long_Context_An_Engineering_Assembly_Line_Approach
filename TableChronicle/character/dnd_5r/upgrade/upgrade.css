@@ -1,0 +1,707 @@
+/* 升级系统专用样式 - 金色主题 */
+
+/* 防止页面级滚动条出现/消失导致宽度抖动 */
+html {
+    scrollbar-gutter: stable;
+}
+
+:root {
+    --gold-primary: #c9a84c;
+    --gold-light: #f0d878;
+    --gold-dark: #8a6d2b;
+    --gold-glow: rgba(201,168,76,0.3);
+    --bg-dark: #0d1117;
+    --text-primary: #f0e6d3;
+    --text-secondary: #a89b8c;
+    --text-muted: #8a7a6a;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+}
+
+.upgrade-welcome {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.upgrade-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+.upgrade-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+.upgrade-header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+.upgrade-header .level-icon {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+/* 入口卡片 */
+.upgrade-actions {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.upgrade-card {
+    flex: 1;
+    min-width: 200px;
+    max-width: 260px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 32px 20px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    position: relative;
+}
+.upgrade-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px var(--gold-glow);
+}
+.upgrade-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+.upgrade-card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+.upgrade-card-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+.upgrade-card .wip-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #f44336;
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.upgrade-card.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* 已导入角色信息卡 */
+.imported-character {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 20px;
+}
+.imported-character .char-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+}
+.imported-character .char-detail {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.imported-character .char-detail-item {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.imported-character .char-detail-item strong {
+    color: var(--text-primary);
+}
+
+/* 升级结果页面 */
+.upgrade-result {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    height: 100%;
+}
+.upgrade-result .section {
+    width: 100%;
+    max-width: 640px;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+}
+.upgrade-result .section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.upgrade-result .section-title .icon { font-size: 1.2rem; }
+.upgrade-result .section-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin: 14px 0;
+}
+.upgrade-result .change-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.upgrade-result .change-row .label {
+    color: var(--text-muted);
+    min-width: 80px;
+}
+.upgrade-result .change-row .value {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.upgrade-result .change-row .diff {
+    color: #4caf50;
+    font-weight: 700;
+}
+.upgrade-result .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.upgrade-result .feature-item:last-child {
+    border-bottom: none;
+}
+.upgrade-result .feature-item .f-icon { font-size: 1rem; margin-top: 2px; }
+.upgrade-result .feature-item .f-name { color: var(--text-primary); font-weight: 600; }
+.upgrade-result .feature-item .f-desc { font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
+.upgrade-result .feature-item .f-desc table {
+    border-collapse: collapse;
+    margin: 8px 0;
+    width: auto;
+    font-size: 0.85rem;
+}
+.upgrade-result .feature-item .f-desc table th,
+.upgrade-result .feature-item .f-desc table td {
+    padding: 6px 16px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.upgrade-result .feature-item .f-desc table th {
+    background: rgba(255,255,255,0.08);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.upgrade-result .feature-item .f-desc table td {
+    color: var(--text-secondary);
+}
+.upgrade-feature-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; padding: 10px 12px; background: rgba(0,0,0,0.2); border-radius: 8px; border-left: 3px solid var(--gold-dark); }
+
+/* ===== 升级页面法术区域样式覆盖 ===== */
+/* spell.css 的样式是为车卡页面设计的，升级页面需要覆盖 */
+.upgrade-result .spell-step,
+.upgrade-result .spell-step.upgrade-spell-step {
+    height: auto !important;
+    display: block !important;
+    flex-direction: initial !important;
+    gap: initial !important;
+}
+.upgrade-result .ability-header {
+    display: block !important;
+    justify-content: initial !important;
+    align-items: initial !important;
+}
+.upgrade-result .spell-body {
+    display: flex !important;
+    gap: 14px;
+    margin-top: 12px;
+    min-height: 200px;
+    max-height: 400px;
+}
+.upgrade-result .spell-left {
+    flex: 1.2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 6px;
+}
+.upgrade-result .spell-right {
+    flex: 1;
+    min-width: 0;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 18px 20px;
+    max-height: 400px;
+}
+.upgrade-result .spell-left-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold-primary);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.upgrade-result .spell-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 6px;
+}
+.upgrade-result .spell-btn {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    word-break: break-all;
+    line-height: 1.2;
+}
+.upgrade-result .spell-btn:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(255,255,255,0.06);
+    color: var(--text-primary);
+}
+.upgrade-result .spell-btn.selected {
+    background: rgba(100, 150, 255, 0.2);
+    border-color: #6496ff;
+    color: var(--text-primary);
+}
+.upgrade-result .spell-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.upgrade-result .spell-btn.disabled:hover {
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+}
+.upgrade-result .spell-btn.locked {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: var(--gold-primary);
+    background: rgba(201, 168, 76, 0.1);
+}
+.upgrade-result .spell-btn.replacing {
+    background: rgba(255, 100, 100, 0.25);
+    border-color: #ff6464;
+    color: #ff9999;
+}
+.upgrade-result .spell-btn.replacing-new {
+    background: rgba(79, 195, 247, 0.25);
+    border-color: #4fc3f7;
+    color: #81d4fa;
+    box-shadow: 0 0 8px rgba(79, 195, 247, 0.3);
+}
+.upgrade-result .spell-rule {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(201,168,76,0.08);
+    border-radius: 6px;
+    border-left: 3px solid var(--gold-primary);
+}
+.upgrade-result .spell-rule-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+.upgrade-result .spell-detail-panel {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* 等级进度条 - 金色 */
+.upgrade-progress .step-item.active .step-num {
+    background: var(--gold-primary);
+    color: #1a1a1a;
+}
+.upgrade-progress .step-item.completed .step-num {
+    background: var(--gold-dark);
+    color: var(--text-primary);
+}
+.upgrade-progress .step-item.active .step-label,
+.upgrade-progress .step-item.completed .step-label {
+    color: var(--gold-light);
+}
+.upgrade-progress .step-connector.completed {
+    background: var(--gold-dark);
+}
+
+/* 升级按钮 */
+.btn-upgrade {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+    color: #1a1a1a;
+    border: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 12px 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px var(--gold-glow);
+}
+.btn-upgrade:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+}
+.btn-upgrade:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 等级选择页面 */
+.level-select-step {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+.level-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+}
+.level-option {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 10px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.level-option:hover {
+    border-color: var(--gold-primary);
+    background: rgba(201,168,76,0.08);
+}
+.level-option.selected {
+    border-color: var(--gold-primary);
+    background: rgba(201,168,76,0.15);
+    box-shadow: 0 0 12px var(--gold-glow);
+}
+.level-option-num {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+}
+.level-option-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ===== 升级选择 UI ===== */
+.upgrade-selection-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    background: rgba(201,168,76,0.06);
+    border-left: 3px solid var(--gold-primary);
+    border-radius: 4px;
+}
+
+.upgrade-option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.upgrade-option-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    user-select: none;
+}
+.upgrade-option-item:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold-primary);
+}
+.upgrade-option-item.checked {
+    background: rgba(201,168,76,0.18);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 6px var(--gold-glow);
+}
+.upgrade-option-item input[type="checkbox"] {
+    display: none;
+}
+.upgrade-option-item span {
+    flex: 1;
+}
+
+.upgrade-selection-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 4px;
+}
+
+/* ===== 子职选择：车卡风格（左右卡片网格 + 详情面板） ===== */
+.upgrade-subclass-layout {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    flex: 1;
+    min-height: 0;
+}
+
+/* 左侧：子职卡片网格 */
+.upgrade-subclass-left {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    align-content: start;
+    overflow-y: auto;
+    min-height: 0;
+    padding-right: 4px;
+}
+
+/* 子职卡片 */
+.upgrade-subclass-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 16px 12px;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+    user-select: none;
+    display: block;
+}
+.upgrade-subclass-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(201, 168, 76, 0.4);
+}
+.upgrade-subclass-item.selected {
+    border-color: #c9a84c;
+    background: rgba(201, 168, 76, 0.15);
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
+}
+
+.upgrade-subclass-item input[type="radio"] {
+    display: none;
+}
+
+.subclass-card-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #f0e6d3;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.subclass-card-desc {
+    font-size: 0.75rem;
+    color: #8a7a6a;
+    line-height: 1.4;
+}
+
+/* 子职选择步骤：禁止外层滚动，由左右面板内部处理 */
+#stepContent.subclass-active {
+    overflow: hidden !important;
+}
+#stepContent.subclass-active .upgrade-result {
+    overflow: hidden;
+    height: 100%;
+    min-height: 0;
+}
+#stepContent.subclass-active .upgrade-subclass-layout {
+    min-height: 0;
+    flex: 1;
+    height: 0;  /* 触发 flex 子项收缩 */
+}
+#stepContent.subclass-active #subclassSelectionContainer {
+    min-height: 0;
+}
+
+/* 子职详情面板内部内容滚动 */
+.upgrade-subclass-right {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+#subclass-detail-panel {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.subclass-detail-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 60px 20px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* 详情面板内部样式 */
+.detail-title {
+    color: #c9a84c;
+    font-size: 1.4rem;
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.detail-desc-block {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    padding: 12px;
+    line-height: 1.6;
+}
+.detail-desc-block p {
+    color: #a89b8c;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+/* 子职特性列表（车卡风格） */
+.detail-features {
+    margin-top: 12px;
+}
+.detail-features h4 {
+    color: #c9a84c;
+    font-size: 0.95rem;
+    margin: 0 0 8px;
+}
+.detail-feature {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+.detail-feature .feat-name {
+    color: #f0e6d3;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+.detail-feature .feat-desc {
+    color: #a89b8c;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* ===== 职业额外选项容器（class_extra）—— 类似车卡中德鲁伊原初职能的包裹样式 ===== */
+.class-extra-group {
+    border: 2px solid rgba(76, 175, 80, 0.35);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    background: rgba(76, 175, 80, 0.06);
+    position: relative;
+}
+.class-extra-group::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.5), transparent);
+    border-radius: 10px 10px 0 0;
+}
+.class-extra-group-title {
+    color: #4CAF50;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed rgba(76, 175, 80, 0.25);
+}
+.class-extra-group-source {
+    color: #81C784;
+    font-size: 0.78rem;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+.class-extra-group .upgrade-option-grid {
+    margin-top: 8px;
+}
+
+/* ===== 角色详情（步骤5）：禁止外层滚动，由 sheet-body 内部处理 ===== */
+#stepContent.sheet-active {
+    overflow: hidden !important;
+}
+#stepContent.sheet-active .sheet-container {
+    height: 100%;
+    overflow: hidden;
+}
+#stepContent.sheet-active .sheet-body {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    scrollbar-gutter: stable;
+    min-height: 0;
+}
